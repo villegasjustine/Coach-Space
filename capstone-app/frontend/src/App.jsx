@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import AppRoutes from './backend/routes/AppRoutes'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
   
@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       Test: Capstone Project In Progress
-      <AppRoutes/>
+      <AppRoutes></AppRoutes>
     </>
   )
 }
