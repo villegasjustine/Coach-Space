@@ -7,20 +7,22 @@ import HomePage from "../pages/HomePage";
 import ExercisesPage from "../pages/ExercisesPage";
 import AdminExercisePage from "../pages/AdminExercisePage";
 import ForgotPasswordPage from "../pages/ForgotPassword";
+import AdminLoginPage from "../pages/AdminLoginPage";
+import LogInPage from "../pages/LoginPage";
 
 export default function AppRoutes(props) {
   return (
     <Routes>
       <Route index element={<WelcomePage {...props} />} />
-      <Route path="home" element={<HomePage {...props} />} />
-      <Route path="users" element={<UserPage {...props} />} />
-      <Route path="video" element={<VideoPage {...props} />} />
-      <Route path="signup" element={<SignUpPage {...props} />} />
-      <Route path="login" element={<VideoPage {...props} />} />
+      <Route path="Home" element={<HomePage {...props} />} />
+      <Route path="Users" element={<UserPage {...props} />} />
+      <Route path="Video" element={<VideoPage {...props} />} />
+      <Route path="Signup" element={<SignUpPage {...props} />} />
+      <Route path="Login" element={<LogInPage {...props} />} />
       <Route path="ForgotPassword" element={<ForgotPasswordPage {...props} />} />
-
-      <Route path="exercises" element={<ExercisesPage {...props} />} />
+      <Route path="Exercises" element={<ExercisesPage {...props} />} />
       <Route path="AdminExercise" element={<AdminExercisePage {...props} />} />
+      <Route path="AdminLogin" element={<AdminLoginPage {...props} />} />
     </Routes>
   );
 }
