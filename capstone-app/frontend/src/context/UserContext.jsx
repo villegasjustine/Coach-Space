@@ -21,7 +21,9 @@ export const UserProvider = (props) => {
 
     // sets user object in state, shared via context
     const handleUpdateUser = (user) => {
-        if (user.token) {
+        if (user.token) 
+        //choose which token you want - groupID, userID, coachID.
+    {
             setCookie('user', JSON.stringify(user), { path: '/', maxAge: 60 * 60 * 24 }) // cookie will expire in 24 hours
             // localStorage.setItem('user', JSON.stringify(user)); // alternative to cookies using localStorage
         } else {
