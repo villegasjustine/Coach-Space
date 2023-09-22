@@ -5,6 +5,7 @@ require("dotenv").config();
 let dbConnect = require("./dbConnect");
 
 let userRoutes = require("./routes/userRoutes");
+let exerciseRoutes = require("./routes/exerciseRoutes")
 
 const controllers = require("./controllers");
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/api/users", userRoutes);
+app.use("/api/exercises", exerciseRoutes)
 
 
 // set port, listen for requests
