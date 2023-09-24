@@ -1,3 +1,5 @@
+import SignIn from "../components/SignIn";
+
 export default function WelcomePage() {
     return(
         <>
@@ -7,6 +9,7 @@ export default function WelcomePage() {
         <li>Has sign in button</li>
         <li>Signup Button</li>
         <li>FAQ Button: make this accordion or modal</li>
+        <SignIn></SignIn>
         </div>
         </>
     )

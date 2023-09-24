@@ -13,7 +13,7 @@ const controllers = require("./controllers");
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to my mini project : Valo Get." });
+  res.json({ message: "Capstone Project: Coaching with Justine" });
 });
 
 
