@@ -51,6 +51,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       required: true,
+      defaultValue: 'student'
     },
   },
 

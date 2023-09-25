@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require('cors')
 
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config({ path: `./.env.${process.env.NODE_ENV || "local"}` });
+
 let dbConnect = require("./dbConnect");
 
 let userRoutes = require("./routes/userRoutes");
@@ -11,6 +14,7 @@ const controllers = require("./controllers");
 
 // parse requests of content-type -application/json
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ message: "Capstone Project: Coaching with Justine" });

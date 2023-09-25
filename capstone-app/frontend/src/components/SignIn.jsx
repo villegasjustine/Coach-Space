@@ -56,7 +56,7 @@ export default function SignIn() {
         // let isSignedIn = (user && password && user === password)
 
         try {
-            let response = await axios.post('http://localhost:8000/api/users/login', {email: userEmail, password: userPassword});
+            let response = await axios.post('http://localhost:8080/api/users/login', {email: userEmail, password: userPassword});
             signedInUser = response.data.data;
             console.log(signedInUser)
 
