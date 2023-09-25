@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import AppRoutes from './routes/AppRoutes'
-
-
+import { useState } from "react";
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
+import { UserProvider } from "./context/UserContext";
+import { ExerciseProvider } from "./context/ExerciseContext";
 
 function App() {
-  
-
   return (
     <>
       Test: Capstone Project In Progress
-      <AppRoutes>
-
-      </AppRoutes>
+      <UserProvider>
+        <ExerciseProvider>
+          <AppRoutes />
+        </ExerciseProvider>
+      </UserProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
