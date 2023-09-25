@@ -1,22 +1,46 @@
-import User from "./User"
-
-{/* <li>Need to use User Context</li>
-        <li>Do I need to make a Group Context? Nope. Just add the
-            user group in UserContext.
-        </li>
-        <li>Create a logic - grabs the group the active user is in.</li>
-        <li>Populates / Maps through the userdatabase with the === group</li> */}
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import User from './User';
+import { useUserContext } from '../context/UserContext';
 
 export default function Leaderboard() {
-    return props.users.map((user) => {
-        if (user.role == "student")
-        {
-            return <User 
-            key={user.id} 
-            avatar={user.avatar}
-            name={user.name} 
-            points={user.points}/>
-        }
-})
-    
+  const {currentUser} = useUserContext();
+  const [groupUsers, setGroupUsers] = useState([]);
+  console.log(currentUser)
+  
+console.log(groupUsers)
+  useEffect(() => {
+  console.log(currentUser.group)
+    if (currentUser.group) {
+      const apiUrl = `http://localhost:8080/api/users?group=${currentUser.group}`;
+      
+
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          const fetchedUsers = response.data.data;
+          setGroupUsers(fetchedUsers);
+          console.log(fetchedUsers)
+        })
+        .catch((error) => {
+          console.error('Error fetching group members:', error);
+        });
+    }
+  }, []); 
+
+  return (
+    <div>
+      {groupUsers.length >  0 ? 
+        groupUsers.map((member) => (
+            <User
+            key={member.id}
+            avatar={member.avatar}
+            name={member.firstName}
+          />
+        ))
+       : 
+        <p>Test Test</p>
+      }
+    </div>
+  );
 }
