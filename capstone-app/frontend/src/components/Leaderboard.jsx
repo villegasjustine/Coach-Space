@@ -12,7 +12,7 @@ console.log(groupUsers)
   useEffect(() => {
   console.log(currentUser.group)
     if (currentUser.group) {
-      const apiUrl = `http://localhost:8080/api/users?group=${currentUser.group}`;
+      const apiUrl = `http://localhost:8080/api/users/groups/${currentUser.group}`;
       
 
       axios

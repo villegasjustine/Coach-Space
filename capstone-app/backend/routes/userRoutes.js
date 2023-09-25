@@ -6,6 +6,14 @@ router.get("/", (req, res) => {
   Controllers.userController.getUsers(res);
 });
 
+router.get("/:id", (req, res) => {
+  Controllers.userController.getUsersbyID(req, res);
+});
+
+router.get("/groups/:group", (req, res) => {
+  Controllers.userController.getUsersbyGroup(req, res);
+});
+
 router.post("/create", (req, res) => {
   Controllers.userController.createUser(req.body, res);
 });
