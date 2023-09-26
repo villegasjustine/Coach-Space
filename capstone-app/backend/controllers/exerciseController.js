@@ -12,6 +12,17 @@ const getExercises = (res) => {
     });
 };
 
+const getExercisesbyCategory = (req, res) => {
+  Models.Exercise.findAll({where: { category: req.params.category } })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      res.send({ result: 500, data: err.message });
+      res.status(500).json({ data: err.message });
+    });
+};
+
 const createExercise = (data, res) => {
   Models.Exercise.create(data)
     .then(function (data) {
@@ -47,6 +58,7 @@ const deleteExercise = (req, res) => {
 
 module.exports = {
   getExercises,
+  getExercisesbyCategory,
   createExercise,
   updateExercise,
   deleteExercise,

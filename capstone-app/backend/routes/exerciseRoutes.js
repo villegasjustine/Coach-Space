@@ -6,6 +6,9 @@ router.get("/", (req, res) => {
   Controllers.exerciseController.getExercises(res);
 });
 
+router.get("/category/:category", (req, res) => {
+  Controllers.exerciseController.getExercisesbyCategory(req, res);
+});
 
 router.post("/create", (req, res) => {
   Controllers.exerciseController.createExercise(req.body, res);

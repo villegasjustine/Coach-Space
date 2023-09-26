@@ -26,6 +26,17 @@ const getUsersbyID = (req, res) => {
     });
 };
 
+const getUsersbyGroup = (req, res) => {
+  Models.User.findAll({where: { group: req.params.group } })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      res.send({ result: 500, data: err.message });
+      res.status(500).json({ data: err.message });
+    });
+};
+
 
 const createUser = (data, res) => {
   Models.User.create(data)
@@ -141,16 +152,7 @@ const registerUser = async (req, res) => {
   }
 }
 
-const getUsersbyGroup = (req, res) => {
-  Models.User.findAll({where: { group: req.params.group } })
-    .then(function (data) {
-      res.send({ result: 200, data: data });
-    })
-    .catch((err) => {
-      res.send({ result: 500, data: err.message });
-      res.status(500).json({ data: err.message });
-    });
-};
+
 
 
 module.exports = {
