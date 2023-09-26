@@ -1,5 +1,6 @@
 
 
+
 export default function UserPage() {
     return (
       <div className="UserPage">
@@ -11,6 +12,8 @@ export default function UserPage() {
           <li>Edit programs here</li>
           <li>Needs to be protected route</li>
         </ul>
+
+      
       </div>
     );
   }

@@ -54,6 +54,8 @@ export default function AssignExercise() {
       {fetchedExercises.map((f) => (
         <IconChips key={f.id} value={f.name} category={f.category}></IconChips>
       ))}
+
+      
     
     </div>
   );
