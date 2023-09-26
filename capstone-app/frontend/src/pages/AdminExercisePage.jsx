@@ -1,5 +1,5 @@
 import AssignExercise from "../components/AssignExercise";
-import { SelectedChipsBox } from "../components/IconChips";
+
 
 export default function AdminExercisePage() {
 

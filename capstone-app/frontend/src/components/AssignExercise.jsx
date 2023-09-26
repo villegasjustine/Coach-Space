@@ -8,7 +8,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useExerciseContext } from "../context/ExerciseContext";
 import RadioButtons from "../components/RadioButton";
-import IconChips, { SelectedChipsBox } from "./IconChips";
+import IconChips from "./IconChips";
+
+
 
 export default function AssignExercise() {
   const [category, setCategory] = useState("all");
@@ -52,7 +54,7 @@ export default function AssignExercise() {
       {fetchedExercises.map((f) => (
         <IconChips key={f.id} value={f.name} category={f.category}></IconChips>
       ))}
-      <SelectedChipsBox></SelectedChipsBox>
+    
     </div>
   );
 }

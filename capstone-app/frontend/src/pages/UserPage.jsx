@@ -1,4 +1,4 @@
-import DataGridDemo from "../components/DataGridDemo";
+
 
 export default function UserPage() {
     return (
@@ -11,8 +11,6 @@ export default function UserPage() {
           <li>Edit programs here</li>
           <li>Needs to be protected route</li>
         </ul>
-
-   <DataGridDemo></DataGridDemo>
       </div>
     );
   }
