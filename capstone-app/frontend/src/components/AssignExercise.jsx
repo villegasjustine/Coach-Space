@@ -8,18 +8,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useExerciseContext } from "../context/ExerciseContext";
 import RadioButtons from "../components/RadioButton";
+import IconChips, { SelectedChipsBox } from "./IconChips";
 
 export default function AssignExercise() {
-  //   const [all, setAll] = useState(true);
-  //   const [strength, setStrength] = useState(null);
-  //   const [footwork, setFootwork] = useState(null);
-  //   const [racket, setRacket] = useState(null);
-
   const [category, setCategory] = useState("all");
-
-  const [footworkExercise, setFootworkExercise] = useState("");
-  const [racketExercise, setRacketExercise] = useState("");
-  const [strengthExercise, setStrengthExercise] = useState("");
+  const [fetchedExercises, setFetchedExercises] = useState([]);
 
   const { handleUpdateExercise } = useExerciseContext();
 
@@ -28,7 +21,8 @@ export default function AssignExercise() {
   };
 
   useEffect(() => {
-    let fetchURL ;
+    let fetchURL;
+
     if (category === "all") {
       fetchURL = `http://localhost:8080/api/exercises/`;
     } else {
@@ -37,34 +31,28 @@ export default function AssignExercise() {
     axios
       .get(fetchURL)
       .then((response) => {
-        const fetchedExercises = response.data.data;
-        console.log(fetchedExercises);
+        setFetchedExercises(response.data.data);
+        console.log(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching group members:", error);
       });
   }, [category]);
 
- 
-
   const handleStrengthChange = (event) => {
     setStrength(event.target.value);
   };
 
-  const handleAssignExercise = () => {
-    handleUpdateExercise({
-      footwork: footworkExercise,
-      racket: racketExercise,
-      strength: strengthExercise,
-    });
-  };
+  
 
   return (
     <div className="AssignExercise">
-      <RadioButtons
-        value={category}
-        onChange={handleChange} />
-     
+      <RadioButtons category={category} handleChange={handleChange} />
+
+      {fetchedExercises.map((f) => (
+        <IconChips key={f.id} value={f.name} category={f.category}></IconChips>
+      ))}
+      <SelectedChipsBox></SelectedChipsBox>
     </div>
   );
 }

@@ -1,4 +1,8 @@
+import AssignExercise from "../components/AssignExercise";
+import { SelectedChipsBox } from "../components/IconChips";
+
 export default function AdminExercisePage() {
+
     return(
         <>
         <div className="AdminExercisePage">
@@ -10,6 +14,9 @@ export default function AdminExercisePage() {
         <li>See a list of students under the coach's name : this would be a bonus</li>
         <li>Should be able to bulk assign to specific students through a tickbox</li>
 
+        <AssignExercise></AssignExercise>
+       
+      
         </div>
         </>
     )

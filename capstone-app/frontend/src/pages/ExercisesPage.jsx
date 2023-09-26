@@ -1,4 +1,3 @@
-import AssignExercise from "../components/AssignExercise";
 
 export default function ExercisesPage() {
     return(
@@ -13,7 +12,7 @@ export default function ExercisesPage() {
 
         <li>Submission for comments</li>
 
-        <AssignExercise></AssignExercise>
+        
         
         </div>
         </>

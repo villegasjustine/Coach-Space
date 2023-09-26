@@ -11,7 +11,7 @@ export default function RadioButtons({category, handleChange}) {
 
   return (
     <FormControl>
-      <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+      <FormLabel id="demo-row-radio-buttons-group-label">Exercises</FormLabel>
 
       <RadioGroup
         row
@@ -20,10 +20,10 @@ export default function RadioButtons({category, handleChange}) {
         value={category}
         onChange={handleChange}
       >
-        <FormControlLabel value="Footwork" control={<Radio />} label="Footwork" />
-        <FormControlLabel value="Racket" control={<Radio />} label="Racket" />
-        <FormControlLabel value="Strength" control={<Radio />} label="Strength" />
-        <FormControlLabel value="All" control={<Radio />} label="All" />
+        <FormControlLabel value="footwork" control={<Radio />} label="Footwork" />
+        <FormControlLabel value="racket" control={<Radio />} label="Racket" />
+        <FormControlLabel value="strength" control={<Radio />} label="Strength" />
+        <FormControlLabel value="all" control={<Radio />} label="All" />
         
       </RadioGroup>
     </FormControl>
