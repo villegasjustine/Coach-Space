@@ -11,7 +11,7 @@ import axios from "axios";
 
 
 
-export default function FormDialog({handleRefresh}) {
+export default function DialogUpdateUser() {
   const [open, setOpen] = React.useState(false);
   const [result, setResult] = React.useState("");
   const { currentUser, handleUpdateUser } = useUserContext();
@@ -19,7 +19,7 @@ export default function FormDialog({handleRefresh}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setOpen(false);
+  
 
     // convert form data to object and post to backend
     axios
@@ -35,8 +35,6 @@ export default function FormDialog({handleRefresh}) {
         setResult(result);
         if (user) {
           handleUpdateUser(user);
-          alert("Successfully created a new user!") // use toast if have time
-          handleRefresh()
         }
       })
       .catch((err) => {

@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
+import { IconButton, FormControlLabel } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+
+const MatEdit = ({ index }) => {
+
+  const handleEditClick = () => {
+      // some action
+  }
+
+
+  return <FormControlLabel
+             control={
+                 <IconButton color="secondary" aria-label="edit-user" onClick={handleEditClick} >
+                     <EditIcon style={{ color: blue[500] }} />
+                 </IconButton>
+             }
+         />
+};
+
 
 const DataGridDemo = () => {
   const [tableData, setTableData] = useState([]);
@@ -23,6 +42,20 @@ const DataGridDemo = () => {
     { field: 'firstName', headerName: 'Name', width: 100 },
     { field: 'lastName', headerName: 'Name', width: 100},
     { field: 'group', headerName: 'Group', width: 100},
+    {
+      field: "actions",
+      headerName: "Actions",
+      sortable: false,
+      width: 140,
+      disableClickEventBubbling: true,
+      renderCell: (params) => {
+          return (
+              <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
+                  <MatEdit index={params.row.id} />
+               </div>
+          );
+       }
+    }
     // Add more columns as needed
   ];
 

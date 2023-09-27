@@ -13,6 +13,7 @@ import FormDialog from "./user/FormDialog";
 const DataGridUser = () => {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
+const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
     // Use Axios to fetch data
@@ -26,7 +27,7 @@ const DataGridUser = () => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [refresh]);
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -36,10 +37,13 @@ const DataGridUser = () => {
     //need to add history exercises later
   ];
 
+  const handleRefresh = () => {
+    setRefresh(!refresh)
+  }
   const handleCreateUser = async() => {
     
     // how do i activate formDialog? on click
-    <FormDialog></FormDialog>;
+   
     console.log("Create User");
   };
 
@@ -52,11 +56,13 @@ const DataGridUser = () => {
         console.log('User deleted:', response.data.data);
         const updatedData = tableData.filter((user) => user.id !== response.data.data);
         setTableData(updatedData);
+        setRefresh(!refresh)
       })
       .catch((error) => {
         console.error('Error deleting user:', error);
       });
   };
+
 
   const handleUpdateUser = (userID) => {
     // axios.post(`http://localhost:8080/api/users/${userID}`)
@@ -70,6 +76,7 @@ const DataGridUser = () => {
     // });
     // // update selected user
     // console.log("Update User");
+    setRefresh(!refresh)
   };
 
   const handleRowSelectionChange = (newSelection) => {
@@ -86,8 +93,7 @@ const DataGridUser = () => {
     <div>
       <h2>User Management</h2>
       <div>
-        <button onClick={handleCreateUser}>Create User</button>
-        <button onClick={handleUpdateUser}>Update User</button>
+      <FormDialog handleRefresh={handleRefresh}>Create User</FormDialog>
         <button onClick={handleDeleteUser}>Delete User</button>
       </div>
       <div style={{ height: 700, width: "100%" }}>
@@ -97,8 +103,8 @@ const DataGridUser = () => {
           pageSize={5}
           checkboxSelection
           onRowSelectionModelChange={handleRowSelectionChange}
-          enableEditing
           onCellDoubleClick={handleEditField}
+
         />
       </div>
     </div>
