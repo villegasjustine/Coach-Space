@@ -1,4 +1,5 @@
 "use strict";
+const { Op } = require('sequelize');
 
 const Models = require("../models");
 const bcrypt = require('bcryptjs');
@@ -10,7 +11,7 @@ const getUsers = (res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      // res.send({ result: 500, data: err.message });
       res.status(500).json({ data: err.message });
     });
 };
@@ -21,7 +22,7 @@ const getUsersbyID = (req, res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      // res.send({ result: 500, data: err.message });
       res.status(500).json({ data: err.message });
     });
 };
@@ -32,22 +33,37 @@ const getUsersbyGroup = (req, res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      // res.send({ result: 500, data: err.message });
       res.status(500).json({ data: err.message });
     });
 };
 
 
 const createUser = (data, res) => {
+  console.log(data)
   Models.User.create(data)
     .then(function (data) {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      console.log(err)
+      // res.send({ result: 500, data: err.message });
       res.status(500).json({ data: err.message });
     });
 };
+
+const createUserMany = (data, res) => {
+  //find how to create many
+  Models.User.create(data)
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      // res.send({ result: 500, data: err.message });
+      res.status(500).json({ data: err.message });
+    });
+};
+
 
 
 const updateUser = (req, res) => {
@@ -56,18 +72,22 @@ const updateUser = (req, res) => {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      // res.send({ result: 500, data: err.message });
       res.status(500).json({ data: err.message });
     });
 };
 
 const deleteUser = (req, res) => {
-  Models.User.destroy({ where: { id: req.params.id } })
+  //find how to delete many
+  const tableIDs = req.params.id.split(',')
+console.log(tableIDs)
+  Models.User.destroy({ where: { id: {[Op.in]: tableIDs }}})
     .then(function (data) {
       res.send({ result: 200, data: data });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
+      // res.send({ result: 500, data: err.message });
+      console.log(err)
       res.status(500).json({ data: err.message });
     });
 };
@@ -163,5 +183,6 @@ module.exports = {
   loginUser,
   registerUser,
   getUsersbyID,
-  getUsersbyGroup
+  getUsersbyGroup,
+  createUserMany,
 };
