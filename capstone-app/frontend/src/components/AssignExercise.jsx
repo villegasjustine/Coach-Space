@@ -16,12 +16,9 @@ import IconChipsTest from "./IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
 
 export default function AssignExercise() {
-  const [category, setCategory] = useState("all");
-
-  const [fetchedExercises, setFetchedExercises] = useState([]);
-
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [assigned, setAssigned] = useState([])
 
   const { handleUpdateExercise } = useExerciseContext();
 
@@ -35,18 +32,19 @@ export default function AssignExercise() {
       .post("http://localhost:8080/api/assignedexercises", assignedExercises)
       .then((response) => {
         console.log("assignedExercises saved:", response.data);
-        // You can add more logic here, like resetting selectedExercises and selectedUsers
+        let result = response.data.result;
+        let posty = response.data.data;
+        console.log(result);
+        console.log(posty)
+
+        //need to reset somehow after it has been assigned.
       })
       .catch((error) => {
         console.error("Error saving assignedExercises:", error);
       });
+      console.log(assignedExercises)
   };
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  
 
   return (
     <div className="AssignExercise">
@@ -62,7 +60,8 @@ export default function AssignExercise() {
         setSelectedUsers={setSelectedUsers}
       />
 
-      <button onClick={handleAssignedExercises}>Save assignedExercises</button>
+
+      <button onClick={handleAssignedExercises}>Assign Exercises</button>
     </div>
   );
 }

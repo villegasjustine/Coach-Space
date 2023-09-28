@@ -7,7 +7,7 @@ class AssignedExercise extends Model {}
 
 AssignedExercise.init(
   {
-    // Define a custom field for the ID
+    
     customId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -27,6 +27,16 @@ AssignedExercise.init(
         key: "id",
       },
     },
+    assignedDate: {
+      type: DataTypes.DATE,
+      allowNull: true, 
+    },
+    completed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false, 
+      defaultValue: false, 
+    },
+  
   },
   {
     sequelize: sequelizeInstance,
@@ -39,7 +49,7 @@ AssignedExercise.init(
 
 AssignedExercise.addHook("beforeValidate", (assignedExercise) => {
   if (!assignedExercise.customId) {
-    assignedExercise.customId = 1; // Set the initial value to 1
+    assignedExercise.customId = 1; //initial value
   }
 });
 

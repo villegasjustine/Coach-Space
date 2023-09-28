@@ -41,26 +41,26 @@ export default function IconChipsTest() {
     const existingChip = availableChips.find((c) => c.id === chip.id);
 
     if (existingChip) {
-      // Remove the clicked chip from availableChips
+      // delete clicked chip from box a
       const updatedAvailableChips = availableChips.filter((c) => c.id !== chip.id);
 
-      // Add the clicked chip to selectedChips
+      // add clicked chip to box b
       setSelectedChips([...selectedChips, chip]);
 
-      // Update the state
+      // state update
       setAvailableChips(updatedAvailableChips);
     } else {
-      // Check if the chip with the same id exists
+      // check if there are the same id's
       const existingSelectedChip = selectedChips.find((c) => c.id === chip.id);
 
       if (existingSelectedChip) {
-        // Remove the clicked chip from selectedChips
+        // if clicked in box b, remove it and put it back in box a
         const updatedSelectedChips = selectedChips.filter((c) => c.id !== chip.id);
 
-        // Add the clicked chip back to availableChips
+        // add clicked chip back in box a
         setAvailableChips([...availableChips, chip]);
 
-        // Update the state
+        // state update
         setSelectedChips(updatedSelectedChips);
       }
     }
@@ -82,6 +82,8 @@ export default function IconChipsTest() {
             key={chip.id}
             label={chip.name}
             onClick={() => handleChipClick(chip)}
+            color="primary"
+            variant="outlined"
           />
         ))}
       </div>
@@ -91,7 +93,7 @@ export default function IconChipsTest() {
           <Chip
             key={chip.id}
             label={chip.name}
-            variant="outlined"
+            color = "primary"
             onClick={() => handleChipClick(chip)} // moving chips back
           />
         ))}
