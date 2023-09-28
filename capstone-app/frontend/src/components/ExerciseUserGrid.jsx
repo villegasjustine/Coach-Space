@@ -48,9 +48,9 @@ const ExerciseUserGrid = (props) => {
     { field: 'group', headerName: 'Group', width: 100},
     {
       field: "actions",
-      headerName: "Actions",
+      headerName: "",
       sortable: false,
-      width: 140,
+      width: 50,
       disableClickEventBubbling: true,
       renderCell: (params) => {
           return (
@@ -70,7 +70,7 @@ const ExerciseUserGrid = (props) => {
   };
 
   return (
-    <div style={{ height: 700, width: '100%' }}>
+    <div style={{ height: 500, width: '100%' }}>
       <DataGrid
         rows={tableData}
         columns={columns}

@@ -74,12 +74,7 @@ const [validationErrors, setValidationErrors] = useState({});
   const handleRefresh = () => {
     setRefresh(!refresh)
   }
-  const handleCreateUser = async() => {
-    
-    // how do i activate formDialog? on click
-   
-    console.log("Create User");
-  };
+;
 
   const handleDeleteUser = (e) => {
     // add delete logic

@@ -11,38 +11,44 @@ export default function AssignExercise() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [dataSent, setDataSent] = useState([]);
-  console.log(selectedExercises)
+  console.log(selectedExercises);
   console.log(selectedUsers);
-  
+
   const handleCheckValues = () => {
-    console.log(selectedExercises)
+    console.log(selectedExercises);
     console.log(selectedUsers);
-  }
+  };
+
+  const handleSelectedChipsUpdate = (updatedChips) => {
+    setSelectedExercises(updatedChips);
+  };
 
   const handleAssignedExercises = () => {
     setIsLoading(true);
 
     // create an object to store assigned exercises and users
-    const assignedExercises = selectedUsers.map((userId) => (
-      selectedExercises.map((exercise) => ({
-        UserId: userId,
-        ExerciseId: exercise.id,
-      }))
-    )).flat();
-    
-   
+    const assignedExercises = selectedUsers
+      .map((userId) =>
+        selectedExercises.map((exercise) => ({
+          UserId: userId,
+          ExerciseId: exercise.id,
+        }))
+      )
+      .flat();
+
     axios
-      .post("http://localhost:8080/api/assignedexercises/create", assignedExercises)
-      
+      .post(
+        "http://localhost:8080/api/assignedexercises/create",
+        assignedExercises
+      )
+
       .then((response) => {
         console.log("Assigned exercises saved:", response.data.data);
 
         // update assignedData with the response data
         setAssignedData(response.data.data);
 
-        setSelectedExercises([])
-       
-      
+        setSelectedExercises([]);
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
@@ -58,7 +64,7 @@ export default function AssignExercise() {
     <div className="AssignExercise">
       <IconChipsTest
         selectedExercises={selectedExercises}
-        setSelectedExercises={setSelectedExercises}
+        setSelectedExercises={handleSelectedChipsUpdate}
       />
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
