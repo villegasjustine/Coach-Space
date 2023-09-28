@@ -18,6 +18,8 @@ import { NavLink } from 'react-router-dom';
 const pages = [
         {link: '/home', label: 'Home'}, 
         {link: '/exercises', label: 'Exercises'},
+        {link: '/users', label: 'Users'},
+        {link: '/adminexercise', label: 'Admin Exercise'},
         {link: '/video', label: 'Video'} 
     ];
     const settings = [{link: '/home', label: 'Account'}, {link: '/', label: 'Sign Out'}];

@@ -46,11 +46,32 @@ export default function AssignExercise() {
     setCategory(event.target.value);
   };
 
-  
+  // useEffect(() => {
+  //   let fetchURL;
+
+  //   if (category === "all") {
+  //     fetchURL = `http://localhost:8080/api/exercises/`;
+  //   } else {
+  //     fetchURL = `http://localhost:8080/api/exercises/category/${category}`;
+  //   }
+  //   axios
+  //     .get(fetchURL)
+  //     .then((response) => {
+  //       setFetchedExercises(response.data.data);
+  //       console.log(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching group members:", error);
+  //     });
+  // }, [category]);
 
   return (
     <div className="AssignExercise">
-      
+      {/* <RadioButtons category={category} handleChange={handleChange} /> */}
+      {/* 
+      {fetchedExercises.map((f) => (
+        <IconChips key={f.id} value={f.name} category={f.category}></IconChips>
+      ))} */}
 
       <IconChipsTest
         selectedExercises={selectedExercises}

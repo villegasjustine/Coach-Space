@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import AssignExercise from "../components/AssignExercise";
-import DataGridDemo from "../components/DataGrid";
+import ExerciseUserGrid from "../components/ExerciseUserGrid";
+import TestExerciseAssign from "../components/Test/TestExerciseAssign";
+import IconChipsTest from "../components/IconChipsTest";
 
 
 
@@ -19,7 +21,9 @@ export default function AdminExercisePage() {
         <li>Should be able to bulk assign to specific students through a tickbox</li>
 
         <AssignExercise></AssignExercise>
-        <DataGridDemo/>
+        <TestExerciseAssign></TestExerciseAssign>
+        
+        
         
       <Button>Assign Exercises</Button>
       

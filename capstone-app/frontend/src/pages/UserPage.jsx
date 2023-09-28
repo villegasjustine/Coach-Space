@@ -1,4 +1,6 @@
-import DataGridUser from "../components/AdminUser";
+import AdminUserGrid from "../components/AdminUserGrid";
+import EnhancedTable from "../components/Test/UserTable";
+
 import FormDialog from "../components/user/FormDialog";
 
 
@@ -14,9 +16,10 @@ export default function UserPage() {
           <li>Edit programs here</li>
           <li>Needs to be protected route</li>
         </ul>
-      <DataGridUser></DataGridUser>
+     <AdminUserGrid/>
       <FormDialog></FormDialog>
-      
+     <EnhancedTable></EnhancedTable>
+    
       </div>
     );
   }

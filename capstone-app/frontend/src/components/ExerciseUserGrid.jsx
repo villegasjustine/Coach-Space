@@ -3,6 +3,8 @@ import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import { blue } from '@mui/material/colors';
+blue
 
 const MatEdit = ({ index }) => {
 
@@ -21,8 +23,9 @@ const MatEdit = ({ index }) => {
 };
 
 
-const DataGridDemo = () => {
+const ExerciseUserGrid = () => {
   const [tableData, setTableData] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
     // Use Axios to fetch data
@@ -59,16 +62,23 @@ const DataGridDemo = () => {
     // Add more columns as needed
   ];
 
+  const handleRowSelectionChange = (newSelection) => {
+    console.log(newSelection)
+    setSelectedRows(newSelection);
+  };
+
   return (
     <div style={{ height: 700, width: '100%' }}>
       <DataGrid
         rows={tableData}
         columns={columns}
         pageSize={5}
+        disableRowSelectionOnClick
         checkboxSelection
+        onRowSelectionModelChange={handleRowSelectionChange}
       />
     </div>
   );
 };
 
-export default DataGridDemo;
+export default ExerciseUserGrid;

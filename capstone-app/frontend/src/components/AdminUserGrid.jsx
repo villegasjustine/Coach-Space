@@ -9,11 +9,31 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormDialog from "./user/FormDialog";
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton, FormControlLabel } from '@mui/material';
+import { blue } from "@mui/material/colors";
 
-const DataGridUser = () => {
+const MatEdit = ({ index }) => {
+
+    const handleEditClick = () => {
+        // some action
+    }
+  
+  
+    return <FormControlLabel
+               control={
+                   <IconButton color="secondary" aria-label="edit-user" onClick={handleEditClick} >
+                       <EditIcon style={{ color: blue[500] }} />
+                   </IconButton>
+               }
+           />
+  };
+
+const AdminUserGrid = () => {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 const [refresh, setRefresh] = useState(true);
+const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
     // Use Axios to fetch data
@@ -34,6 +54,20 @@ const [refresh, setRefresh] = useState(true);
     { field: "firstName", headerName: "First Name", width: 100 },
     { field: "lastName", headerName: "Last Name", width: 100 },
     { field: "group", headerName: "Group", width: 100 }, 
+    {
+        field: "actions",
+        headerName: "Actions",
+        sortable: false,
+        width: 140,
+        disableClickEventBubbling: true,
+        renderCell: (params) => {
+            return (
+                <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
+                    <MatEdit index={params.row.id} />
+                 </div>
+            );
+         }
+      }
     //need to add history exercises later
   ];
 
@@ -64,19 +98,13 @@ const [refresh, setRefresh] = useState(true);
   };
 
 
-  const handleUpdateUser = (userID) => {
-    // axios.post(`http://localhost:8080/api/users/${userID}`)
-    // .then((response) => {
-    //   console.log('User deleted:', response.data.data);
-    //   const updatedData = tableData.filter((user) => user.id !== userID);
-    //   setTableData(updatedData);
-    // })
-    // .catch((error) => {
-    //   console.error('Error deleting user:', error);
-    // });
-    // // update selected user
-    // console.log("Update User");
-    setRefresh(!refresh)
+  const handleSaveRowEdits = async ({ exitEditingMode, row, values }) => {
+    if (!Object.keys(validationErrors).length) {
+      tableData[row.index] = values;
+      //send/receive api updates here, then refetch or update local table data for re-render
+      setTableData([...tableData]);
+      exitEditingMode(); //required to exit editing mode and close modal
+    }
   };
 
   const handleRowSelectionChange = (newSelection) => {
@@ -104,6 +132,10 @@ const [refresh, setRefresh] = useState(true);
           checkboxSelection
           onRowSelectionModelChange={handleRowSelectionChange}
           onCellDoubleClick={handleEditField}
+          disableRowSelectionOnClick
+          enableEditing
+          editingMode='modal'
+          onRowDoubleClick={handleSaveRowEdits}
 
         />
       </div>
@@ -111,5 +143,5 @@ const [refresh, setRefresh] = useState(true);
   );
 };
 
-export default DataGridUser;
+export default AdminUserGrid;
 
