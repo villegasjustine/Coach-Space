@@ -64,7 +64,7 @@ const ExerciseUserGrid = (props) => {
   ];
 
   const handleRowSelectionChange = (newSelection) => {
-    console.log(newSelection)
+    // console.log(newSelection)
     props.setSelectedUsers(newSelection)
     setSelectedRows(newSelection);
   };

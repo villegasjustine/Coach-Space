@@ -24,8 +24,8 @@ export default function AssignExercise() {
 
     // create an object to store assigned exercises and users
     const assignedExercises = {
-      exercises: selectedExercises.map((exercise) => exercise.id),
-      users: selectedUsers.map((user) => user.id),
+      UserId: selectedUsers,
+      ExerciseId: selectedExercises.map((exercise) => ({ExerciseId:exercise.id}) ),
     };
 
    
@@ -33,7 +33,7 @@ export default function AssignExercise() {
       .post("http://localhost:8080/api/assignedexercises/create", assignedExercises)
       
       .then((response) => {
-        console.log("Assigned exercises saved:", response.data);
+        console.log("Assigned exercises saved:", response.data.data);
 
         // update assignedData with the response data
         setAssignedData(response.data.data);

@@ -43,35 +43,35 @@ export default function IconChipsTest(props) {
   const handleChipClick = (chip) => {
     // Check if the chip with the same id exists in availableChips
     const existingChip = availableChips.find((c) => c.id === chip.id);
-
+  
     if (existingChip) {
       // delete clicked chip from box a
       const updatedAvailableChips = availableChips.filter((c) => c.id !== chip.id);
-
+  
       // add clicked chip to box b
       setSelectedChips([...selectedChips, chip]);
-
+  
       // state update
       setAvailableChips(updatedAvailableChips);
     } else {
       // check if there are the same id's
       const existingSelectedChip = selectedChips.find((c) => c.id === chip.id);
-
+  
       if (existingSelectedChip) {
         // if clicked in box b, remove it and put it back in box a
         const updatedSelectedChips = selectedChips.filter((c) => c.id !== chip.id);
-
+  
         // add clicked chip back in box a
         setAvailableChips([...availableChips, chip]);
-       
-        // state update
-        setSelectedChips(updatedSelectedChips);
-        props.setSelectedExercises(updatedSelectedChips)
+        // console.log(updatedSelectedChips)
+
+        setSelectedChips(updatedSelectedChips)
+  
       }
     }
   };
 
-  
+  handleSetSelectedExercise()
   // console.log(selectedChips)
 
   useEffect(() => {

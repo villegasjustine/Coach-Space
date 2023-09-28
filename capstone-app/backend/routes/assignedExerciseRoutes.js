@@ -10,9 +10,9 @@ router.get("/:id", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesbyID(req, res);
 });
 
-router.post("/create", (req, res) => {
-  Controllers.assignedExerciseController.createAssignedExercise(req.body, res);
-});
+// router.post("/create", (req, res) => {
+//   Controllers.assignedExerciseController.createAssignedExercise(req.body, res);
+// });
 
 router.post("/create", (req, res) => {
     Controllers.assignedExerciseController.createAssignedExerciseMany(req.body, res);

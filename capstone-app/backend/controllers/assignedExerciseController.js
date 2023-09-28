@@ -24,21 +24,20 @@ const getAssignedExercisesbyID = (req, res) => {
     });
 };
 
-const createAssignedExercise = (data, res) => {
-  console.log(data)
-  Models.AssignedExercise.create(data)
-    .then(function (data) {
-      res.send({ result: 200, data: data });
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json({ data: err.message });
-    });
-};
+// const createAssignedExercise = (data, res) => {
+//   console.log(data)
+//   Models.AssignedExercise.create(data)
+//     .then(function (data) {
+//       res.send({ result: 200, data: data });
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//       res.status(500).json({ data: err.message });
+//     });
+// };
 
 const createAssignedExerciseMany = (data, res) => {
   console.log(data)
-
     Models.AssignedExercise.bulkCreate(data)
       .then(function (createdExercises) {
         res.send({ result: 200, data: createdExercises });
@@ -77,7 +76,7 @@ console.log(tableIDs)
 
 module.exports = {
   getAssignedExercises,
-  createAssignedExercise,
+  // createAssignedExercise,
   updateAssignedExercise,
   deleteAssignedExercise,
   getAssignedExercisesbyID,
