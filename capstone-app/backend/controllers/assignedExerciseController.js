@@ -37,6 +37,8 @@ const createAssignedExercise = (data, res) => {
 };
 
 const createAssignedExerciseMany = (data, res) => {
+  console.log(data)
+
     Models.AssignedExercise.bulkCreate(data)
       .then(function (createdExercises) {
         res.send({ result: 200, data: createdExercises });

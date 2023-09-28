@@ -4,6 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
+import { useProps } from '@mui/x-data-grid/internals';
 blue
 
 const MatEdit = ({ index }) => {
@@ -23,7 +24,7 @@ const MatEdit = ({ index }) => {
 };
 
 
-const ExerciseUserGrid = () => {
+const ExerciseUserGrid = (props) => {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
@@ -64,6 +65,7 @@ const ExerciseUserGrid = () => {
 
   const handleRowSelectionChange = (newSelection) => {
     console.log(newSelection)
+    props.setSelectedExercises(newSelection)
     setSelectedRows(newSelection);
   };
 

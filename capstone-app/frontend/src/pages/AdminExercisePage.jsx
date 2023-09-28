@@ -21,7 +21,7 @@ export default function AdminExercisePage() {
         <li>Should be able to bulk assign to specific students through a tickbox</li>
 
         <AssignExercise></AssignExercise>
-        <TestExerciseAssign></TestExerciseAssign>
+        {/* <TestExerciseAssign></TestExerciseAssign> */}
         
         
         

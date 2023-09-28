@@ -7,8 +7,7 @@ class AssignedExercise extends Model {}
 
 AssignedExercise.init(
   {
-    
-    customId: {
+      id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -46,15 +45,5 @@ AssignedExercise.init(
   }
 );
 
-
-AssignedExercise.addHook("beforeValidate", (assignedExercise) => {
-  if (!assignedExercise.customId) {
-    assignedExercise.customId = 1; //initial value
-  }
-});
-
-AssignedExercise.prototype.getAeId = function () {
-  return `AE${this.customId}`;
-};
 
 module.exports = AssignedExercise;

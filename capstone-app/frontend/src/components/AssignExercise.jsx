@@ -1,67 +1,85 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {
-  ExerciseProvider,
-  useExerciseContext,
-} from "../context/ExerciseContext";
-import RadioButtons from "../components/RadioButton";
-import IconChips from "./IconChips";
 import IconChipsTest from "./IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
-  const [assigned, setAssigned] = useState([])
+  const [assignedData, setAssignedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { handleUpdateExercise } = useExerciseContext();
+  const [dataSent, setDataSent] = useState([]);
+  
+  const handleCheckValues = () => {
+    console.log(selectedExercises)
+    console.log(selectedUsers);
+  }
 
   const handleAssignedExercises = () => {
+    setIsLoading(true);
+
+    // create an object to store assigned exercises and users
     const assignedExercises = {
       exercises: selectedExercises.map((exercise) => exercise.id),
       users: selectedUsers.map((user) => user.id),
     };
 
-    axios
-      .post("http://localhost:8080/api/assignedexercises", assignedExercises)
-      .then((response) => {
-        console.log("assignedExercises saved:", response.data);
-        let result = response.data.result;
-        let posty = response.data.data;
-        console.log(result);
-        console.log(posty)
+    setDataSent([...dataSent, assignedExercises])
+    console.log(dataSent)
 
-        //need to reset somehow after it has been assigned.
+   
+    axios
+      .post("http://localhost:8080/api/assignedexercises/create", assignedExercises)
+      
+      .then((response) => {
+        console.log("Assigned exercises saved:", response.data);
+
+        // update assignedData with the response data
+        setAssignedData(response.data.data);
+
+       
+      
       })
       .catch((error) => {
-        console.error("Error saving assignedExercises:", error);
+        console.error("Error saving assigned exercises:", error);
+      })
+      .finally(() => {
+        setSelectedExercises([]); // clear exercises
+        setSelectedUsers([]); // clear users
+        setIsLoading(false);
       });
-      console.log(assignedExercises)
   };
-
 
   return (
     <div className="AssignExercise">
-      
-
       <IconChipsTest
         selectedExercises={selectedExercises}
         setSelectedExercises={setSelectedExercises}
       />
-
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
         setSelectedUsers={setSelectedUsers}
       />
+      <button onClick={handleAssignedExercises} disabled={isLoading}>
+        {isLoading ? "Assigning..." : "Assign Exercises"}
+      </button>
 
+      <button onClick={handleCheckValues}>Check Check</button>
 
-      <button onClick={handleAssignedExercises}>Assign Exercises</button>
+      {assignedData.length > 0 && (
+        <div>
+          <h2>Assigned Exercises:</h2>
+          <ul>
+            {assignedData.map((item) => (
+              <li key={item.id}>
+                User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
