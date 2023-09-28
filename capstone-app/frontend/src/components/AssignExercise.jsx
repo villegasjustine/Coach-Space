@@ -11,6 +11,8 @@ export default function AssignExercise() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [dataSent, setDataSent] = useState([]);
+  console.log(selectedExercises)
+  console.log(selectedUsers);
   
   const handleCheckValues = () => {
     console.log(selectedExercises)
@@ -26,9 +28,6 @@ export default function AssignExercise() {
       users: selectedUsers.map((user) => user.id),
     };
 
-    setDataSent([...dataSent, assignedExercises])
-    console.log(dataSent)
-
    
     axios
       .post("http://localhost:8080/api/assignedexercises/create", assignedExercises)
@@ -39,6 +38,7 @@ export default function AssignExercise() {
         // update assignedData with the response data
         setAssignedData(response.data.data);
 
+        setSelectedExercises([])
        
       
       })
@@ -46,8 +46,8 @@ export default function AssignExercise() {
         console.error("Error saving assigned exercises:", error);
       })
       .finally(() => {
-        setSelectedExercises([]); // clear exercises
-        setSelectedUsers([]); // clear users
+        // setSelectedExercises([]); // clear exercises
+        // setSelectedUsers([]); // clear users
         setIsLoading(false);
       });
   };

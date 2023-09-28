@@ -6,13 +6,17 @@ import RadioButtons from './RadioButton';
 
 const initialCategory = "all";
 
-export default function IconChipsTest() {
+export default function IconChipsTest(props) {
   const [category, setCategory] = useState(initialCategory);
   const [fetchedExercises, setFetchedExercises] = useState([]);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
+
+  const handleSetSelectedExercise = () => {
+    props.setSelectedExercises(selectedChips)
+  }
 
   useEffect(() => {
     let fetchURL;
@@ -59,13 +63,16 @@ export default function IconChipsTest() {
 
         // add clicked chip back in box a
         setAvailableChips([...availableChips, chip]);
-
+       
         // state update
         setSelectedChips(updatedSelectedChips);
+        props.setSelectedExercises(updatedSelectedChips)
       }
     }
   };
-  console.log(selectedChips)
+
+  
+  // console.log(selectedChips)
 
   useEffect(() => {
     // Update availableChips when fetchedExercises changes
