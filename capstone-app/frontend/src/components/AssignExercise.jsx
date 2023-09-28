@@ -23,11 +23,13 @@ export default function AssignExercise() {
     setIsLoading(true);
 
     // create an object to store assigned exercises and users
-    const assignedExercises = {
-      UserId: selectedUsers,
-      ExerciseId: selectedExercises.map((exercise) => ({ExerciseId:exercise.id}) ),
-    };
-
+    const assignedExercises = selectedUsers.map((userId) => (
+      selectedExercises.map((exercise) => ({
+        UserId: userId,
+        ExerciseId: exercise.id,
+      }))
+    )).flat();
+    
    
     axios
       .post("http://localhost:8080/api/assignedexercises/create", assignedExercises)

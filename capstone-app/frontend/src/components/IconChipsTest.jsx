@@ -66,12 +66,12 @@ export default function IconChipsTest(props) {
         // console.log(updatedSelectedChips)
 
         setSelectedChips(updatedSelectedChips)
-  
+        
       }
     }
   };
 
-  handleSetSelectedExercise()
+  if (selectedChips.length !==0){handleSetSelectedExercise()}
   // console.log(selectedChips)
 
   useEffect(() => {
