@@ -40,9 +40,10 @@ const [validationErrors, setValidationErrors] = useState({});
         width: 140,
         disableClickEventBubbling: true,
         renderCell: (params) => {
+         
           return (
             <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
-              <Edit id={selectedRows[0]} />
+              <Edit id={params.id} />
             </div>
             );
          }
@@ -52,7 +53,7 @@ const [validationErrors, setValidationErrors] = useState({});
 
   const handleRefresh = () => {
     setRefresh(!refresh)
-    console.log(id)
+    // console.log(id)
   }
 ;
 

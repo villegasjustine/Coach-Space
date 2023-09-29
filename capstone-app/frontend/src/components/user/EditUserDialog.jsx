@@ -21,7 +21,9 @@ export default function EditUserDialog({handleRefresh, id}) {
   const { currentUser, handleUpdateUser } = useUserContext();
   const [user, setUser] = useState()
 
+
   useEffect(() => {
+    if (open) {
     axios
       .get(`http://localhost:8080/api/users/${id}`)
       .then((response) => {
@@ -31,8 +33,8 @@ export default function EditUserDialog({handleRefresh, id}) {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-      });
-  }, [user]);
+      });}
+  }, [open]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -92,7 +94,7 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="First Name"
             fullWidth
             variant="standard"
-            defaultValue="{data.firstName}"
+            defaultValue={user ? user.firstName : "hello"}
           />
           <TextField
             autoFocus
