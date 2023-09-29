@@ -129,7 +129,7 @@ const registerUser = async (req, res) => {
 
   try {
       // Get user input by destructuring request body
-      const { firstName, lastName, username, email, password } = req.body;
+      const { firstName, lastName, username, email, password, group } = req.body;
 
       // Validate user input
       if (!(email && password && firstName && lastName)) {
@@ -153,6 +153,7 @@ const registerUser = async (req, res) => {
           firstName,
           lastName,
           username,
+          group,
           email: email.toLowerCase(), // sanitize: convert email to lowercase
           password: encryptedPassword,
       });

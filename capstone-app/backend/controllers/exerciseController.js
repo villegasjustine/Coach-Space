@@ -12,6 +12,17 @@ const getExercises = (res) => {
     });
 };
 
+const getExercisesByID = (req, res) => {
+  Models.AssignedExercise.findOne({where: { id: req.params.id } })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      
+      res.status(500).json({ data: err.message });
+    });
+};
+
 const getExercisesbyCategory = (req, res) => {
   Models.Exercise.findAll({where: { category: req.params.category } })
     .then(function (data) {
@@ -58,6 +69,7 @@ const deleteExercise = (req, res) => {
 
 module.exports = {
   getExercises,
+  getExercisesByID,
   getExercisesbyCategory,
   createExercise,
   updateExercise,

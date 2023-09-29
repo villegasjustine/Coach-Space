@@ -1,3 +1,4 @@
+import UserExercises from "../components/DisplayExercise";
 import Leaderboard from "../components/Leaderboard";
 import FormDialog from "../components/user/FormDialog";
 
@@ -15,9 +16,9 @@ export default function HomePage() {
       Welcome {currentUser.firstName}
       <br></br>
       <Leaderboard></Leaderboard>
-      <FormDialog></FormDialog>
+      <UserExercises></UserExercises>
      
-r
+
         Home Page
         <li>Welcome the user that has been signed in</li>
         <li>the page that users enter after they have successfully logged in</li>

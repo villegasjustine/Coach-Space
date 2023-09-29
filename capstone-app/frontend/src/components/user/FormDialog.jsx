@@ -21,6 +21,7 @@ export default function FormDialog({handleRefresh}) {
     const data = new FormData(event.currentTarget);
     setOpen(false);
 
+    console.log(Object.fromEntries(data.entries()))
     // convert form data to object and post to backend
     axios
       .post(

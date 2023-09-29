@@ -11,6 +11,7 @@ import axios from "axios";
 import { IconButton } from "@mui/material";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { useState, useEffect } from "react";
+import RadioForm from "../RadioForm";
 
 
 
@@ -165,23 +166,17 @@ export default function EditUserDialog({handleRefresh, id}) {
             name="group"
             id="group"
             label="Group"
-            type="text"
             fullWidth
             variant="standard"
             value={user ? user.group : ""}
             onChange={(e) => setUser({...user, group: e.target.value})}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            name="role"
-            id="role"
-            label="Role"
-            fullWidth
-            variant="standard"
-            value={user ? user.role : ""}
-            onChange={(e) => setUser({...user, role: e.target.value})}
-          />
+          {/* <RadioForm  
+          //radio form currently not changing in backend!
+           value={user ? user.role : "Student"}
+           onChange={(e) => setUser({...user, role: e.target.value})}
+          /> */}
+          
          
         </DialogContent>
         <DialogActions>
@@ -193,4 +188,5 @@ export default function EditUserDialog({handleRefresh, id}) {
     </div>
   );
 }
+
 

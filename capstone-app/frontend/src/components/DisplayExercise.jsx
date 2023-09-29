@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from "../context/UserContext";
+import { useState, useEffect } from 'react';
 
 export default function UserExercises() {
-  const { currentUser } = useContext(useUserContext);
+  const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [exerciseData, setExerciseData] = useState([]);
 
@@ -12,37 +12,43 @@ export default function UserExercises() {
     axios.get(`http://localhost:8080/api/assignedexercises/user/${currentUser.id}`)
       .then((response) => {
         setAssignedExercises(response.data.data);
+      console.log(assignedExercises)
       })
       .catch((error) => {
         console.error('Error fetching assigned exercises:', error);
       });
-  }, [currentUser]);
+  }, []);
+
+
 
   useEffect(() => {
     const exerciseIds = assignedExercises.map((assignedExercise) => assignedExercise.ExerciseId);
 
-    
-    axios.get(`http://localhost:8080/api/exercises`, {
-      params: {
-        ids: exerciseIds.join(','), 
-      },
-    })
+
+    axios.get(`http://localhost:8080/api/exercises/`)
       .then((response) => {
-        setExerciseData(response.data.data);
+        const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
+        setExerciseData(userExercises);
+        console.log(response.data.data)
+        console.log(exerciseData)
+        console.log(exerciseIds)
       })
       .catch((error) => {
         console.error('Error fetching exercise data:', error);
       });
   }, [assignedExercises]);
 
+
   return (
     <div>
       <h2>Your Assigned Exercises</h2>
       <ul>
+        
         {exerciseData.map((exercise) => (
           <li key={exercise.id}>
             {exercise.name} - {exercise.category}
-            <button onClick={() => handleExerciseComplete(exercise.id)}>Complete</button>
+            {exercise.id}
+
           </li>
         ))}
       </ul>
