@@ -19,7 +19,7 @@ export default function EditUserDialog({handleRefresh, id}) {
   const [open, setOpen] = useState(false);
   const [result, setResult] = useState("");
   const { currentUser, handleUpdateUser } = useUserContext();
-  const [user, setUser] = useState()
+  const [user, setUser] = useState({firstName: ""});
 
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function EditUserDialog({handleRefresh, id}) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });}
-  }, [open]);
+  }, [open,id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,8 +43,8 @@ export default function EditUserDialog({handleRefresh, id}) {
 
     // convert form data to object and post to backend
     axios
-      .post(
-        "http://localhost:8080/api/users/register",
+      .put(
+        `http://localhost:8080/api/users/${id}`,
         Object.fromEntries(data.entries())
       )
       .then((response) => {
@@ -94,7 +94,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="First Name"
             fullWidth
             variant="standard"
-            defaultValue={user ? user.firstName : "hello"}
+            value={user ? user.firstName : ""}
+            onChange={(e) => setUser({...user, firstName: e.target.value})}
           />
           <TextField
             autoFocus
@@ -105,6 +106,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="Last Name"
             fullWidth
             variant="standard"
+            value={user ? user.lastName : ""}
+            onChange={(e) => setUser({...user, lastName: e.target.value})}
           />
           <TextField
             autoFocus
@@ -115,6 +118,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="Username"
             fullWidth
             variant="standard"
+            value={user ? user.username : ""}
+            onChange={(e) => setUser({...user, username: e.target.value})}
           />
           <TextField
             autoFocus
@@ -126,6 +131,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             type="email"
             fullWidth
             variant="standard"
+            value={user ? user.email : ""}
+            onChange={(e) => setUser({...user, email: e.target.value})}
           />
           <TextField
             autoFocus
@@ -138,6 +145,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             id="password"
             autoComplete="new-password"
             variant="standard"
+            value={user ? user.password : ""}
+            onChange={(e) => setUser({...user, password: e.target.value})}
           />
           <TextField
             autoFocus
@@ -147,6 +156,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="Avatar"
             fullWidth
             variant="standard"
+            value={user ? user.avatar : ""}
+            onChange={(e) => setUser({...user, avatar: e.target.value})}
           />
             <TextField
             autoFocus
@@ -157,6 +168,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             type="text"
             fullWidth
             variant="standard"
+            value={user ? user.group : ""}
+            onChange={(e) => setUser({...user, group: e.target.value})}
           />
           <TextField
             autoFocus
@@ -166,6 +179,8 @@ export default function EditUserDialog({handleRefresh, id}) {
             label="Role"
             fullWidth
             variant="standard"
+            value={user ? user.role : ""}
+            onChange={(e) => setUser({...user, role: e.target.value})}
           />
          
         </DialogContent>
