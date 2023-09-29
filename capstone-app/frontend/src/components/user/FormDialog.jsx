@@ -24,7 +24,7 @@ export default function FormDialog({handleRefresh}) {
     // convert form data to object and post to backend
     axios
       .post(
-        "http://localhost:8080/api/users/create",
+        "http://localhost:8080/api/users/register",
         Object.fromEntries(data.entries())
       )
       .then((response) => {

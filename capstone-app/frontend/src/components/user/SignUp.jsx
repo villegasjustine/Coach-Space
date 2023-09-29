@@ -38,7 +38,7 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
 
     // convert form data to object and post to backend
-    axios.post('http://localhost:8080/api/users/create', 
+    axios.post('http://localhost:8080/api/users/register', 
     Object.fromEntries(data.entries()))
         .then(response => {
             let result = response.data.result;
