@@ -8,15 +8,33 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useUserContext } from "../../context/UserContext";
 import axios from "axios";
+import { IconButton } from "@mui/material";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import { useState, useEffect } from "react";
 
 
 
-export default function FormDialog({handleRefresh}) {
-  const [open, setOpen] = React.useState(false);
-  const [result, setResult] = React.useState("");
+
+export default function EditUserDialog({handleRefresh, id}) {
+  const [open, setOpen] = useState(false);
+  const [result, setResult] = useState("");
   const { currentUser, handleUpdateUser } = useUserContext();
+  const [user, setUser] = useState()
 
-  const handleSubmit = (event,id) => {
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/users/${id}`)
+      .then((response) => {
+        const data = response.data.data;
+        setUser(data)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [user]);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     setOpen(false);
@@ -24,7 +42,7 @@ export default function FormDialog({handleRefresh}) {
     // convert form data to object and post to backend
     axios
       .post(
-        `http://localhost:8080/api/users/(${id})`,
+        "http://localhost:8080/api/users/register",
         Object.fromEntries(data.entries())
       )
       .then((response) => {
@@ -55,12 +73,12 @@ export default function FormDialog({handleRefresh}) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Create New User
-      </Button>
+       <IconButton variant="outlined" onClick={handleClickOpen}>
+        <EditNoteIcon />
+      </IconButton>
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
-        <DialogTitle>Create New User</DialogTitle>
+        <DialogTitle>Edit User</DialogTitle>
         <DialogContent>
           <DialogContentText >
             Enter your details: 
@@ -74,6 +92,7 @@ export default function FormDialog({handleRefresh}) {
             label="First Name"
             fullWidth
             variant="standard"
+            defaultValue="{data.firstName}"
           />
           <TextField
             autoFocus

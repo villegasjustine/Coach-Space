@@ -1,33 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import FormDialog from "./user/FormDialog";
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, FormControlLabel } from '@mui/material';
 import { blue } from "@mui/material/colors";
+import EditUserDialog from "./user/EditUserDialog";
 
-const MatEdit = ({ index }) => {
-
-    const handleEditClick = () => {
-        // some action
-    }
-  
-  
-    return <FormControlLabel
-               control={
-                   <IconButton color="secondary" aria-label="edit-user" onClick={handleEditClick} >
-                       <EditIcon style={{ color: blue[500] }} />
-                   </IconButton>
-               }
-           />
-  };
 
 const AdminUserGrid = () => {
   const [tableData, setTableData] = useState([]);
@@ -61,10 +40,10 @@ const [validationErrors, setValidationErrors] = useState({});
         width: 140,
         disableClickEventBubbling: true,
         renderCell: (params) => {
-            return (
-                <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
-                    <MatEdit index={params.row.id} />
-                 </div>
+          return (
+            <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
+              <Edit id={selectedRows[0]} />
+            </div>
             );
          }
       }
@@ -73,9 +52,19 @@ const [validationErrors, setValidationErrors] = useState({});
 
   const handleRefresh = () => {
     setRefresh(!refresh)
+    console.log(id)
   }
 ;
 
+const Edit = ({ id }) => {
+  return (
+    <FormControlLabel
+      control={<EditUserDialog handleRefresh={handleRefresh} id={id} />}
+    />
+  );
+};
+
+ 
   const handleDeleteUser = (e) => {
     // add delete logic
     // send API request to delete the user

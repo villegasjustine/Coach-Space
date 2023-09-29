@@ -5,7 +5,8 @@ import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
 import { useProps } from '@mui/x-data-grid/internals';
-blue
+import EditUserDialog from './user/EditUserDialog';
+
 
 const MatEdit = ({ index }) => {
 
@@ -16,9 +17,7 @@ const MatEdit = ({ index }) => {
 
   return <FormControlLabel
              control={
-                 <IconButton color="secondary" aria-label="edit-user" onClick={handleEditClick} >
-                     <EditIcon style={{ color: blue[500] }} />
-                 </IconButton>
+                 <EditUserDialog/>
              }
          />
 };
