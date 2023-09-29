@@ -10,6 +10,10 @@ router.get("/:id", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesbyID(req, res);
 });
 
+router.get("/user/:UserId", (req, res) => {
+  Controllers.assignedExerciseController.getAssignedExercisesByUserID (req, res);
+});
+
 // router.post("/create", (req, res) => {
 //   Controllers.assignedExerciseController.createAssignedExercise(req.body, res);
 // });

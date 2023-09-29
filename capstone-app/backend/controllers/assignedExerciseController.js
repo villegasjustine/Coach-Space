@@ -13,6 +13,18 @@ const getAssignedExercises = (res) => {
     });
 };
 
+const getAssignedExercisesByUserID = (req, res) => {
+  console.log(req.params.UserId)
+  Models.AssignedExercise.findAll({where: { UserId: req.params.UserId } })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      res.status(500).json({ data: err.message });
+    });
+};
+
+
 const getAssignedExercisesbyID = (req, res) => {
   Models.AssignedExercise.findOne({where: { id: req.params.id } })
     .then(function (data) {
@@ -24,17 +36,6 @@ const getAssignedExercisesbyID = (req, res) => {
     });
 };
 
-// const createAssignedExercise = (data, res) => {
-//   console.log(data)
-//   Models.AssignedExercise.create(data)
-//     .then(function (data) {
-//       res.send({ result: 200, data: data });
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//       res.status(500).json({ data: err.message });
-//     });
-// };
 
 const createAssignedExerciseMany = (data, res) => {
   console.log(data)
@@ -76,6 +77,7 @@ console.log(tableIDs)
 
 module.exports = {
   getAssignedExercises,
+  getAssignedExercisesByUserID,
   // createAssignedExercise,
   updateAssignedExercise,
   deleteAssignedExercise,

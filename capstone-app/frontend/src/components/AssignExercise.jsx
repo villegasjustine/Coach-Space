@@ -76,6 +76,8 @@ export default function AssignExercise() {
 
       <button onClick={handleCheckValues}>Check Check</button>
 
+      
+
       {assignedData.length > 0 && (
         <div>
           <h2>Assigned Exercises:</h2>

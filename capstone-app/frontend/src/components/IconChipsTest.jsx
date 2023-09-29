@@ -3,6 +3,9 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 import RadioButtons from "./RadioButton";
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import FitbitIcon from '@mui/icons-material/Fitbit';
 
 const initialCategory = "all";
 
@@ -12,6 +15,18 @@ export default function IconChipsTest(props) {
   const [availableChips, setAvailableChips] = useState([]);
   const [selectedChips, setSelectedChips] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const iconsByCategory = {
+    strength: <FitnessCenterIcon />,
+    footwork: <DirectionsRunIcon />,
+    racket: <FitbitIcon />
+  };
+
+  const colorsByCategory = {
+    strength: 'warning',
+    footwork: 'info',
+    racket: 'secondary'
+  };
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -69,7 +84,7 @@ export default function IconChipsTest(props) {
   }, [fetchedExercises, selectedChips]);
 
   return (
-    <Stack direction="row" spacing={3} alignItems="center">
+    <Stack direction="row" spacing={4} alignItems="center">
       <div>
         <RadioButtons category={category} handleChange={handleChange} />
         <h2>Box A: Available Exercises</h2>
@@ -87,8 +102,9 @@ export default function IconChipsTest(props) {
             <Chip
               key={chip.id}
               label={chip.name}
+              icon={iconsByCategory[chip.category]}
               onClick={() => handleChipClick(chip)}
-              color="primary"
+              color={colorsByCategory[chip.category]}
               variant="outlined"
             />
           ))}
@@ -99,7 +115,8 @@ export default function IconChipsTest(props) {
           <Chip
             key={chip.id}
             label={chip.name}
-            color="primary"
+            icon={iconsByCategory[chip.category]}
+            color={colorsByCategory[chip.category]}
             onClick={() => handleChipClick(chip)}
           />
         ))}
