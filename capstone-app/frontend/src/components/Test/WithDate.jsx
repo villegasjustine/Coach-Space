@@ -1,64 +1,56 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import IconChipsTest from "./IconChipsTest";
-import ExerciseUserGrid from "./ExerciseUserGrid";
-import ExerciseCard from "./ExerciseCard";
-import BoxDisplay from "./BoxDisplay";
-import ExerciseBox from "./ExerciseBox";
+import IconChipsTest from "../IconChipsTest";
+import ExerciseUserGrid from "../ExerciseUserGrid";
 
-export default function AssignExercise() {
+export default function WithDate() {
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [assignedData, setAssignedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [dataSent, setDataSent] = useState([]);
-  console.log(selectedExercises);
-  console.log(selectedUsers);
+  const [assignedDate, setAssignedDate] = useState(""); // Add state for assignment date
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
     console.log(selectedUsers);
+    console.log(assignedDate);
   };
 
   const handleSelectedExercisesUpdate = (updatedExercises) => {
     setSelectedExercises(updatedExercises);
-  }; //different
+  };
 
   const handleAssignedExercises = () => {
     setIsLoading(true);
 
-    // create an object to store assigned exercises and users
-    const assignedExercises = selectedUsers
-      .map((userId) =>
-        selectedExercises.map((exercise) => ({
-          UserId: userId,
-          ExerciseId: exercise.id,
-          Date: "hn",
-        }))
-      )
-      .flat();
+    // create an object to store assigned exercises, users and date
+    const assignedExercises = 
+      selectedUsers.map((userId) =>
+      selectedExercises.map((exercise) => ({
+        UserId: userId,
+        ExerciseId: exercise.id,
+        Date: assignedDate,
+      }))
+    )
+    .flat();
 
-      console.log("kkkkkkk",assignedExercises)
+    console.log(selectedExercises, selectedUsers, assignedExercises)
 
     axios
       .post(
         "http://localhost:8080/api/assignedexercises/create",
         assignedExercises
       )
-
       .then((response) => {
-        console.log("Assigned exercises saved:", response.data.data);
-        setAssignedData(response.data.data);
+        console.log("Assigned exercises saved:", response.data);
+        setAssignedData(response.data);
+        console.log("Assigned Exercises", assignedExercises)
         setSelectedExercises([]);
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
       })
       .finally(() => {
-        // setSelectedExercises([]); // clear exercises
-        // setSelectedUsers([]); // clear users
         setIsLoading(false);
       });
   };
@@ -70,20 +62,21 @@ export default function AssignExercise() {
         setSelectedExercises={handleSelectedExercisesUpdate}
       />
 
-      {/* <ExerciseBox
-      selectedExercises={selectedExercises}
-      setSelectedExercises={handleSelectedExercisesUpdate}></ExerciseBox> */}
-
-      {/* <ExerciseCard
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}>
-
-      </ExerciseCard> */}
-
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
         setSelectedUsers={setSelectedUsers}
       />
+
+    
+      <label>
+        Assignment Date:
+        <input
+          type="date"
+          value={assignedDate}
+          onChange={(e) => setAssignedDate(e.target.value)}
+        />
+      </label>
+
       <button onClick={handleAssignedExercises} disabled={isLoading}>
         {isLoading ? "Assigning..." : "Assign Exercises"}
       </button>
@@ -96,7 +89,8 @@ export default function AssignExercise() {
           <ul>
             {assignedData.map((item) => (
               <li key={item.id}>
-                User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
+                User ID: {item.UserId}, Exercise ID: {item.ExerciseId}, Date: {item.Date}
+                
               </li>
             ))}
           </ul>

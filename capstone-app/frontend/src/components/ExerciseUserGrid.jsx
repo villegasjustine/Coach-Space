@@ -69,7 +69,9 @@ const ExerciseUserGrid = (props) => {
   };
 
   return (
-    <div style={{ height: 500, width: '100%' }}>
+    <div 
+    style={{ height: 500, width: '50%', color:'#EEF1F6' }}
+    >
       <DataGrid
         rows={tableData}
         columns={columns}
@@ -77,6 +79,15 @@ const ExerciseUserGrid = (props) => {
         disableRowSelectionOnClick
         checkboxSelection
         onRowSelectionModelChange={handleRowSelectionChange}
+        sx={{
+          boxShadow: 2,
+          border: 2,
+          color:'white',
+          borderColor: 'primary.light',
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
+        }}
       />
     </div>
   );

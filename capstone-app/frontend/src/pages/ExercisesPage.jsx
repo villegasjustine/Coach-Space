@@ -1,4 +1,5 @@
 import BoxDisplay from "../components/BoxDisplay";
+import WithDate from "../components/Test/WithDate";
 
 export default function ExercisesPage() {
     return(
@@ -13,8 +14,8 @@ export default function ExercisesPage() {
 
         <li>Submission for comments</li>
 
-        <BoxDisplay></BoxDisplay>
-        
+        {/* <BoxDisplay></BoxDisplay> */}
+        <WithDate></WithDate>
         
         </div>
         </>

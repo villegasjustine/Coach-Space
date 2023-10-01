@@ -3,9 +3,9 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
 import RadioButtons from "./RadioButton";
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import FitbitIcon from '@mui/icons-material/Fitbit';
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import FitbitIcon from "@mui/icons-material/Fitbit";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -25,13 +25,13 @@ export default function IconExercisesTest(props) {
   const iconsByCategory = {
     strength: <FitnessCenterIcon />,
     footwork: <DirectionsRunIcon />,
-    racket: <FitbitIcon />
+    racket: <FitbitIcon />,
   };
 
   const colorsByCategory = {
-    strength: 'warning',
-    footwork: 'info',
-    racket: 'secondary'
+    strength: "warning",
+    footwork: "info",
+    racket: "secondary",
   };
 
   const handleChange = (event) => {
@@ -58,7 +58,9 @@ export default function IconExercisesTest(props) {
 
   const handleChipClick = (chip) => {
     const existingChip = availableExercises.find((c) => c.id === chip.id);
-    const existingSelectedChip = selectedExercises.find((c) => c.id === chip.id);
+    const existingSelectedChip = selectedExercises.find(
+      (c) => c.id === chip.id
+    );
 
     if (existingChip && !existingSelectedChip) {
       const updatedAvailableExercises = availableExercises.filter(
@@ -69,7 +71,9 @@ export default function IconExercisesTest(props) {
       setAvailableExercises(updatedAvailableExercises);
       props.setSelectedExercises([...selectedExercises, chip]);
     } else if (existingSelectedChip) {
-      const updatedSelectedExercises = selectedExercises.filter((c) => c.id !== chip.id);
+      const updatedSelectedExercises = selectedExercises.filter(
+        (c) => c.id !== chip.id
+      );
 
       setAvailableExercises([...availableExercises, chip]);
       setSelectedExercises(updatedSelectedExercises);
@@ -77,7 +81,7 @@ export default function IconExercisesTest(props) {
   };
 
   if (selectedExercises.length !== 0) {
-    props.setSelectedExercises(selectedExercises);
+    props.setSelectedExercises(selectedExercises)
   }
 
   useEffect(() => {
@@ -113,7 +117,6 @@ export default function IconExercisesTest(props) {
               color={colorsByCategory[chip.category]}
               variant="outlined"
             />
-          
           ))}
       </div>
       <div>
