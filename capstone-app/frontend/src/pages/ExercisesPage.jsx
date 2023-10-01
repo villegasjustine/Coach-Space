@@ -1,3 +1,4 @@
+import BoxDisplay from "../components/BoxDisplay";
 
 export default function ExercisesPage() {
     return(
@@ -12,6 +13,7 @@ export default function ExercisesPage() {
 
         <li>Submission for comments</li>
 
+        <BoxDisplay></BoxDisplay>
         
         
         </div>

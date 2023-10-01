@@ -3,6 +3,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import IconChipsTest from "./IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
+import ExerciseCard from "./ExerciseCard";
+import BoxDisplay from "./BoxDisplay";
+import ExerciseBox from "./ExerciseBox";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -19,9 +22,9 @@ export default function AssignExercise() {
     console.log(selectedUsers);
   };
 
-  const handleSelectedChipsUpdate = (updatedChips) => {
-    setSelectedExercises(updatedChips);
-  };
+  const handleSelectedExercisesUpdate = (updatedExercises) => {
+    setSelectedExercises(updatedExercises);
+  }; //different
 
   const handleAssignedExercises = () => {
     setIsLoading(true);
@@ -44,10 +47,7 @@ export default function AssignExercise() {
 
       .then((response) => {
         console.log("Assigned exercises saved:", response.data.data);
-
-        // update assignedData with the response data
         setAssignedData(response.data.data);
-
         setSelectedExercises([]);
       })
       .catch((error) => {
@@ -64,8 +64,19 @@ export default function AssignExercise() {
     <div className="AssignExercise">
       <IconChipsTest
         selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedChipsUpdate}
+        setSelectedExercises={handleSelectedExercisesUpdate}
       />
+
+      {/* <ExerciseBox
+      selectedExercises={selectedExercises}
+      setSelectedExercises={handleSelectedExercisesUpdate}></ExerciseBox> */}
+
+      <ExerciseCard
+        selectedExercises={selectedExercises}
+        setSelectedExercises={handleSelectedExercisesUpdate}>
+
+      </ExerciseCard>
+
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
         setSelectedUsers={setSelectedUsers}
@@ -75,8 +86,6 @@ export default function AssignExercise() {
       </button>
 
       <button onClick={handleCheckValues}>Check Check</button>
-
-      
 
       {assignedData.length > 0 && (
         <div>
