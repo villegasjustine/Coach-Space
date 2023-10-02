@@ -38,10 +38,18 @@ export default function AssignExercise() {
         selectedExercises.map((exercise) => ({
           UserId: userId,
           ExerciseId: exercise.id,
-          assignedDate: assignedDate,
+          startDate: assignedDate,
           endDate: endDate,
         }))
       )
+      .flat();
+
+      const assignedPoints = selectedUsers
+      .map((userId) => ({
+        UserId: userId,
+        startDate: assignedDate,
+        endDate: endDate,
+      }))
       .flat();
 
     axios
@@ -62,8 +70,28 @@ export default function AssignExercise() {
       .finally(() => {
         // setSelectedExercises([]); // clear exercises
         // setSelectedUsers([]); // clear users
+      
+      });
+
+      console.log("Assigned Points", assignedPoints)
+
+      axios
+      .post(
+        "http://localhost:8080/api/points/create",
+        assignedPoints
+      )
+
+      .then((response) => {
+        console.log("Assigned points saved:", response.data);
+        // console.log("Date Response", assignedDate)
+      })
+      .catch((error) => {
+        console.error("Error saving assigned points:", error);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
+
   };
 
   return (

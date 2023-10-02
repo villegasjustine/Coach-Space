@@ -15,6 +15,8 @@ import { styled } from "@mui/material/styles";
 export default function ExerciseGroupDisplay() {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
+  const [points, setPoints] = useState([]);
+
   const [exerciseData, setExerciseData] = useState([]);
   const [expanded, setExpanded] = useState(false);
   const [showDescription, setShowDescription] = useState({});
@@ -35,9 +37,6 @@ export default function ExerciseGroupDisplay() {
     setExpanded(!expanded);
   };
 
-  const handlePoints = () => {
-
-  }
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/assignedexercises/user/weekly/${currentUser.id}`)
@@ -50,7 +49,6 @@ export default function ExerciseGroupDisplay() {
         console.error('Error fetching assigned exercises:', error);
       });
   }, []);
-
 
 
   useEffect(() => {
@@ -69,6 +67,29 @@ export default function ExerciseGroupDisplay() {
         console.error('Error fetching exercise data:', error);
       });
   }, [assignedExercises]);
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/points/user/weekly/${currentUser.id}`)
+      .then((response) => {
+        setPoints(response.data.data);
+        console.log("Points data fetched", response.data.data)
+         console.log(points)
+      })
+      .catch((error) => {
+        console.error('Error fetching points:', error);
+      });
+  }, []);
+
+  const handlePoints = () => {
+
+    axios.put()
+    // match up userId and points.userId
+    // then assignedExercise.endDate === points.endDate 
+    //(sum all the points)
+    //onClick - add points into this array. 
+  }
+
 
 
   return (

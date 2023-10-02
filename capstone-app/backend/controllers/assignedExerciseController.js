@@ -32,7 +32,7 @@ const getAssignedWeeklyExercisesByUserID = (req, res) => {
   const week = new Date();
   week.setDate(week.getDate() + 7);
   Models.AssignedExercise.findAll({
-    where: { UserId: req.params.UserId, assignedDate: {[Op.lte]: today}, endDate: { [Op.lte]: week },endDate: { [Op.gte]: today } },
+    where: { UserId: req.params.UserId, startDate: {[Op.lte]: today}, endDate: { [Op.lte]: week },endDate: { [Op.gte]: today } },
   })
     .then(function (data) {
       res.send({ result: 200, data: data });

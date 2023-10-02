@@ -42,7 +42,23 @@ const getWeeklyPointsByUserID = (req, res) => {
   const week = new Date();
   week.setDate(week.getDate() + 7);
   Models.Points.findAll({
-    where: { UserId: req.params.UserId, assignedDate: {[Op.lte]: today}, endDate: { [Op.lte]: week },endDate: { [Op.gte]: today } },
+    where: { UserId: req.params.UserId, startDate: {[Op.lte]: today}, endDate: { [Op.lte]: week },endDate: { [Op.gte]: today } },
+  })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      res.status(500).json({ data: err.message });
+    });
+};
+
+const updateWeeklyPointsByUserID = (req, res) => {
+  console.log(req.params.UserId);
+  const today = new Date();
+  const week = new Date();
+  week.setDate(week.getDate() + 7);
+  Models.Points.update({
+    where: { UserId: req.params.UserId, startDate: {[Op.lte]: today}, endDate: { [Op.lte]: week },endDate: { [Op.gte]: today } },
   })
     .then(function (data) {
       res.send({ result: 200, data: data });
@@ -58,6 +74,7 @@ const createAssignedPointsMany = (data, res) => {
   console.log(data);
   Models.Points.bulkCreate(data)
     .then(function (createdPoints) {
+      console.log('Created Points', createdPoints)
       res.send({ result: 200, data: createdPoints });
     })
     .catch((err) => {
@@ -96,6 +113,7 @@ module.exports = {
   getPointsByUserID,
   getWeeklyPointsByUserID,
   updateAssignedPoints,
+  updateWeeklyPointsByUserID,
   deleteAssignedPoints,
   getAssignedPointsbyID,
   createAssignedPointsMany,

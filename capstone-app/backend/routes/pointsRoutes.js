@@ -22,6 +22,11 @@ router.get("/user/weekly/:UserId", (req, res) => {
   Controllers.pointsController.getWeeklyPointsByUserID (req, res);
 });
 
+router.put("/user/weekly/:UserId", (req, res) => {
+  Controllers.pointsController.updateWeeklyPointsByUserID (req, res);
+});
+
+
 // router.post("/create", (req, res) => {
 //   Controllers.pointsController.createAssignedExercise(req.body, res);
 // });

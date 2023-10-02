@@ -65,7 +65,6 @@ const createUserMany = (data, res) => {
 };
 
 
-
 const updateUser = (req, res) => {
   Models.User.update(req.body, { where: { id: req.params.id } })
     .then(function (data) {

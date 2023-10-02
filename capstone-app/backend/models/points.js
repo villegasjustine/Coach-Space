@@ -19,7 +19,7 @@ Points.init(
         key: "id",
       },
     },
-    assignedDate: {
+    startDate: {
       type: DataTypes.DATE,
       allowNull: true, 
     },
