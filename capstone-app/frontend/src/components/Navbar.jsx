@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import { NavLink } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
+import { useState } from 'react';
 
 const pages = [
         {link: '/home', label: 'Home'}, 
@@ -26,8 +28,9 @@ const pages = [
 
 // see https://mui.com/material-ui/react-app-bar/
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const {currentUser} = useUserContext();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

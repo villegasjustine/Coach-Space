@@ -86,7 +86,7 @@ export default function SignIn() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <Box
                 sx={{
@@ -94,12 +94,13 @@ export default function SignIn() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                   
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     {/* display profile photo if logged in - path is relative to backend */}
                     {signedIn ? <img src={"http://localhost:8080/"+currentUser.avatar} width="40" alt={currentUser.avatar}/> : <LockOutlinedIcon />}
-                </Avatar>
+                </Avatar>                
                 <Typography component="h1" variant="h5">
                     {signedIn ? 'Hello '+currentUser.firstName : 'Please log in'}
                 </Typography>

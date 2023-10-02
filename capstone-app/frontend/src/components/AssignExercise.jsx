@@ -121,6 +121,11 @@ export default function AssignExercise() {
         onChange={(newDate) => setAssignedDate(newDate)}
       ></DatePicker>
 
+    <DatePicker
+        value={endDate}
+        onChange={(newDate) => setEndDate(newDate)}
+      ></DatePicker>
+
       <label>
         End Date:
         <input
