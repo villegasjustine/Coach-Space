@@ -29,12 +29,12 @@ export default function WithDate() {
       selectedExercises.map((exercise) => ({
         UserId: userId,
         ExerciseId: exercise.id,
-        Date: assignedDate,
+        assignedDate: assignedDate,
       }))
     )
     .flat();
 
-    console.log(selectedExercises, selectedUsers, assignedExercises)
+    // console.log(selectedExercises, selectedUsers, assignedExercises)
 
     axios
       .post(
@@ -44,7 +44,7 @@ export default function WithDate() {
       .then((response) => {
         console.log("Assigned exercises saved:", response.data);
         setAssignedData(response.data);
-        console.log("Assigned Exercises", assignedExercises)
+        // console.log("With Date", assignedExercises)
         setSelectedExercises([]);
       })
       .catch((error) => {
@@ -69,7 +69,7 @@ export default function WithDate() {
 
     
       <label>
-        Assignment Date:
+        Assigned Date:
         <input
           type="date"
           value={assignedDate}

@@ -4,18 +4,21 @@ import { useState, useEffect } from "react";
 import IconChipsTest from "./IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
 import ExerciseCard from "./ExerciseCard";
-import BoxDisplay from "./BoxDisplay";
 import ExerciseBox from "./ExerciseBox";
+import { DatePicker } from "@mui/x-date-pickers";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [assignedData, setAssignedData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [assignedDate, setAssignedDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const [dataSent, setDataSent] = useState([]);
-  console.log(selectedExercises);
-  console.log(selectedUsers);
+  console.log("Selected exercises:", selectedExercises);
+  console.log("Selected users:", selectedUsers);
+  console.log("Assigned date:", assignedDate);
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -24,7 +27,7 @@ export default function AssignExercise() {
 
   const handleSelectedExercisesUpdate = (updatedExercises) => {
     setSelectedExercises(updatedExercises);
-  }; //different
+  };
 
   const handleAssignedExercises = () => {
     setIsLoading(true);
@@ -35,12 +38,11 @@ export default function AssignExercise() {
         selectedExercises.map((exercise) => ({
           UserId: userId,
           ExerciseId: exercise.id,
-          Date: "hn",
+          assignedDate: assignedDate,
+          endDate: endDate,
         }))
       )
       .flat();
-
-      console.log("kkkkkkk",assignedExercises)
 
     axios
       .post(
@@ -49,9 +51,10 @@ export default function AssignExercise() {
       )
 
       .then((response) => {
-        console.log("Assigned exercises saved:", response.data.data);
-        setAssignedData(response.data.data);
+        console.log("Assigned exercises saved:", response.data);
+        setAssignedData(response.data);
         setSelectedExercises([]);
+        // console.log("Date Response", assignedDate)
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
@@ -71,19 +74,34 @@ export default function AssignExercise() {
       />
 
       {/* <ExerciseBox
-      selectedExercises={selectedExercises}
-      setSelectedExercises={handleSelectedExercisesUpdate}></ExerciseBox> */}
-
-      {/* <ExerciseCard
         selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}>
+        setSelectedExercises={handleSelectedExercisesUpdate}
+      ></ExerciseBox>
 
-      </ExerciseCard> */}
+      <ExerciseCard
+        selectedExercises={selectedExercises}
+        setSelectedExercises={handleSelectedExercisesUpdate}
+      ></ExerciseCard> */}
 
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
         setSelectedUsers={setSelectedUsers}
       />
+
+      <DatePicker
+        value={assignedDate}
+        onChange={(newDate) => setAssignedDate(newDate)}
+      ></DatePicker>
+
+      <label>
+        End Date:
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </label>
+
       <button onClick={handleAssignedExercises} disabled={isLoading}>
         {isLoading ? "Assigning..." : "Assign Exercises"}
       </button>

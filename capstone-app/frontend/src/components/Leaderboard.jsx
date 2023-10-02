@@ -36,10 +36,16 @@ console.log(groupUsers)
             key={member.id}
             avatar={member.avatar}
             name={member.firstName}
+            points={50}
           />
         ))
        : 
-        <p>Test Test</p>
+       <User
+       key={currentUser.id}
+       avatar={currentUser.avatar}
+       name={currentUser.firstName}
+       points={50}
+     />
       }
     </div>
   );

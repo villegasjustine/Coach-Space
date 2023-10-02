@@ -30,6 +30,11 @@ AssignedExercise.init(
       type: DataTypes.DATE,
       allowNull: true, 
     },
+    endDate: {
+      type: DataTypes.DATE,
+      allowNull: true, 
+    },
+
     completed: {
       type: DataTypes.BOOLEAN,
       allowNull: false, 

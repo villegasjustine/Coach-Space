@@ -1,6 +1,8 @@
 import UserExercises from "../components/DisplayExercise";
+import HistoryAssignedExercise from "../components/HistoryAssignedExercise";
 import Leaderboard from "../components/Leaderboard";
 import FormDialog from "../components/user/FormDialog";
+import DisplayByGroup from "../components/Test/DisplayByGroup";
 
 import { useUserContext } from "../context/UserContext";
 import { useState } from "react";
@@ -17,6 +19,8 @@ export default function HomePage() {
       <br></br>
       <Leaderboard></Leaderboard>
       <UserExercises></UserExercises>
+      <HistoryAssignedExercise></HistoryAssignedExercise>
+      <DisplayByGroup></DisplayByGroup>
      
 
         Home Page
@@ -30,6 +34,6 @@ export default function HomePage() {
       </div>
 
       
-    </>
+    </> 
   );
 }

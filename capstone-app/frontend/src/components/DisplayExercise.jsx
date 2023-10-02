@@ -29,9 +29,9 @@ export default function UserExercises() {
       .then((response) => {
         const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
         setExerciseData(userExercises);
-        console.log(response.data.data)
-        console.log(exerciseData)
-        console.log(exerciseIds)
+        // console.log(response.data.data)
+        // console.log(exerciseData)
+        // console.log(exerciseIds)
       })
       .catch((error) => {
         console.error('Error fetching exercise data:', error);

@@ -10,8 +10,16 @@ router.get("/:id", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesbyID(req, res);
 });
 
+// router.get("/user/:UserId", (req, res) => {
+//   Controllers.assignedExerciseController.getAssignedExercisesByUserID (req, res);
+// });
+
 router.get("/user/:UserId", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesByUserID (req, res);
+});
+
+router.get("/user/weekly/:UserId", (req, res) => {
+  Controllers.assignedExerciseController.getAssignedWeeklyExercisesByUserID (req, res);
 });
 
 // router.post("/create", (req, res) => {
