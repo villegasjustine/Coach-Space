@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useUserContext } from "../context/UserContext";
 import { useState, useEffect } from 'react';
 
-export default function UserExercises() {
+export default function UserExercisesHistory() {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [exerciseData, setExerciseData] = useState([]);

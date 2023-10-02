@@ -1,8 +1,9 @@
-import UserExercises from "../components/DisplayExercise";
-import HistoryAssignedExercise from "../components/HistoryAssignedExercise";
+
+import ExerciseGroupDisplay from "../components/ExerciseGroupDisplay";
+
 import Leaderboard from "../components/Leaderboard";
 import FormDialog from "../components/user/FormDialog";
-import DisplayByGroup from "../components/Test/DisplayByGroup";
+
 
 import { useUserContext } from "../context/UserContext";
 import { useState } from "react";
@@ -18,9 +19,8 @@ export default function HomePage() {
       Welcome {currentUser.firstName}
       <br></br>
       <Leaderboard></Leaderboard>
-      <UserExercises></UserExercises>
-      <HistoryAssignedExercise></HistoryAssignedExercise>
-      <DisplayByGroup></DisplayByGroup>
+    <ExerciseGroupDisplay/>
+      
      
 
         Home Page

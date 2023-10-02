@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, FormControlLabel } from '@mui/material';
 import { blue } from "@mui/material/colors";
 import EditUserDialog from "./user/EditUserDialog";
+import TextField from '@mui/material/TextField';
 
 
 const AdminUserGrid = () => {
@@ -13,11 +14,12 @@ const AdminUserGrid = () => {
   const [selectedRows, setSelectedRows] = useState([]);
 const [refresh, setRefresh] = useState(true);
 const [validationErrors, setValidationErrors] = useState({});
+const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Use Axios to fetch data
     axios
-      .get("http://localhost:8080/api/users/")
+      .get("http://localhost:8080/api/users/?search=${searchQuery}")
       .then((response) => {
         const data = response.data.data;
         setTableData(data);
@@ -26,7 +28,7 @@ const [validationErrors, setValidationErrors] = useState({});
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [refresh]);
+  }, [searchQuery, refresh]);
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -56,6 +58,10 @@ const [validationErrors, setValidationErrors] = useState({});
     // console.log(id)
   }
 ;
+
+const handleSearch = () => {
+
+}
 
 const Edit = ({ id }) => {
   return (
@@ -106,6 +112,13 @@ const Edit = ({ id }) => {
     <div>
       <h2>User Management</h2>
       <div>
+      <TextField
+      label="Search Users"
+      variant="outlined"
+      fullWidth
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
       <FormDialog handleRefresh={handleRefresh}>Create User</FormDialog>
         <button onClick={handleDeleteUser}>Delete User</button>
       </div>

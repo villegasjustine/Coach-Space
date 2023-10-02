@@ -12,7 +12,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 
-export default function HistoryAssignedExercise() {
+export default function ExerciseGroupDisplay() {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [exerciseData, setExerciseData] = useState([]);
@@ -73,10 +73,10 @@ export default function HistoryAssignedExercise() {
 
   return (
     <div>
-      <h2>Your Assigned Exercises</h2>
+      
       <ul>
        
-        {exerciseData.map((exercise) => (
+        {exerciseData.length >  0 ?  (exerciseData.map((exercise) => (
            <Grid>
            <Card 
            key={exercise.id} 
@@ -106,8 +106,11 @@ export default function HistoryAssignedExercise() {
 
            </Card>
            </Grid>
+        ))
+         )  :( <h2>Exercises not assigned yet.</h2>
           
-        ))}
+        )}
+      
       </ul>
     </div>
   );

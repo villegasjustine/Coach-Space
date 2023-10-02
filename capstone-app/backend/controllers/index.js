@@ -1,5 +1,6 @@
 module.exports={
     userController: require('./userController'),
     exerciseController: require('./exerciseController'),
-    assignedExerciseController: require('./assignedExerciseController')
+    assignedExerciseController: require('./assignedExerciseController'),
+    pointsController: require('./pointsController')
 }
