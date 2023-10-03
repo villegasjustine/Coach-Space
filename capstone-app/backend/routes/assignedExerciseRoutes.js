@@ -31,7 +31,7 @@ router.post("/create", (req, res) => {
   });
   
 router.put("/:id", (req, res) => {
-  Controllers.assignedExerciseController.updateAssignedExercise(req, res);
+  Controllers.assignedExerciseController.updatePoints(req, res);
 });
 
 router.delete("/:id", (req, res) => {

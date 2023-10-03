@@ -40,7 +40,7 @@ const getUsersbyGroup = (req, res) => {
     
   )
     .then(function (data) {
-      res.send({ result: 200, data: data });
+      res.send({ result: 200, data: data[0] });
     })
     .catch((err) => {
       // res.send({ result: 500, data: err.message });

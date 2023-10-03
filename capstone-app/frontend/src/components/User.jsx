@@ -1,7 +1,8 @@
 import { Slider } from "@mui/material";
 
 
-export default function User ({id, name, type, points, avatar}) {
+export default function User ({id, name, points, avatar}) {
+  console.log(points)
   
   return (
         <div>
@@ -9,7 +10,7 @@ export default function User ({id, name, type, points, avatar}) {
        {avatar}
       <p>{name}</p>  
       <Slider 
-      controlled
+      disabled
       value={points} 
       color="secondary"
       aria-label="Points slider"

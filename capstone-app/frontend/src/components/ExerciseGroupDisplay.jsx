@@ -11,6 +11,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
+import {Button} from '@mui/material';
 
 export default function ExerciseGroupDisplay() {
   const { currentUser } = useUserContext();
@@ -81,13 +82,19 @@ export default function ExerciseGroupDisplay() {
   //     });
   // }, []);
 
-  const handlePoints = () => {
+  const handlePoints = async(id) => {
+    let data = await axios.get(`http://localhost:8080/api/assignedexercises/${id}`)
+    console.log(data.data.data.totalPoints)
+    let currentPoints = data.data.data.totalPoints
+    let updatedPoints = currentPoints += 10
 
-    axios.put()
-    // match up userId and points.userId
-    // then assignedExercise.endDate === points.endDate 
-    //(sum all the points)
-    //onClick - add points into this array. 
+    console.log("current points", currentPoints)
+    axios.put(`http://localhost:8080/api/assignedexercises/${id}`,
+        {"totalPoints": updatedPoints}
+
+    )
+
+ 
   }
 
 
@@ -109,10 +116,11 @@ export default function ExerciseGroupDisplay() {
             color: "grey.800",
           }} >
             <CardContent>
+              <Button  onClick={() => handlePoints(exercise.id)}>points</Button>
               <Typography>{exercise.category}</Typography>
               <Typography>{exercise.name}</Typography>
             </CardContent>
-            <CardActions onClick={handlePoints}>
+            <CardActions onClick={handleExpandClick}>
               <ExpandMore
                expand={expanded}
                aria-expanded={expanded}
@@ -127,7 +135,7 @@ export default function ExerciseGroupDisplay() {
            </Card>
            </Grid>
         ))
-         )  :( <h2>Exercises not assigned yet.</h2>
+         )  :( <h2>Exercises not yet assigned.</h2>
           
         )}
       

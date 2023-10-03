@@ -9,7 +9,8 @@ export default function ExercisesPage() {
         
 
         {/* <BoxDisplay></BoxDisplay> */}
-        <ExerciseGroupDisplay></ExerciseGroupDisplay>
+        <ExerciseGroupDisplay />
+
         
         </div>
         </>

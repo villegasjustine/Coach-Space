@@ -35,6 +35,7 @@ const [searchQuery, setSearchQuery] = useState("");
     { field: "firstName", headerName: "First Name", width: 100 },
     { field: "lastName", headerName: "Last Name", width: 100 },
     { field: "group", headerName: "Group", width: 100 }, 
+    { field: "role", headerName: "Role", width: 100 },
     {
         field: "actions",
         headerName: "Actions",

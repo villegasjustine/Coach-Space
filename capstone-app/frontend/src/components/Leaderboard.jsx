@@ -20,7 +20,7 @@ console.log(groupUsers)
         .then((response) => {
           const fetchedUsers = response.data.data;
           setGroupUsers(fetchedUsers);
-          console.log(fetchedUsers)
+          console.log('Fetched Users',fetchedUsers)
         })
         .catch((error) => {
           console.error('Error fetching group members:', error);
@@ -28,24 +28,26 @@ console.log(groupUsers)
     }
   }, []); 
 
+  
   return (
     <div>
-      {groupUsers.length >  0 ? 
-        groupUsers.map((member) => (
-            <User
+      {/* {groupUsers.length > 0 ?  */}
+       { groupUsers.map((member) => {
+          console.log('member points', member['SUM(CAE.totalPoints)'])
+            return <User
             key={member.id}
             avatar={member.avatar}
             name={member.firstName}
-            points={member.points}
+            points={member['SUM(CAE.totalPoints)']}
           />
-        ))
-       : 
-       <User
-       key={currentUser.id}
-       avatar={currentUser.avatar}
-       name={currentUser.firstName}
-       points={currentUser.points}
-     />
+      })
+    //    : 
+    //    <User
+    //    key={currentUser.id}
+    //    avatar={currentUser.avatar}
+    //    name={currentUser.firstName}
+    //    points={currentUser['SUM(CAE.totalPoints)']}
+    //  />
       }
     </div>
   );

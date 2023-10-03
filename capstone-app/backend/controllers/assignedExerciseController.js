@@ -88,6 +88,17 @@ const updateAssignedExercise = (req, res) => {
     });
 };
 
+const updatePoints = (req, res) => {
+  Models.AssignedExercise.update(req.body, { where: { id: req.params.id } })
+    .then(function (data) {
+      res.send({ result: 200, data: data });
+    })
+    .catch((err) => {
+      res.send({ result: 500, data: err.message });
+      res.status(500).json({ data: err.message });
+    });
+};
+
 const deleteAssignedExercise = (req, res) => {
   const tableIDs = req.params.id.split(",");
   console.log(tableIDs);
@@ -107,6 +118,7 @@ module.exports = {
   getAssignedWeeklyExercisesByUserID,
   // createAssignedExercise,
   updateAssignedExercise,
+  updatePoints,
   deleteAssignedExercise,
   getAssignedExercisesbyID,
   createAssignedExerciseMany,
