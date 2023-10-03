@@ -32,7 +32,9 @@ export default function WelcomePage() {
           with Justine
         </div>
       </div>
-      <button>Sign in</button> <button>Sign Up</button>
+      <button className="welcomeButton">Sign in</button> <button className="welcomeButton">Sign Up</button>
+
+      <SignIn></SignIn>
       </Box>
     </>
   );

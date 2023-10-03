@@ -43,7 +43,7 @@ export default function ExerciseGroupDisplay() {
       .then((response) => {
         setAssignedExercises(response.data.data);
         console.log("Data fetched", response.data.data)
-      console.log(assignedExercises)
+      // console.log(assignedExercises)
       })
       .catch((error) => {
         console.error('Error fetching assigned exercises:', error);
@@ -51,35 +51,35 @@ export default function ExerciseGroupDisplay() {
   }, []);
 
 
-  useEffect(() => {
-    const exerciseIds = assignedExercises.map((assignedExercise) => assignedExercise.ExerciseId);
+  // useEffect(() => {
+  //   const exerciseIds = assignedExercises.map((assignedExercise) => assignedExercise.ExerciseId);
 
 
-    axios.get(`http://localhost:8080/api/exercises/`)
-      .then((response) => {
-        const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
-        setExerciseData(userExercises);
-        console.log(response.data.data)
-        console.log(exerciseData)
-        console.log(exerciseIds)
-      })
-      .catch((error) => {
-        console.error('Error fetching exercise data:', error);
-      });
-  }, [assignedExercises]);
+  //   axios.get(`http://localhost:8080/api/exercises/`)
+  //     .then((response) => {
+  //       const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
+  //       setExerciseData(userExercises);
+  //       console.log(response.data.data)
+  //       console.log(exerciseData)
+  //       console.log(exerciseIds)
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching exercise data:', error);
+  //     });
+  // }, [assignedExercises]);
 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/points/user/weekly/${currentUser.id}`)
-      .then((response) => {
-        setPoints(response.data.data);
-        console.log("Points data fetched", response.data.data)
-         console.log(points)
-      })
-      .catch((error) => {
-        console.error('Error fetching points:', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8080/api/points/user/weekly/${currentUser.id}`)
+  //     .then((response) => {
+  //       setPoints(response.data.data);
+  //       console.log("Points data fetched", response.data.data)
+  //        console.log(points)
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching points:', error);
+  //     });
+  // }, []);
 
   const handlePoints = () => {
 
@@ -97,7 +97,7 @@ export default function ExerciseGroupDisplay() {
       
       <ul>
        
-        {exerciseData.length >  0 ?  (exerciseData.map((exercise) => (
+        {assignedExercises.length >  0 ?  (assignedExercises.map((exercise) => (
            <Grid>
            <Card 
            key={exercise.id} 
@@ -112,10 +112,9 @@ export default function ExerciseGroupDisplay() {
               <Typography>{exercise.category}</Typography>
               <Typography>{exercise.name}</Typography>
             </CardContent>
-            <CardActions>
+            <CardActions onClick={handlePoints}>
               <ExpandMore
                expand={expanded}
-               onClick={handleExpandClick}
                aria-expanded={expanded}
                aria-label="show more" >
                 <ExpandMoreIcon/>

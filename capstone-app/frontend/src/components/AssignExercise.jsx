@@ -18,7 +18,8 @@ export default function AssignExercise() {
   const [dataSent, setDataSent] = useState([]);
   console.log("Selected exercises:", selectedExercises);
   console.log("Selected users:", selectedUsers);
-  console.log("Assigned date:", assignedDate);
+  console.log("Start date:", assignedDate);
+  console.log("End Date:", endDate)
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -40,17 +41,18 @@ export default function AssignExercise() {
           ExerciseId: exercise.id,
           startDate: assignedDate,
           endDate: endDate,
+          totalPoints: 0,
         }))
       )
       .flat();
 
-      const assignedPoints = selectedUsers
-      .map((userId) => ({
-        UserId: userId,
-        startDate: assignedDate,
-        endDate: endDate,
-      }))
-      .flat();
+      // const assignedPoints = selectedUsers
+      // .map((userId) => ({
+      //   UserId: userId,
+      //   startDate: assignedDate,
+      //   endDate: endDate,
+      // }))
+      // .flat();
 
     axios
       .post(
@@ -62,7 +64,7 @@ export default function AssignExercise() {
         console.log("Assigned exercises saved:", response.data);
         setAssignedData(response.data);
         setSelectedExercises([]);
-        // console.log("Date Response", assignedDate)
+        console.log("Data sent", assignedData)
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
@@ -96,20 +98,12 @@ export default function AssignExercise() {
 
   return (
     <div className="AssignExercise">
+
       <IconChipsTest
         selectedExercises={selectedExercises}
         setSelectedExercises={handleSelectedExercisesUpdate}
       />
 
-      {/* <ExerciseBox
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}
-      ></ExerciseBox>
-
-      <ExerciseCard
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}
-      ></ExerciseCard> */}
 
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
@@ -126,14 +120,14 @@ export default function AssignExercise() {
         onChange={(newDate) => setEndDate(newDate)}
       ></DatePicker>
 
-      <label>
+      {/* <label>
         End Date:
         <input
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
-      </label>
+      </label> */}
 
       <button onClick={handleAssignedExercises} disabled={isLoading}>
         {isLoading ? "Assigning..." : "Assign Exercises"}
@@ -153,6 +147,16 @@ export default function AssignExercise() {
           </ul>
         </div>
       )}
+
+       {/* <ExerciseBox
+        selectedExercises={selectedExercises}
+        setSelectedExercises={handleSelectedExercisesUpdate}
+      ></ExerciseBox>
+
+      <ExerciseCard
+        selectedExercises={selectedExercises}
+        setSelectedExercises={handleSelectedExercisesUpdate}
+      ></ExerciseCard> */}
     </div>
   );
 }

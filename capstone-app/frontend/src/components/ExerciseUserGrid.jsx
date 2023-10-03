@@ -43,22 +43,22 @@ const ExerciseUserGrid = (props) => {
     // Define your columns here
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'firstName', headerName: 'Name', width: 100 },
-    { field: 'lastName', headerName: 'Name', width: 100},
+    // { field: 'lastName', headerName: 'Name', width: 100},
     { field: 'group', headerName: 'Group', width: 100},
-    {
-      field: "actions",
-      headerName: "",
-      sortable: false,
-      width: 50,
-      disableClickEventBubbling: true,
-      renderCell: (params) => {
-          return (
-              <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
-                  <MatEdit index={params.row.id} />
-               </div>
-          );
-       }
-    }
+    // {
+    //   field: "actions",
+    //   headerName: "",
+    //   sortable: false,
+    //   width: 50,
+    //   disableClickEventBubbling: true,
+    //   renderCell: (params) => {
+    //       return (
+    //           <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
+    //               <MatEdit index={params.row.id} />
+    //            </div>
+    //       );
+    //    }
+    // }
     // Add more columns as needed
   ];
 

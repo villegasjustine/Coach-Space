@@ -4,6 +4,7 @@ const { Op } = require('sequelize');
 const Models = require("../models");
 const bcrypt = require('bcryptjs');
 const { createToken } = require('../middleware/auth');
+const { sequelize } = require('../models/user');
 
 const getUsers = (res) => {
   Models.User.findAll({})
@@ -28,7 +29,16 @@ const getUsersbyID = (req, res) => {
 };
 
 const getUsersbyGroup = (req, res) => {
-  Models.User.findAll({where: { group: req.params.group } })
+  // Models.User.findAll({where: { group: req.params.group } })
+  sequelize.query(
+    `SELECT CU.* , SUM(CAE.totalPoints) FROM capstone.users AS CU ` +
+    `JOIN capstone.assigned_exercises AS CAE ON CU.id = CAE.UserId `+
+    
+   `WHERE CU.group = "`+ req.params.group + 
+    `" GROUP BY CU.id`
+  
+    
+  )
     .then(function (data) {
       res.send({ result: 200, data: data });
     })

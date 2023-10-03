@@ -36,7 +36,7 @@ console.log(groupUsers)
             key={member.id}
             avatar={member.avatar}
             name={member.firstName}
-            points={50}
+            points={member.points}
           />
         ))
        : 
@@ -44,7 +44,7 @@ console.log(groupUsers)
        key={currentUser.id}
        avatar={currentUser.avatar}
        name={currentUser.firstName}
-       points={50}
+       points={currentUser.points}
      />
       }
     </div>

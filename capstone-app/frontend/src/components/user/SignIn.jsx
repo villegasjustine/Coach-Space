@@ -87,7 +87,7 @@ export default function SignIn() {
 
     return (
         <Container component="main" maxWidth="xs" >
-            <CssBaseline />
+            
             <Box
                 sx={{
                     marginTop: 8,
@@ -107,7 +107,7 @@ export default function SignIn() {
 
                 { (!signedIn && signinAttempts < 5) ?
 
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>
                         <TextField
                             margin="normal"
                             required
@@ -117,6 +117,7 @@ export default function SignIn() {
                             name="email"
                             type="email"
                             autoFocus
+    
                         />
                         <TextField
                             margin="normal"

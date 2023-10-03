@@ -40,6 +40,12 @@ AssignedExercise.init(
       allowNull: false, 
       defaultValue: false, 
     },
+
+    totalPoints: {
+      type: DataTypes.INTEGER,
+      allowNull: false, 
+      defaultValue: 0, 
+    },
   
   },
   {
@@ -49,6 +55,5 @@ AssignedExercise.init(
     freezeTableName: true,
   }
 );
-
 
 module.exports = AssignedExercise;

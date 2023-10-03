@@ -69,7 +69,6 @@ const updateWeeklyPointsByUserID = (req, res) => {
 };
 
 
-
 const createAssignedPointsMany = (data, res) => {
   console.log(data);
   Models.Points.bulkCreate(data)
@@ -83,9 +82,9 @@ const createAssignedPointsMany = (data, res) => {
 };
 
 const updateAssignedPoints = (req, res) => {
-  const tableIDs = req.params.id.split(",");
-  console.log(tableIDs);
-  Models.Points.update({ where: { id: { [Op.in]: tableIDs } } })
+  const pointsId = req.params.id;
+  console.log(pointsId);
+  Models.Points.update(req.body, { where: { id: pointsId  } })
     .then(function (data) {
       res.send({ result: 200, data: data });
     })

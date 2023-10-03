@@ -1,4 +1,5 @@
 import BoxDisplay from "../components/BoxDisplay";
+import ExerciseGroupDisplay from "../components/ExerciseGroupDisplay";
 import WithDate from "../components/Test/WithDate";
 
 export default function ExercisesPage() {
@@ -8,7 +9,7 @@ export default function ExercisesPage() {
         
 
         {/* <BoxDisplay></BoxDisplay> */}
-        <WithDate></WithDate>
+        <ExerciseGroupDisplay></ExerciseGroupDisplay>
         
         </div>
         </>
