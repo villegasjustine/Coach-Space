@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { useUserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { positions } from '@mui/system';
 
 function Copyright(props) {
     return (
@@ -94,7 +95,11 @@ export default function SignIn() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                   
+                    backgroundColor: 'white',
+                    p: 3,
+                    borderColor: 'pink',
+                    borderRadius: 10,
+                    color: 'purple'
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -107,7 +112,16 @@ export default function SignIn() {
 
                 { (!signedIn && signinAttempts < 5) ?
 
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 2 }}>
+                    <Box 
+                    component="form" 
+                    onSubmit={handleSubmit} 
+                    noValidate 
+                    sx={{ 
+                        mt: 2, 
+                        borderColor: 'primary.main',
+                        borderRadius: 3,
+                        zIndex:'modal'
+                        }}>
                         <TextField
                             margin="normal"
                             required

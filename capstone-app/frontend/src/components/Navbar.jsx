@@ -48,7 +48,19 @@ function Navbar() {
     setAnchorElUser(null);
   };
   return (
-    <AppBar position="static">
+    <AppBar 
+    position="static"
+    sx={{
+      mr: 2,
+      display: {  md: 'flex' },
+      fontFamily: 'monospace',
+      fontWeight: 700,
+      letterSpacing: '.3rem',
+      color: 'white',
+      backgroundColor: 'brown',
+      borderRadius: 3,
+    }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -69,7 +81,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-           Group Coach
+           Coach-Space
           </Typography>
 
           {/* mobile menu items in a flexbox */}
@@ -122,12 +134,12 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            Group Coach
+            Coach-Space
           </Typography>
 
           {/* desktop menu items are here, grouped into a flex box */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* render our menu items as NavLinks to make sure we maintain state */}
+          <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            
             {pages.map((page) => (
                 <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
             ))}
@@ -140,7 +152,9 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ 
+                mt: '45px',
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{

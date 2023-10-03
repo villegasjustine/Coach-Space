@@ -1,9 +1,27 @@
-
+import SignUp from "../components/user/SignUp";
 import SignIn from "../components/user/SignIn";
+
 import { Box, Button } from "@mui/material";
+import { useState } from "react";
+
 
 
 export default function WelcomePage() {
+  const [showSignIn, setShowSignIn] = useState(false); 
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showNavBar, setShowNavBar] = useState(false);
+
+  const handleSignIn = () => {
+    setShowSignIn(!showSignIn); 
+    setShowSignUp(false);
+  };
+
+
+  const handleSignUp = () => {
+    setShowSignUp(!showSignUp);
+    setShowSignIn(false) 
+  };
+
 
    
   return (
@@ -11,7 +29,7 @@ export default function WelcomePage() {
     
     <Box >
       <div className="WelcomePage">
-        Welcome Page
+        
         <div className="waviy"
         >
           <span style={{ animationDelay: "calc(.2s * 1)" }}>C</span>
@@ -32,9 +50,13 @@ export default function WelcomePage() {
           with Justine
         </div>
       </div>
-      <button className="welcomeButton">Sign in</button> <button className="welcomeButton">Sign Up</button>
+      <button onClick={handleSignIn} className="welcomeButton">Sign in</button> 
+      <button onClick={handleSignUp} className="welcomeButton">Sign Up</button>
 
-      <SignIn></SignIn>
+    
+      {showSignIn && <SignIn/>}
+      {showSignUp && <SignUp/>}
+      
       </Box>
     </>
   );

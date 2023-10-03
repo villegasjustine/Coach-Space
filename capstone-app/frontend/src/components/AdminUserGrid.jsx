@@ -135,6 +135,15 @@ const Edit = ({ id }) => {
           enableEditing
           editingMode='modal'
           onRowDoubleClick={handleSaveRowEdits}
+          sx={{
+            boxShadow: 2,
+            border: 2,
+            color:'white',
+            borderColor: 'primary.light',
+            '& .MuiDataGrid-cell:hover': {
+              color: 'primary.main',
+            },
+          }}
 
         />
       </div>

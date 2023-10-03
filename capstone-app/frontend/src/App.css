@@ -13,11 +13,11 @@
   color: #888;
 }
 
-* {
+/* * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
+} */
 
 body {
   background-color: #111;
@@ -54,4 +54,36 @@ body {
   .waviy span {
     font-size: 20px; 
   }
+}
+
+.AssignExerciseContainer {
+  display: flex;
+  height: 100%; /* Ensure the container takes up the full height of the viewport */
+}
+
+.AssignExercise {
+  flex: 4; /* Let this div grow to fill available space */
+  padding: 20px; /* Adjust padding as needed */
+  /* Add any other styles you need for the AssignExercise div */
+}
+
+.VerticalBox {
+  flex: 2; /* Let this div grow to take up 80% of the container's height */
+  background-color: lightgray; /* Add your preferred background color */
+  padding: 10px;
+  border-radius: 20px;
+  border-color: red;
+  border-width: 1em; /* Adjust padding as needed */
+  /* Add any other styles you need for the VerticalBox div */
+}
+
+.exerciseBoxSelection {
+  display: flex; /* Use Flexbox to create a row layout */
+  justify-content: space-between; /* Space elements evenly along the row */
+}
+
+.exerciseBoxSelection > div {
+  flex: 1; /* Each div takes up equal space within the container */
+  padding: 10px; /* Add padding as needed */
+  border: 1px solid #ccc; /* Add borders for visibility */
 }

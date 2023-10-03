@@ -6,6 +6,7 @@ import ExerciseUserGrid from "./ExerciseUserGrid";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseBox from "./ExerciseBox";
 import { DatePicker } from "@mui/x-date-pickers";
+import { Container } from "@mui/material";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -97,14 +98,15 @@ export default function AssignExercise() {
   };
 
   return (
+    <container className="AssignExerciseContainer">
     <div className="AssignExercise">
-
+      <Container>
       <IconChipsTest
         selectedExercises={selectedExercises}
         setSelectedExercises={handleSelectedExercisesUpdate}
       />
 
-
+      </Container>
       <ExerciseUserGrid
         selectedUsers={selectedUsers}
         setSelectedUsers={setSelectedUsers}
@@ -118,6 +120,10 @@ export default function AssignExercise() {
     <DatePicker
         value={endDate}
         onChange={(newDate) => setEndDate(newDate)}
+        sx={{
+          borderColor: 'white',
+          color: 'whitesmoke'
+        }}
       ></DatePicker>
 
       {/* <label>
@@ -147,6 +153,7 @@ export default function AssignExercise() {
           </ul>
         </div>
       )}
+    
 
        {/* <ExerciseBox
         selectedExercises={selectedExercises}
@@ -158,5 +165,9 @@ export default function AssignExercise() {
         setSelectedExercises={handleSelectedExercisesUpdate}
       ></ExerciseCard> */}
     </div>
+    <div className="VerticalBox">
+      VERTICAL BOX
+    </div>
+    </container>
   );
 }

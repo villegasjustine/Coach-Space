@@ -70,7 +70,7 @@ const ExerciseUserGrid = (props) => {
 
   return (
     <div 
-    style={{ height: 500, width: '50%', color:'#EEF1F6' }}
+    style={{ height: 500, width: '100%', color:'#EEF1F6' }}
     >
       <DataGrid
         rows={tableData}

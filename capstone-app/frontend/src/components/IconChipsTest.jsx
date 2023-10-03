@@ -81,7 +81,7 @@ export default function IconExercisesTest(props) {
   };
 
   if (selectedExercises.length !== 0) {
-    props.setSelectedExercises(selectedExercises)
+    props.setSelectedExercises(selectedExercises);
   }
 
   useEffect(() => {
@@ -94,43 +94,89 @@ export default function IconExercisesTest(props) {
   }, [fetchedExercises, selectedExercises]);
 
   return (
-    <Stack direction="row" spacing={4} alignItems="center">
-      <div>
+    <Stack direction="column" spacing={4} alignItems="center">
+      <container>
         <RadioButtons category={category} handleChange={handleChange} />
-        <h2>Box A: Available Exercises</h2>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        {availableExercises
-          .filter((chip) =>
-            chip.name.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-          .map((chip) => (
+        <div style={{ width: "300px" }}>
+          <h2>Box B: Selected Exercises</h2>
+          {selectedExercises.map((chip) => (
             <Chip
               key={chip.id}
               label={chip.name}
               icon={iconsByCategory[chip.category]}
-              onClick={() => handleChipClick(chip)}
               color={colorsByCategory[chip.category]}
-              variant="outlined"
+              onClick={() => handleChipClick(chip)}
             />
           ))}
-      </div>
-      <div>
-        <h2>Box B: Selected Exercises</h2>
-        {selectedExercises.map((chip) => (
-          <Chip
-            key={chip.id}
-            label={chip.name}
-            icon={iconsByCategory[chip.category]}
-            color={colorsByCategory[chip.category]}
-            onClick={() => handleChipClick(chip)}
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
-        ))}
-      </div>
+          <h2>Box A: Available Exercises</h2>
+
+          {availableExercises
+            .filter((chip) =>
+              chip.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map((chip) => (
+              <Chip
+                key={chip.id}
+                label={chip.name}
+                icon={iconsByCategory[chip.category]}
+                onClick={() => handleChipClick(chip)}
+                color={colorsByCategory[chip.category]}
+                variant="outlined"
+              />
+            ))}
+        </div>
+        <container className="exerciseBoxSelection">
+          <div>Box A
+              <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <button>Add</button>
+          </div>
+
+          <div>Box B
+          <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <button>Add</button>
+          </div>
+
+          <div>Box C
+          <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <select>
+              <option value="option1">Footwork</option>
+              <option value="option2">Racket</option>
+              <option value="option3">Strength</option>
+              </select>
+              <button>Add</button>
+          </div>
+        </container>
+      </container>
     </Stack>
   );
 }

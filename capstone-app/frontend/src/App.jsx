@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 function App() {
   return (
     <>
-      Test: Capstone Project In Progress
+      
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <UserProvider>
           <ExerciseProvider>
