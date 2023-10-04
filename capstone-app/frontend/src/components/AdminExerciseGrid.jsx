@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import FormDialog from "./user/FormDialog";
+import ExerciseFormDialog from "./exercises/ExerciseFormDialog";
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, FormControlLabel } from '@mui/material';
 import { blue } from "@mui/material/colors";
@@ -116,7 +116,7 @@ const Edit = ({ id }) => {
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
     />
-      <FormDialog handleRefresh={handleRefresh}>Create Exercise</FormDialog>
+      <ExerciseFormDialog handleRefresh={handleRefresh}>Create Exercise</ExerciseFormDialog>
         <button onClick={handleDeleteExercise}>Delete Exercise</button>
       </div>
       <div style={{ height: 700, width: "100%" }}>

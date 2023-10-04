@@ -1,6 +1,7 @@
-import BoxDisplay from "../components/Test/BoxDisplay";
-import ExerciseGroupDisplay from "../components/ExerciseGroupDisplay";
-import WithDate from "../components/Test/WithDate";
+
+import UserExercisesHistory from "../components/UserExercisesHistory"
+import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay"
+
 
 export default function ExercisesPage() {
     return(
@@ -10,6 +11,7 @@ export default function ExercisesPage() {
 
         {/* <BoxDisplay></BoxDisplay> */}
         <ExerciseGroupDisplay />
+        <UserExercisesHistory/>
 
         
         </div>

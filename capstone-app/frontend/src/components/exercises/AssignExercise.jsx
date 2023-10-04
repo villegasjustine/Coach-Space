@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import IconChipsTest from "./IconChipsTest";
-import ExerciseUserGrid from "./ExerciseUserGrid";
+import ExerciseUserGrid from "../ExerciseUserGrid";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Container, Typography, Card, CardContent } from "@mui/material";
 import ExerciseGridSelect from "./ExerciseGridSelect";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);

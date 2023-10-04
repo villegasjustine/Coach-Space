@@ -7,12 +7,15 @@ export default function UserExercisesHistory() {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [exerciseData, setExerciseData] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
+
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/assignedexercises/user/${currentUser.id}`)
+    axios.get(`http://localhost:8080/api/assignedexercises/user/weekly/${currentUser.id}`)
       .then((response) => {
         setAssignedExercises(response.data.data);
-      console.log(assignedExercises)
+        setFetchedData(response.data.data);
+        console.log(assignedExercises)
       })
       .catch((error) => {
         console.error('Error fetching assigned exercises:', error);
@@ -20,23 +23,42 @@ export default function UserExercisesHistory() {
   }, []);
 
 
+console.log('Fetched Data', fetchedData)
 
-  useEffect(() => {
-    const exerciseIds = assignedExercises.map((assignedExercise) => assignedExercise.ExerciseId);
+const groupedExercises = {};
+
+fetchedData.forEach((exercise) => {
+  const key = `${exercise.startDate}-${exercise.endDate}`;
+
+  if (!groupedExercises[key]) {
+    // If not, create a new array for this group
+    groupedExercises[key] = [];
+  }
+
+  // Add the exercise to the appropriate group
+  groupedExercises[key].push(exercise);
+
+})
+
+console.log('Grouped Exercises', groupedExercises)
 
 
-    axios.get(`http://localhost:8080/api/exercises/`)
-      .then((response) => {
-        const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
-        setExerciseData(userExercises);
-        // console.log(response.data.data)
-        // console.log(exerciseData)
-        // console.log(exerciseIds)
-      })
-      .catch((error) => {
-        console.error('Error fetching exercise data:', error);
-      });
-  }, [assignedExercises]);
+  // useEffect(() => {
+  //   const exerciseIds = assignedExercises.map((assignedExercise) => assignedExercise.ExerciseId);
+
+
+  //   axios.get(`http://localhost:8080/api/exercises/`)
+  //     .then((response) => {
+  //       const userExercises = (response.data.data.filter((exercise) => exerciseIds.includes(exercise.id)))
+  //       setExerciseData(userExercises);
+  //       // console.log(response.data.data)
+  //       // console.log(exerciseData)
+  //       // console.log(exerciseIds)
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching exercise data:', error);
+  //     });
+  // }, [assignedExercises]);
 
 
   return (

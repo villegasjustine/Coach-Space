@@ -5,7 +5,7 @@ import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
 import { useProps } from '@mui/x-data-grid/internals';
-import EditUserDialog from './user/EditUserDialog';
+import EditUserDialog from '../user/EditUserDialog';
 
 
 const MatEdit = ({ index }) => {

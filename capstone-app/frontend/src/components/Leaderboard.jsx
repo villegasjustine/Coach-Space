@@ -33,24 +33,16 @@ console.log(groupUsers)
   
   return (
     <div>
-      {/* {groupUsers.length > 0 ?  */}
-       { groupUsers.map((member) => {
-          console.log('member points', member['SUM(CAE.totalPoints)'])
-            return <User
-            key={member.id}
-            avatar={member.avatar}
-            name={member.firstName}
-            points={member['SUM(CAE.totalPoints)']}
-          />
-      })
-    //    : 
-    //    <User
-    //    key={currentUser.id}
-    //    avatar={currentUser.avatar}
-    //    name={currentUser.firstName}
-    //    points={currentUser['SUM(CAE.totalPoints)']}
-    //  />
-      }
-    </div>
+    {groupUsers
+      .filter((member) => member.role === 'student') 
+      .map((student) => (
+        <User
+          key={student.id}
+          avatar={student.avatar}
+          name={student.firstName}
+          points={student['SUM(CAE.totalPoints)']}
+        />
+      ))}
+  </div>
   );
 }

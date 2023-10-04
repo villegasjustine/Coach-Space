@@ -1,7 +1,6 @@
-import ExerciseGroupDisplay from "../components/ExerciseGroupDisplay";
+import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay";
 
 import Leaderboard from "../components/Leaderboard";
-import FormDialog from "../components/user/FormDialog";
 
 import { useUserContext } from "../context/UserContext";
 import { useState } from "react";
@@ -18,11 +17,10 @@ export default function HomePage() {
   return (
     <>
       <div className="HomePage">
-        Welcome {currentUser.firstName}
+        Welcome {currentUser.username}
         <br></br>
-        <Leaderboard users={user}/>
+        <Leaderboard users={user} />
         <ExerciseGroupDisplay />
-       
       </div>
     </>
   );

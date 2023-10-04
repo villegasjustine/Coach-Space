@@ -6,60 +6,37 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-
 import axios from "axios";
-import { IconButton } from "@mui/material";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-import { useState, useEffect } from "react";
-import RadioForm from "../RadioForm";
 import { useExerciseContext } from "../../context/ExerciseContext";
 
 
 
-
-export default function EditExerciseDialog({handleRefresh, id}) {
-  const [open, setOpen] = useState(false);
-  const [result, setResult] = useState("");
-  const [exercise, setExercise] = useState({name: ""});
+export default function ExerciseFormDialog({handleRefresh}) {
+  const [open, setOpen] = React.useState(false);
+  const [result, setResult] = React.useState("");
   const { currentExercise, handleUpdateExercise } = useExerciseContext();
-
-
-
-
-  useEffect(() => {
-    if (open) {
-    axios
-      .get(`http://localhost:8080/api/exercises/${id}`)
-      .then((response) => {
-        const data = response.data.data;
-        setExercise(data)
-        console.log(data)
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });}
-  }, [open,id]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     setOpen(false);
 
+    console.log(Object.fromEntries(data.entries()))
     // convert form data to object and post to backend
     axios
-      .put(
-        `http://localhost:8080/api/exercises/${id}`,
+      .post(
+        "http://localhost:8080/api/exercises/create",
         Object.fromEntries(data.entries())
       )
       .then((response) => {
         let result = response.data.result;
         let exercise = response.data.data;
-        console.log(exercise);
+       
 
         setResult(result);
         if (exercise) {
           handleUpdateExercise(exercise);
-          alert("Successfully edited a new exercise!") 
+          alert("Successfully created a new exercise!") // use toast if have time
           handleRefresh()
         }
       })
@@ -79,15 +56,15 @@ export default function EditExerciseDialog({handleRefresh, id}) {
 
   return (
     <div>
-       <IconButton variant="outlined" onClick={handleClickOpen}>
-        <EditNoteIcon />
-      </IconButton>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Create New Exercise
+      </Button>
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
-        <DialogTitle>Edit Exercise</DialogTitle>
+        <DialogTitle>Create New Exercise</DialogTitle>
         <DialogContent>
           <DialogContentText >
-            Exercise Details 
+            Enter exercise details: 
           </DialogContentText>
           <TextField
             autoFocus
@@ -98,8 +75,6 @@ export default function EditExerciseDialog({handleRefresh, id}) {
             label="Exercise Name"
             fullWidth
             variant="standard"
-            value={exercise ? exercise.name : ""}
-            onChange={(e) => setExercise({...exercise, name: e.target.value})}
           />
           <TextField
             autoFocus
@@ -110,10 +85,8 @@ export default function EditExerciseDialog({handleRefresh, id}) {
             label="Category"
             fullWidth
             variant="standard"
-            value={exercise ? exercise.category : ""}
-            onChange={(e) => setExercise({...exercise, category: e.target.value})}
           />
-          <TextField
+           <TextField
             autoFocus
             margin="dense"
             autoComplete="description"
@@ -122,10 +95,7 @@ export default function EditExerciseDialog({handleRefresh, id}) {
             label="Description"
             fullWidth
             variant="standard"
-            value={exercise ? exercise.description : ""}
-            onChange={(e) => setExercise({...exercise, description: e.target.value})}
           />
-          
          
         </DialogContent>
         <DialogActions>
@@ -137,5 +107,4 @@ export default function EditExerciseDialog({handleRefresh, id}) {
     </div>
   );
 }
-
 

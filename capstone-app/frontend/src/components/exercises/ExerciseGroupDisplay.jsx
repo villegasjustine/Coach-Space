@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import { useState, useEffect } from 'react';
 import ExerciseCard from './ExerciseCard';
 

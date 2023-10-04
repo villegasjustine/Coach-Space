@@ -1,5 +1,5 @@
 
-import AssignExercise from "../components/AssignExercise";
+import AssignExercise from "../components/exercises/AssignExercise"
 
 
 
