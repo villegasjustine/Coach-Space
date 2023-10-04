@@ -4,7 +4,14 @@ const Models = require("../models");
 const { sequelize } = require("../models/user");
 
 const getAssignedExercises = (res) => {
-  Models.AssignedExercise.findAll({})
+  // Models.AssignedExercise.findAll({})
+
+  sequelize.query(
+    `SELECT CAE.id, name, category, description, CAE.startDate, CAE.endDate, CAE.UserId, ExerciseId,  CU.firstName, CU.lastName, CU.username, CU.group, CAE.totalPoints `+
+    `FROM assigned_exercises AS CAE `+
+    `JOIN exercises AS CE ON CAE.ExerciseId = CE.id `+
+    `JOIN users AS CU ON CAE.UserId= CU.id `
+  )
     .then(function (data) {
       res.send({ result: 200, data: data });
     })
