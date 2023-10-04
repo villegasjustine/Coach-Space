@@ -20,6 +20,7 @@ export default function IconExercisesTest(props) {
   const [fetchedExercises, setFetchedExercises] = useState([]);
   const [availableExercises, setAvailableExercises] = useState([]);
   const [selectedExercises, setSelectedExercises] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   const iconsByCategory = {
@@ -133,47 +134,68 @@ export default function IconExercisesTest(props) {
               />
             ))}
         </div>
+
+        {/* Box Selection */}
+
+
         <container className="exerciseBoxSelection">
-          <div>Box A
-              <select>
-              <option value="option1">Footwork</option>
-              <option value="option2">Racket</option>
-              <option value="option3">Strength</option>
-              </select>
-              <select>
-              <option value="option1">Footwork</option>
-              <option value="option2">Racket</option>
-              <option value="option3">Strength</option>
-              </select>
-              <button>Add</button>
+          <div>
+            Box A
+            <select
+        value={selectedCategory}
+        onChange={(e) => setSelectedCategory(e.target.value)}
+      >
+        <option value="">Select Category</option>
+        <option value="footwork">Footwork</option>
+        <option value="racket">Racket</option>
+        <option value="strength">Strength</option>
+      </select>
+      <select>
+        {availableExercises
+          .filter(
+            (chip) =>
+              chip.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+              chip.category === selectedCategory // Filter based on selected category
+          )
+          .map((chip) => (
+            <option key={chip.id} value={chip.name}>
+              {chip.name}
+            </option>
+          ))}
+      </select>
+   
+            
+            <button>Add</button>
           </div>
 
-          <div>Box B
-          <select>
+          <div>
+            Box B
+            <select>
               <option value="option1">Footwork</option>
               <option value="option2">Racket</option>
               <option value="option3">Strength</option>
-              </select>
-              <select>
+            </select>
+            <select>
               <option value="option1">Footwork</option>
               <option value="option2">Racket</option>
               <option value="option3">Strength</option>
-              </select>
-              <button>Add</button>
+            </select>
+            <button>Add</button>
           </div>
 
-          <div>Box C
-          <select>
+          <div>
+            Box C
+            <select>
               <option value="option1">Footwork</option>
               <option value="option2">Racket</option>
               <option value="option3">Strength</option>
-              </select>
-              <select>
+            </select>
+            <select>
               <option value="option1">Footwork</option>
               <option value="option2">Racket</option>
               <option value="option3">Strength</option>
-              </select>
-              <button>Add</button>
+            </select>
+            <button>Add</button>
           </div>
         </container>
       </container>

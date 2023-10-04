@@ -6,7 +6,9 @@ import ExerciseUserGrid from "./ExerciseUserGrid";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseBox from "./ExerciseBox";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
+import ExerciseGridSelect from "./ExerciseGridSelect";
+import { useUserContext } from "../context/UserContext";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -16,11 +18,14 @@ export default function AssignExercise() {
   const [assignedDate, setAssignedDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  const { currentUser } = useUserContext();
+
+
   const [dataSent, setDataSent] = useState([]);
   console.log("Selected exercises:", selectedExercises);
   console.log("Selected users:", selectedUsers);
-  console.log("Start date:", assignedDate);
-  console.log("End Date:", endDate)
+  // console.log("Start date:", assignedDate);
+  // console.log("End Date:", endDate)
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -37,23 +42,19 @@ export default function AssignExercise() {
     // create an object to store assigned exercises and users
     const assignedExercises = selectedUsers
       .map((userId) =>
-        selectedExercises.map((exercise) => ({
+        selectedExercises.map((exercise) => (
+        // console.log(exercise)
+           {
           UserId: userId,
-          ExerciseId: exercise.id,
+          ExerciseId: exercise,
           startDate: assignedDate,
           endDate: endDate,
           totalPoints: 0,
-        }))
+        }
+        ))
       )
       .flat();
 
-      // const assignedPoints = selectedUsers
-      // .map((userId) => ({
-      //   UserId: userId,
-      //   startDate: assignedDate,
-      //   endDate: endDate,
-      // }))
-      // .flat();
 
     axios
       .post(
@@ -65,7 +66,7 @@ export default function AssignExercise() {
         console.log("Assigned exercises saved:", response.data);
         setAssignedData(response.data);
         setSelectedExercises([]);
-        console.log("Data sent", assignedData)
+        
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
@@ -76,32 +77,38 @@ export default function AssignExercise() {
       
       });
 
-      console.log("Assigned Points", assignedPoints)
+  
 
-      axios
-      .post(
-        "http://localhost:8080/api/points/create",
-        assignedPoints
-      )
+      // axios
+      // .post(
+      //   "http://localhost:8080/api/points/create",
+      //   assignedPoints
+      // )
 
-      .then((response) => {
-        console.log("Assigned points saved:", response.data);
-        // console.log("Date Response", assignedDate)
-      })
-      .catch((error) => {
-        console.error("Error saving assigned points:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      // .then((response) => {
+      //   console.log("Assigned points saved:", response.data);
+      //   // console.log("Date Response", assignedDate)
+      // })
+      // .catch((error) => {
+      //   console.error("Error saving assigned points:", error);
+      // })
+      // .finally(() => {
+      //   setIsLoading(false);
+      // });
 
   };
 
   return (
     <container className="AssignExerciseContainer">
     <div className="AssignExercise">
-      <Container>
-      <IconChipsTest
+     
+      <Container >
+      {/* <IconChipsTest
+        selectedExercises={selectedExercises}
+        setSelectedExercises={handleSelectedExercisesUpdate}
+      /> */}
+
+      <ExerciseGridSelect
         selectedExercises={selectedExercises}
         setSelectedExercises={handleSelectedExercisesUpdate}
       />
@@ -164,9 +171,13 @@ export default function AssignExercise() {
         selectedExercises={selectedExercises}
         setSelectedExercises={handleSelectedExercisesUpdate}
       ></ExerciseCard> */}
+     
     </div>
-    <div className="VerticalBox">
-      VERTICAL BOX
+    <div className="VerticalBox" style={{textAlign: 'center'}}>
+      <Typography variant="h4" sx={{color: 'black'}}>Hello {currentUser.firstName}</Typography>
+      <Typography variant='h6' sx={{color: 'black'}}>You are currently making a program.</Typography>
+      <Typography sx={{color: 'black'}}>This is the program you have made.</Typography>
+
     </div>
     </container>
   );

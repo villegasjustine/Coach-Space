@@ -14,8 +14,8 @@ export default function UserPage() {
      <AdminUserGrid/>
       <FormDialog></FormDialog>
       <EditUserDialog></EditUserDialog>
-     <EnhancedTable></EnhancedTable>
-    
+     {/* <EnhancedTable></EnhancedTable>
+     */}
       </div>
     );
   }

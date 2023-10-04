@@ -9,6 +9,8 @@ export default function Leaderboard() {
   console.log(currentUser)
   
 console.log(groupUsers)
+
+
   useEffect(() => {
   console.log(currentUser.group)
     if (currentUser.group) {

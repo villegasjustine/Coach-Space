@@ -23,13 +23,13 @@ const MatEdit = ({ index }) => {
 };
 
 
-const ExerciseUserGrid = (props) => {
+const ExerciseGridSelect = (props) => {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
     // Use Axios to fetch data
-    axios.get('http://localhost:8080/api/users/')
+    axios.get('http://localhost:8080/api/exercises/')
       .then((response) => {
         const data = response.data.data;
         setTableData(data);
@@ -42,9 +42,10 @@ const ExerciseUserGrid = (props) => {
   const columns = [
     // Define your columns here
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'Name', width: 100 },
-    // { field: 'lastName', headerName: 'Name', width: 100},
-    { field: 'group', headerName: 'Group', width: 100},
+    { field: 'name', headerName: 'Exercise', width: 100 },
+    { field: 'category', headerName: 'Category', width: 100},
+    { field: 'description', headerName: 'Description', width: 200},
+    
     // {
     //   field: "actions",
     //   headerName: "",
@@ -63,8 +64,8 @@ const ExerciseUserGrid = (props) => {
   ];
 
   const handleRowSelectionChange = (newSelection) => {
-    // console.log(newSelection)
-    props.setSelectedUsers(newSelection)
+    console.log(newSelection)
+    props.setSelectedExercises(newSelection)
     setSelectedRows(newSelection);
   };
 
@@ -99,4 +100,4 @@ const ExerciseUserGrid = (props) => {
   );
 };
 
-export default ExerciseUserGrid;
+export default ExerciseGridSelect;

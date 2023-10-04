@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const { createToken } = require('../middleware/auth');
 const { sequelize } = require('../models/user');
 
+
 const getUsers = (res) => {
   Models.User.findAll({})
     .then(function (data) {
@@ -86,20 +87,48 @@ const updateUser = (req, res) => {
     });
 };
 
+// const deleteUser = (req, res) => {
+//   const tableIDs = req.params.id.split(',')
+// console.log(tableIDs)
+//   Models.User.destroy({ where: { id: {[Op.in]: tableIDs }}})
+//     .then(function (data) {
+//       res.send({ result: 200, data: data });
+//     })
+//     .catch((err) => {
+//       // res.send({ result: 500, data: err.message });
+//       console.log(err)
+//       res.status(500).json({ data: err.message });
+//     });
+// };
+
 const deleteUser = (req, res) => {
-  //find how to delete many
-  const tableIDs = req.params.id.split(',')
-console.log(tableIDs)
-  Models.User.destroy({ where: { id: {[Op.in]: tableIDs }}})
-    .then(function (data) {
-      res.send({ result: 200, data: data });
+  const userIds = req.params.id.split(',');
+  
+  // Step 1: Delete associated records
+  Models.AssignedExercise.destroy({
+    where: {
+      UserId: { [Op.in]: userIds },
+    },
+  })
+    .then(function () {
+      
+      Models.User.destroy({
+        where: { id: { [Op.in]: userIds } }, 
+      })
+        .then(function () {
+          res.status(200).json({ message: 'User and associated records deleted successfully' });
+        })
+        .catch((err) => {
+          console.error('Error deleting user:', err);
+          res.status(500).json({ message: 'Error deleting user' });
+        });
     })
     .catch((err) => {
-      // res.send({ result: 500, data: err.message });
-      console.log(err)
-      res.status(500).json({ data: err.message });
+      console.error('Error deleting associated records:', err);
+      res.status(500).json({ message: 'Error deleting associated records' });
     });
 };
+
 
 const loginUser = async (req, res) => {
   try {

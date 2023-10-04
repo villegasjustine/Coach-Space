@@ -18,7 +18,7 @@ export default function AdminExercisePage() {
   
 
         <AssignExercise></AssignExercise>
-        {/* <TestExerciseAssign></TestExerciseAssign> */}
+
         
         </div>
         </>
