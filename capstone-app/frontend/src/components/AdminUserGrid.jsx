@@ -23,7 +23,6 @@ const [searchQuery, setSearchQuery] = useState("");
       .then((response) => {
         const data = response.data.data;
         setTableData(data);
-        // console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

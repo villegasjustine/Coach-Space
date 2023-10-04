@@ -1,5 +1,6 @@
 "use strict";
 const Models = require("../models");
+const { Op } = require("sequelize");
 
 const getExercises = (res) => {
   Models.Exercise.findAll({})
@@ -13,7 +14,7 @@ const getExercises = (res) => {
 };
 
 const getExercisesByID = (req, res) => {
-  Models.AssignedExercise.findOne({where: { id: req.params.id } })
+  Models.Exercise.findOne({where: { id: req.params.id } })
     .then(function (data) {
       res.send({ result: 200, data: data });
     })
@@ -57,13 +58,30 @@ const updateExercise = (req, res) => {
 };
 
 const deleteExercise = (req, res) => {
-  Models.Exercise.destroy({ where: { id: req.params.id } })
-    .then(function (data) {
-      res.send({ result: 200, data: data });
+  const exerciseIds = req.params.id.split(',');
+  
+ 
+  Models.AssignedExercise.destroy({
+    where: {
+      ExerciseId: { [Op.in]: exerciseIds },
+    },
+  })
+    .then(function () {
+      
+      Models.Exercise.destroy({
+        where: { id: { [Op.in]: exerciseIds } }, 
+      })
+        .then(function () {
+          res.status(200).json({ message: 'Exercise and associated records deleted successfully' });
+        })
+        .catch((err) => {
+          console.error('Error deleting exercise:', err);
+          res.status(500).json({ message: 'Error deleting exercise' });
+        });
     })
     .catch((err) => {
-      res.send({ result: 500, data: err.message });
-      res.status(500).json({ data: err.message });
+      console.error('Error deleting associated records:', err);
+      res.status(500).json({ message: 'Error deleting associated records' });
     });
 };
 

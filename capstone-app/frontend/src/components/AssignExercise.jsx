@@ -35,11 +35,13 @@ export default function AssignExercise() {
     setSelectedExercises(updatedExercises);
   };
 
+  let assignedExercises = [];
+
   const handleAssignedExercises = () => {
     setIsLoading(true);
 
     // create an object to store assigned exercises and users
-    const assignedExercises = selectedUsers
+      assignedExercises = selectedUsers
       .map((userId) =>
         selectedExercises.map((exercise) => ({
           UserId: userId,
@@ -51,6 +53,8 @@ export default function AssignExercise() {
       )
       .flat();
 
+    
+
     axios
       .post(
         "http://localhost:8080/api/assignedexercises/create",
@@ -59,7 +63,8 @@ export default function AssignExercise() {
 
       .then((response) => {
         console.log("Assigned exercises saved:", response.data);
-        setAssignedData(response.data);
+        // setAssignedData(response.data);
+        setAssignedData(assignedExercises);
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
@@ -108,11 +113,11 @@ export default function AssignExercise() {
           {isLoading ? "Assigning..." : "Assign Exercises"}
         </button>
 
-        {dataDisplay.length > 0 && (
+        {assignedData.length > 0 && (
           <div>
             <h2>Assigned Exercises:</h2>
             <ul>
-              {dataDisplay.map((item) => (
+              {assignedData.map((item) => (
                 <li key={item.id}>
                   User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
                 </li>
@@ -130,12 +135,12 @@ export default function AssignExercise() {
             <Typography variant="h6" sx={{ color: "black" }}>
               You are currently making a program.
             </Typography>
-            <Typography sx={{ color: "black" }}>
+            {/* <Typography sx={{ color: "black" }}>
               This is the program you have made.
-            </Typography>
+            </Typography> */}
 
-            {console.log(assignedData.map((item) => item.userId))}
-            {assignedData.length === 0 ? 
+            {/* {console.log(assignedExercises.map((item) => item.userId))} */}
+            {!assignedData.length > 0? 
               <>
                 <Typography sx={{ color: "black" }}>
                   This is the program you have made anything
@@ -145,17 +150,14 @@ export default function AssignExercise() {
              : 
               <>
                 <Typography sx={{ color: "black" }}>
-                  This is the program you have made:
-                </Typography>
-                <Typography>
-                  <ul>
-                    {assignedData.map((item) => (
+                  This is the program you have made correct:
+                  {assignedData.map((item) => (
                       <li key={item.id}>
                         User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
                       </li>
                     ))}
-                  </ul>
                 </Typography>
+                
                 </>}
              
           </CardContent>

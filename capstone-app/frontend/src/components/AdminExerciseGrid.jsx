@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import FormDialog from "./user/FormDialog";
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, FormControlLabel } from '@mui/material';
 import { blue } from "@mui/material/colors";
-import EditUserDialog from "./user/EditUserDialog";
+import EditExerciseDialog from "./exercises/EditExerciseDialog";
 import TextField from '@mui/material/TextField';
 
 
@@ -32,10 +32,10 @@ const [searchQuery, setSearchQuery] = useState("");
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "firstName", headerName: "First Name", width: 100 },
-    { field: "lastName", headerName: "Last Name", width: 100 },
-    { field: "group", headerName: "Group", width: 100 }, 
-    { field: "role", headerName: "Role", width: 100 },
+    { field: "name", headerName: "Exercise Name", width: 100 },
+    { field: "category", headerName: "Category", width: 100 },
+    { field: "description", headerName: "Description", width: 100 }, 
+    { field: "createdAt", headerName: "Created", width: 100 },
     {
         field: "actions",
         headerName: "Actions",
@@ -60,32 +60,28 @@ const [searchQuery, setSearchQuery] = useState("");
   }
 ;
 
-const handleSearch = () => {
-
-}
 
 const Edit = ({ id }) => {
   return (
     <FormControlLabel
-      control={<EditUserDialog handleRefresh={handleRefresh} id={id} />}
+      control={<EditExerciseDialog handleRefresh={handleRefresh} id={id} />}
     />
   );
 };
 
  
-  const handleDeleteUser = (e) => {
-    // add delete logic
-    // send API request to delete the user
+  const handleDeleteExercise = (e) => {
+   
     console.log(selectedRows)
-    axios.delete(`http://localhost:8080/api/users/${selectedRows.join(',')}`)
+    axios.delete(`http://localhost:8080/api/exercises/${selectedRows.join(',')}`)
       .then((response) => {
-        console.log('User deleted:', response.data.data);
-        const updatedData = tableData.filter((user) => user.id !== response.data.data);
+        console.log('Exercise deleted:', response.data.data);
+        const updatedData = tableData.filter((exercise) => exercise.id !== response.data.data);
         setTableData(updatedData);
         setRefresh(!refresh)
       })
       .catch((error) => {
-        console.error('Error deleting user:', error);
+        console.error('Error deleting exercise:', error);
       });
   };
 
@@ -111,7 +107,7 @@ const Edit = ({ id }) => {
 
   return (
     <div>
-      <h2>User Management</h2>
+      <h2>Exercise Management</h2>
       <div>
       <TextField
       label="Search Users"
@@ -120,8 +116,8 @@ const Edit = ({ id }) => {
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
     />
-      <FormDialog handleRefresh={handleRefresh}>Create User</FormDialog>
-        <button onClick={handleDeleteUser}>Delete User</button>
+      <FormDialog handleRefresh={handleRefresh}>Create Exercise</FormDialog>
+        <button onClick={handleDeleteExercise}>Delete Exercise</button>
       </div>
       <div style={{ height: 700, width: "100%" }}>
         <DataGrid
@@ -135,6 +131,12 @@ const Edit = ({ id }) => {
           enableEditing
           editingMode='modal'
           onRowDoubleClick={handleSaveRowEdits}
+          slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
           sx={{
             boxShadow: 2,
             border: 2,
