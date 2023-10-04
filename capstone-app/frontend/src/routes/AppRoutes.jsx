@@ -9,6 +9,7 @@ import AdminExercisePage from "../pages/AdminExercisePage";
 import ForgotPasswordPage from "../pages/ForgotPassword";
 import AdminLoginPage from "../pages/AdminLoginPage";
 import LogInPage from "../pages/LoginPage";
+import AssignExercisePage from "../pages/AssignExercisePage";
 
 export default function AppRoutes(props) {
   return (
@@ -22,6 +23,7 @@ export default function AppRoutes(props) {
       <Route path="ForgotPassword" element={<ForgotPasswordPage {...props} />} />
       <Route path="Exercises" element={<ExercisesPage {...props} />} />
       <Route path="AdminExercise" element={<AdminExercisePage {...props} />} />
+      <Route path="AssignExercise" element={<AssignExercisePage {...props} />} />
       <Route path="AdminLogin" element={<AdminLoginPage {...props} />} />
     </Routes>
   );

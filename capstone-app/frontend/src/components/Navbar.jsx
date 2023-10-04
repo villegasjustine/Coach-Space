@@ -22,6 +22,7 @@ const pages = [
         {link: '/exercises', label: 'Exercises'},
         {link: '/users', label: 'Users'},
         {link: '/adminexercise', label: 'Admin Exercise'},
+        {link: '/assignexercise', label: 'Assign Exercise'},
         {link: '/video', label: 'Video'} 
     ];
     const settings = [{link: '/home', label: 'Account'}, {link: '/', label: 'Sign Out'}];

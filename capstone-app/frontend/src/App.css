@@ -58,13 +58,13 @@ body {
 
 .AssignExerciseContainer {
   display: flex;
-  height: 100%; /* Ensure the container takes up the full height of the viewport */
+  height: 100%; 
 }
 
 .AssignExercise {
   flex: 4; /* Let this div grow to fill available space */
   padding: 20px; 
-  background-color: rgba(216, 204, 210, 0.63);
+  background-color: rgba(255, 255, 255, 0.50);
   border-radius: 20px;
   padding: 1em;
   margin: 1em;
@@ -73,7 +73,7 @@ body {
 
 .VerticalBox {
   flex: 2; /* Let this div grow to take up 80% of the container's height */
-  background-color: white; /* Add your preferred background color */
+  background-color: transparent; /* Add your preferred background color */
   opacity: 80%;
  
   padding: 5px;

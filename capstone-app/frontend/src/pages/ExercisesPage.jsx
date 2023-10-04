@@ -1,4 +1,4 @@
-import BoxDisplay from "../components/BoxDisplay";
+import BoxDisplay from "../components/Test/BoxDisplay";
 import ExerciseGroupDisplay from "../components/ExerciseGroupDisplay";
 import WithDate from "../components/Test/WithDate";
 

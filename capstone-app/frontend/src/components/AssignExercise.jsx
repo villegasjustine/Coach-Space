@@ -1,14 +1,12 @@
-import * as React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import IconChipsTest from "./IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
-import ExerciseCard from "./ExerciseCard";
-import ExerciseBox from "./ExerciseBox";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Card, CardContent } from "@mui/material";
 import ExerciseGridSelect from "./ExerciseGridSelect";
 import { useUserContext } from "../context/UserContext";
+
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -26,6 +24,7 @@ export default function AssignExercise() {
   console.log("Selected users:", selectedUsers);
   // console.log("Start date:", assignedDate);
   // console.log("End Date:", endDate)
+  console.log(assignedData)
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -64,37 +63,18 @@ export default function AssignExercise() {
 
       .then((response) => {
         console.log("Assigned exercises saved:", response.data);
-        setAssignedData(response.data);
-        setSelectedExercises([]);
-        
+        setAssignedData(response.data); 
       })
       .catch((error) => {
         console.error("Error saving assigned exercises:", error);
       })
       .finally(() => {
+        setIsLoading(false);
         // setSelectedExercises([]); // clear exercises
         // setSelectedUsers([]); // clear users
       
       });
 
-  
-
-      // axios
-      // .post(
-      //   "http://localhost:8080/api/points/create",
-      //   assignedPoints
-      // )
-
-      // .then((response) => {
-      //   console.log("Assigned points saved:", response.data);
-      //   // console.log("Date Response", assignedDate)
-      // })
-      // .catch((error) => {
-      //   console.error("Error saving assigned points:", error);
-      // })
-      // .finally(() => {
-      //   setIsLoading(false);
-      // });
 
   };
 
@@ -133,20 +113,11 @@ export default function AssignExercise() {
         }}
       ></DatePicker>
 
-      {/* <label>
-        End Date:
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-      </label> */}
 
       <button onClick={handleAssignedExercises} disabled={isLoading}>
         {isLoading ? "Assigning..." : "Assign Exercises"}
       </button>
 
-      <button onClick={handleCheckValues}>Check Check</button>
 
       {assignedData.length > 0 && (
         <div>
@@ -162,22 +133,39 @@ export default function AssignExercise() {
       )}
     
 
-       {/* <ExerciseBox
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}
-      ></ExerciseBox>
-
-      <ExerciseCard
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}
-      ></ExerciseCard> */}
      
     </div>
     <div className="VerticalBox" style={{textAlign: 'center'}}>
-      <Typography variant="h4" sx={{color: 'black'}}>Hello {currentUser.firstName}</Typography>
+      <Card sx={{color: "rgba(255, 255, 255, 0.50)"}}>
+        <CardContent>
+        <Typography variant="h4" sx={{color: 'black'}}>Hello {currentUser.firstName}</Typography>
       <Typography variant='h6' sx={{color: 'black'}}>You are currently making a program.</Typography>
-      <Typography sx={{color: 'black'}}>This is the program you have made.</Typography>
+      {/* <Typography sx={{color: 'black'}}>This is the program you have made.</Typography> */}
 
+       {assignedData == [] ? 
+              <>
+                <Typography sx={{ color: "black" }}>
+                  This is the program you have made
+                </Typography>
+                <Typography>anything </Typography>
+               
+              </> : <>
+                <Typography sx={{ color: "black" }}>
+                  This is the program you have made:
+                </Typography>
+                <Typography><ul>
+                  {assignedData.forEach((item) => (
+                    <li key={item.id}>
+                      User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
+                    </li>
+                  ))}
+                </ul></Typography>
+               
+              </> 
+            }
+        </CardContent>
+      </Card>
+      
     </div>
     </container>
   );

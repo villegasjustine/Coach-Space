@@ -12,12 +12,12 @@ export default function AdminExercisePage() {
     return(
         <>
         <div className="AdminExercisePage">
-        Assign Exercise Page
+        Admin Exercise Page
         <br/>
 
   
 
-        <AssignExercise></AssignExercise>
+       
 
         
         </div>
