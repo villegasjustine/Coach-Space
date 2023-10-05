@@ -1,4 +1,3 @@
-
 import UserExercisesHistory from "../components/UserExercisesHistory"
 import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay"
 

@@ -1,17 +1,42 @@
 import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay";
 
 import Leaderboard from "../components/Leaderboard";
+import axios from "axios";
 
 import { useUserContext } from "../context/UserContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 export default function HomePage() {
-  const [user, setUser] = useState("");
+  const [groupUsers, setGroupUsers] = useState([]);
   const { currentUser } = useUserContext();
 
-  function updateUsers(newUsers) {
-    setUser(newUsers);
-    console.log(user);
+  useEffect(() => {
+    console.log(currentUser.group)
+      if (currentUser.group) {
+        const apiUrl = `http://localhost:8080/api/users/groups/${currentUser.group}`;
+        
+  
+        axios
+          .get(apiUrl)
+          .then((response) => {
+            const fetchedUsers = response.data.data;
+            setGroupUsers(fetchedUsers);
+            console.log('Fetched Users',fetchedUsers)
+          })
+          .catch((error) => {
+            console.error('Error fetching group members:', error);
+          });
+      }
+    }, []); 
+
+  const handlePointsUpdate = (newPoints) => {
+    const updatedUsers = 
+    groupUsers.map((student) => (
+      currentUser.id == student.id ? {...student, 'SUM(CAE.totalPoints)' : newPoints} : student
+    ))
+      setGroupUsers(updatedUsers)
+
   }
 
   return (
@@ -19,8 +44,8 @@ export default function HomePage() {
       <div className="HomePage">
         Welcome {currentUser.username}
         <br></br>
-        <Leaderboard users={user} />
-        <ExerciseGroupDisplay />
+        <Leaderboard groupUsers={groupUsers} />
+        <ExerciseGroupDisplay groupUsers={groupUsers} onPointsUpdate={handlePointsUpdate} />
       </div>
     </>
   );

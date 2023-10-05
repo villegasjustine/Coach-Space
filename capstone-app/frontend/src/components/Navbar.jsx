@@ -23,15 +23,16 @@ const pages = [
         {link: '/users', label: 'Users'},
         {link: '/adminexercise', label: 'Admin Exercise'},
         {link: '/assignexercise', label: 'Assign Exercise'},
+        {link: '/uae', label: 'Users Exercise'},
         {link: '/video', label: 'Video'} 
     ];
-    const settings = [{link: '/home', label: 'Account'}, {link: '/', label: 'Sign Out'}];
+    const settings = [{link: '/account', label: 'Account'}, {link: '/', label: 'Sign Out', onClick: () => {handleUpdateUser({})}}];
 
 // see https://mui.com/material-ui/react-app-bar/
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const {currentUser} = useUserContext();
+  const {currentUser, handleUpdateUser} = useUserContext();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -174,8 +175,11 @@ function Navbar() {
                 <MenuItem 
                 key={setting.link} 
                     component={NavLink} 
-                    to={setting.link}>
-                        {setting.label}
+                    to={setting.link}
+                    onClick={setting.onClick}
+                    >
+                        {setting.label}\
+                    
                 </MenuItem>
                 
               ))}

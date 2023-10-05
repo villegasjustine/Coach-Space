@@ -10,12 +10,15 @@ import ForgotPasswordPage from "../pages/ForgotPassword";
 import AdminLoginPage from "../pages/AdminLoginPage";
 import LogInPage from "../pages/LoginPage";
 import AssignExercisePage from "../pages/AssignExercisePage";
+import UAEPage from "../pages/UAEPage";
+import AccountPage from "../pages/AccountPage";
 
 export default function AppRoutes(props) {
   return (
     <Routes>
       <Route index element={<WelcomePage {...props} />} />
       <Route path="Home" element={<HomePage {...props} />} />
+      <Route path="Account" element={<AccountPage {...props} />} />
       <Route path="Users" element={<UserPage {...props} />} />
       <Route path="Video" element={<VideoPage {...props} />} />
       <Route path="Signup" element={<SignUpPage {...props} />} />
@@ -24,6 +27,7 @@ export default function AppRoutes(props) {
       <Route path="Exercises" element={<ExercisesPage {...props} />} />
       <Route path="AdminExercise" element={<AdminExercisePage {...props} />} />
       <Route path="AssignExercise" element={<AssignExercisePage {...props} />} />
+      <Route path="UAE" element={<UAEPage {...props} />} />
       <Route path="AdminLogin" element={<AdminLoginPage {...props} />} />
     </Routes>
   );

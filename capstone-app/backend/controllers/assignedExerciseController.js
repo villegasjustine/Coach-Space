@@ -13,7 +13,7 @@ const getAssignedExercises = (res) => {
     `JOIN users AS CU ON CAE.UserId= CU.id `
   )
     .then(function (data) {
-      res.send({ result: 200, data: data });
+      res.send({ result: 200, data: data[0] });
     })
     .catch((err) => {
       res.status(500).json({ data: err.message });
