@@ -75,12 +75,16 @@ const UserExerciseDisplay = (props) => {
           },
         }}
         sx={{
-          boxShadow: 2,
+          boxShadow: 5,
           border: 2,
-          color:'white',
-          borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
+          borderWidth: 3,
+          color: "black",
+          borderColor: "black",
+          "& .MuiDataGrid-columnSeparator": {
+            color: "Black",
+          },
+          "& .MuiDataGrid-cell:hover": {
+            color: "rgba(229, 145, 145, 1)",
           },
         }}
       />

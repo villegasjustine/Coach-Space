@@ -26,6 +26,12 @@ const pages = [
         {link: '/uae', label: 'Users Exercise'},
         {link: '/video', label: 'Video'} 
     ];
+
+    const pageStudent = [
+      {link: '/home', label: 'Home'}, 
+      {link: '/exercises', label: 'Exercises'},
+      {link: '/video', label: 'Video'} 
+  ];
     const settings = [{link: '/account', label: 'Account'}, {link: '/', label: 'Sign Out', onClick: () => {handleUpdateUser({})}}];
 
 // see https://mui.com/material-ui/react-app-bar/
@@ -113,9 +119,19 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+             
+
+              {currentUser.role != 'student' ? (
+                pages.map((page) => (
                 <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
-              ))}
+              ))
+              ): (
+                pageStudent.map((page) => (
+                  <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
+                ))
+              )
+            
+            }
             </Menu>
           </Box>
 
@@ -142,9 +158,18 @@ function Navbar() {
           {/* desktop menu items are here, grouped into a flex box */}
           <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             
-            {pages.map((page) => (
+
+          {currentUser.role != 'student' ? (
+                pages.map((page) => (
                 <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
-            ))}
+              ))
+              ): (
+                pageStudent.map((page) => (
+                  <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
+                ))
+              )
+            
+            }
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

@@ -13,11 +13,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
-export default function ExerciseGroupDisplay({onPointsUpdate}) {
+
+export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, setHandleRefresh}) {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [expanded, setExpanded] = useState(false);
  
+
 
   const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -41,6 +43,7 @@ export default function ExerciseGroupDisplay({onPointsUpdate}) {
       )
       .then((response) => {
         setAssignedExercises(response.data.data);
+       
         console.log("Data fetched", response.data.data);
         // console.log(assignedExercises)
       })
@@ -51,18 +54,10 @@ export default function ExerciseGroupDisplay({onPointsUpdate}) {
 
 
   const handlePoints = async (id) => {
-    let data = await axios.get(
-      `http://localhost:8080/api/assignedexercises/${id}`
-    );
-    console.log(data.data.data.totalPoints);
-    let currentPoints = data.data.data.totalPoints;
-    let updatedPoints = (currentPoints += 10);
 
-    console.log("current points", currentPoints);
-    axios.put(`http://localhost:8080/api/assignedexercises/${id}`, {
-      totalPoints: updatedPoints,
-    });
-    onPointsUpdate(updatedPoints);
+    onPointsUpdate();
+    setHandleRefresh(!handleRefresh)
+
   };
 
   return (

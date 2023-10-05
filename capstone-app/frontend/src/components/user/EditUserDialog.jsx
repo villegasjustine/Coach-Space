@@ -168,7 +168,7 @@ export default function EditUserDialog({ handleRefresh, id }) {
               onChange={(e) => setUser({ ...user, group: e.target.value })}
             />
 
-            {/* <TextField
+            <TextField
               autoFocus
               margin="dense"
               name="role"
@@ -178,8 +178,8 @@ export default function EditUserDialog({ handleRefresh, id }) {
               variant="standard"
               value={user ? user.role : ""}
               onChange={(e) => setUser({ ...user, role: e.target.value })}
-              disabled
-            /> */}
+             
+            />
             <RadioForm
               //radio form currently not changing in backend!
               value={user ? user.role : "Student"}

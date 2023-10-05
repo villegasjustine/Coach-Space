@@ -5,7 +5,7 @@ import { useUserContext } from "../context/UserContext";
 function ProtectedRoute({ redirectPath = "/", children }) {
   const { currentUser } = useUserContext();
 
-  if (!currentUser.name) {
+  if (!currentUser.firstName) {
     return <Navigate to={redirectPath} replace />;
   }
   // works for both nested and standalone routes

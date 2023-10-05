@@ -54,7 +54,7 @@ export default function SignUp() {
         setResult(result);
         if (user) {
           handleUpdateUser(user);
-          navigate("/");
+          navigate("/home");
         }
       })
       .catch((err) => {
