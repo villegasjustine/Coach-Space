@@ -54,7 +54,8 @@ export default function WeeklyExerciseDisplay() {
       <ul>
         {assignedExercises.length > 0 ? (
           assignedExercises.map((exercise) => (
-            <Grid>
+                <div className="centeredGrid">
+            <Grid >
               <Card
                 key={exercise.id}
                 variant="outlined"
@@ -88,6 +89,7 @@ export default function WeeklyExerciseDisplay() {
                 </Collapse>
               </Card>
             </Grid>
+            </div>
           ))
         ) : (
           <h2>Exercises not yet assigned.</h2>

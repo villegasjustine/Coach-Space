@@ -7,7 +7,7 @@ const getAssignedExercises = (res) => {
   // Models.AssignedExercise.findAll({})
 
   sequelize.query(
-    `SELECT CAE.id, name, category, description, CAE.startDate, CAE.endDate, CAE.UserId, ExerciseId,  CU.firstName, CU.lastName, CU.username, CU.group, CAE.totalPoints `+
+    `SELECT CAE.id, name, category, description, CAE.startDate, CAE.endDate, CAE.createdAt, CAE.UserId, ExerciseId,  CU.firstName, CU.lastName, CU.username, CU.group, CAE.totalPoints `+
     `FROM assigned_exercises AS CAE `+
     `JOIN exercises AS CE ON CAE.ExerciseId = CE.id `+
     `JOIN users AS CU ON CAE.UserId= CU.id `

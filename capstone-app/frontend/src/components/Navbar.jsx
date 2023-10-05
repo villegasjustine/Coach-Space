@@ -20,17 +20,17 @@ import { useState } from 'react';
 const pages = [
         {link: '/home', label: 'Home'}, 
         {link: '/exercises', label: 'Exercises'},
-        {link: '/users', label: 'Users'},
-        {link: '/adminexercise', label: 'Admin Exercise'},
+        {link: '/users', label: 'User List'},
+        {link: '/adminexercise', label: 'Exercise List'},
         {link: '/assignexercise', label: 'Assign Exercise'},
-        {link: '/uae', label: 'Users Exercise'},
+        {link: '/uae', label: 'Assigned Exercises List'},
         
     ];
 
     const pageStudent = [
       {link: '/home', label: 'Home'}, 
       {link: '/exercises', label: 'Exercises'},
-      {link: '/video', label: 'Video'} 
+    
   ];
     const settings = [{link: '/account', label: 'Account'}, {link: '/', label: 'Sign Out', onClick: () => {handleUpdateUser({})}}];
 

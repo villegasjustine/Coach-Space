@@ -139,7 +139,7 @@ export default function AssignExercise() {
             <h2>Assigned Exercises:</h2>
             <ul>
               {assignedData.map((item) =>
-              console.log('item',item) (
+               (
                 
                 <li key={item.id}>
                   User ID: {item.UserId}, Exercise ID: {item.ExerciseId}

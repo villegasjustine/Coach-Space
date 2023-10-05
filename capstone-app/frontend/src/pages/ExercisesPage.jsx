@@ -7,7 +7,7 @@ import ExerciseGroupDisplay from "../components/leaderboard/ExerciseGroupDisplay
 export default function ExercisesPage() {
     return(
         <>
-        <div className="ExercisesPage">
+        <div className="AssignExercisePage">
         
 
         {/* <BoxDisplay></BoxDisplay> */}

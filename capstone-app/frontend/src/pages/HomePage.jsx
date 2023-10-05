@@ -34,8 +34,6 @@ export default function HomePage() {
 
   const handlePointsUpdate = () => {
   
-
-
     const updatedUsers = groupUsers.map((student) => {
       if (currentUser.id == student.id) {
         console.log('student', student)

@@ -6,7 +6,7 @@ import ExerciseCard from "../exercises/ExerciseCard";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import { CardContent, Typography, IconButton, Grid } from "@mui/material";
+import { CardContent, Typography, IconButton, Grid, Container } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -77,7 +77,7 @@ export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, set
       <ul>
         {assignedExercises.length > 0 ? (
           assignedExercises.map((exercise) => (
-            <Grid>
+            <Container alignItems='center'>
               <Card
                 key={exercise.id}
                 variant="outlined"
@@ -120,7 +120,7 @@ export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, set
                   <CardContent>{exercise.description}</CardContent>
                 </Collapse>
               </Card>
-            </Grid>
+            </Container>
           ))
         ) : (
           <h2>Exercises not yet assigned.</h2>
