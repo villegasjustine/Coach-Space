@@ -107,7 +107,7 @@ export default function SignIn() {
                     {signedIn ? <img src={"http://localhost:8080/"+currentUser.avatar} width="40" alt={currentUser.avatar}/> : <LockOutlinedIcon />}
                 </Avatar>                
                 <Typography component="h1" variant="h5">
-                    {signedIn ? 'Hello '+currentUser.firstName : 'Please log in'}
+                    {signedIn ? 'Hello '+currentUser.firstName : 'Log in'}
                 </Typography>
 
                 { (!signedIn && signinAttempts < 5) ?
@@ -161,7 +161,7 @@ export default function SignIn() {
                                 <Link to="/forgotpw">Forgot password?</Link>
                             </Grid>
                             <Grid item>
-                                <Link to="/signup">Don't have an account? Sign Up</Link>
+                                <Link to="/signup">Wanna join? Sign Up</Link>
                             </Grid>
                         </Grid>
                     </Box>

@@ -3,7 +3,7 @@ import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 import { UserProvider } from "./context/UserContext";
 import { ExerciseProvider } from "./context/ExerciseContext";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 

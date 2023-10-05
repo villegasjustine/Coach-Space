@@ -1,10 +1,4 @@
-import AdminUserGrid from "../components/AdminUserGrid";
-import EnhancedTable from "../components/Test/UserTable";
-import EditUserDialog from "../components/user/EditUserDialog";
-
-import FormDialog from "../components/user/FormDialog";
-
-
+import AdminUserGrid from "../components/grid/AdminUserGrid"
 
 export default function UserPage() {
     return (
@@ -12,10 +6,6 @@ export default function UserPage() {
         User Page
         
      <AdminUserGrid/>
-      <FormDialog></FormDialog>
-      <EditUserDialog></EditUserDialog>
-     {/* <EnhancedTable></EnhancedTable>
-     */}
       </div>
     );
   }

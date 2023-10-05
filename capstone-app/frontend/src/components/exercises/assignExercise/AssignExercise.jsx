@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import IconChipsTest from "./IconChipsTest";
-import ExerciseUserGrid from "../ExerciseUserGrid";
+import IconChipsTest from "../IconChipsTest";
+import ExerciseUserGrid from "./ExerciseUserGrid";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Container, Typography, Card, CardContent } from "@mui/material";
 import ExerciseGridSelect from "./ExerciseGridSelect";
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../../context/UserContext";
+import Grid from "@mui/material/Grid";
 
 export default function AssignExercise() {
   const [selectedExercises, setSelectedExercises] = useState([]);
@@ -78,29 +79,18 @@ export default function AssignExercise() {
 
   return (
     <container className="AssignExerciseContainer">
-      <div className="AssignExercise">
+      <div className="gridComponent">
         <Container>
-          {/* <IconChipsTest
-        selectedExercises={selectedExercises}
-        setSelectedExercises={handleSelectedExercisesUpdate}
-      /> */}
-
-          <ExerciseGridSelect
-            selectedExercises={selectedExercises}
-            setSelectedExercises={handleSelectedExercisesUpdate}
-          />
-        </Container>
-        <ExerciseUserGrid
-          selectedUsers={selectedUsers}
-          setSelectedUsers={setSelectedUsers}
-        />
-
-        <DatePicker
+          <Container>
+        
+          <DatePicker
+          label="Start Date"
           value={assignedDate}
           onChange={(newDate) => setAssignedDate(newDate)}
         ></DatePicker>
 
         <DatePicker
+        label='End Date'
           value={endDate}
           onChange={(newDate) => setEndDate(newDate)}
           sx={{
@@ -108,6 +98,18 @@ export default function AssignExercise() {
             color: "whitesmoke",
           }}
         ></DatePicker>
+          </Container>
+
+        
+          <ExerciseGridSelect
+            selectedExercises={selectedExercises}
+            setSelectedExercises={handleSelectedExercisesUpdate}
+          />
+           <ExerciseUserGrid
+          selectedUsers={selectedUsers}
+          setSelectedUsers={setSelectedUsers}
+        />
+        </Container>
 
         <button onClick={handleAssignedExercises} disabled={isLoading}>
           {isLoading ? "Assigning..." : "Assign Exercises"}

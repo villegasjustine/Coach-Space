@@ -51,7 +51,7 @@ function Navbar() {
   };
   return (
     <AppBar 
-    position="static"
+    position="sticky"
     sx={{
       mr: 2,
       display: {  md: 'flex' },
@@ -178,7 +178,7 @@ function Navbar() {
                     to={setting.link}
                     onClick={setting.onClick}
                     >
-                        {setting.label}\
+                        {setting.label}
                     
                 </MenuItem>
                 

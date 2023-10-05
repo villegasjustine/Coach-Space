@@ -4,7 +4,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { useProps } from '@mui/x-data-grid/internals';
-import EditUserDialog from './user/EditUserDialog';
+import EditUserDialog from '../../user/EditUserDialog';
 
 
 const MatEdit = ({ index }) => {
@@ -40,7 +40,7 @@ const ExerciseUserGrid = (props) => {
 
   const columns = [
     // Define your columns here
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', headerClassName:'grid-header', width: 70 },
     { field: 'firstName', headerName: 'Name', width: 100 },
     // { field: 'lastName', headerName: 'Name', width: 100},
     { field: 'group', headerName: 'Group', width: 100},
@@ -85,13 +85,18 @@ const ExerciseUserGrid = (props) => {
           },
         }}
         sx={{
-          boxShadow: 2,
+          boxShadow: 5,
           border: 2,
-          color:'white',
-          borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
+          borderWidth: 3,
+          color: "black",
+          borderColor: "black",
+          "& .MuiDataGrid-columnSeparator": {
+            color: "Black",
           },
+          "& .MuiDataGrid-cell:hover": {
+            color: "rgba(229, 145, 145, 1)",
+          },
+          
         }}
       />
     </div>

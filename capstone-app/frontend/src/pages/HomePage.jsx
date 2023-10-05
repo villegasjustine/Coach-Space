@@ -1,6 +1,7 @@
-import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay";
+import ExerciseGroupDisplay from "../components/leaderboard/ExerciseGroupDisplay";
+import { Container } from "@mui/material";
 
-import Leaderboard from "../components/Leaderboard";
+import Leaderboard from "../components/leaderboard/Leaderboard";
 import axios from "axios";
 
 import { useUserContext } from "../context/UserContext";
@@ -43,9 +44,11 @@ export default function HomePage() {
     <>
       <div className="HomePage">
         Welcome {currentUser.username}
-        <br></br>
+        <Container sx={{justifyContent: 'center'}}>
         <Leaderboard groupUsers={groupUsers} />
         <ExerciseGroupDisplay groupUsers={groupUsers} onPointsUpdate={handlePointsUpdate} />
+        </Container>  
+       
       </div>
     </>
   );

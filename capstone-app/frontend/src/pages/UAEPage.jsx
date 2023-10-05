@@ -1,4 +1,4 @@
-import UAEGrid from "../components/UAEGrid";
+import UAEGrid from "../components/grid/UAEGrid";
 
 
 export default function UAEPage() {

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import ExerciseFormDialog from "./exercises/ExerciseFormDialog";
-import EditIcon from '@mui/icons-material/Edit';
+import ExerciseFormDialog from "../exercises/ExerciseFormDialog";
 import { IconButton, FormControlLabel } from '@mui/material';
-import EditExerciseDialog from "./exercises/EditExerciseDialog";
-import TextField from '@mui/material/TextField';
+import { Button, Container } from "@mui/material";
 
 
 const UAEGrid = () => {
@@ -30,30 +28,14 @@ const [searchQuery, setSearchQuery] = useState("");
   }, [searchQuery, refresh]);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "firstName", headerName: "Student", width: 100 },
+    { field: "id", headerName: "ID", width: 50 },
+    { field: "firstName", headerName: "Name", width: 100 },
     { field: "lastName", headerName: "Last Name", width: 100 },
     { field: "name", headerName: "Exercise", width: 100 }, 
     { field: "category", headerName: "Category", width: 100 },
     { field: "group", headerName: "Group", width: 100 },
-    // { field: "startDate", headerName: "Start Date", width: 100 },
-    // { field: "endDate", headerName: "End Date", width: 100 },
-    {
-        field: "actions",
-        headerName: "Actions",
-        sortable: false,
-        width: 140,
-        disableClickEventBubbling: true,
-        renderCell: (params) => {
-         
-          return (
-            <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
-              <Edit id={params.id} />
-            </div>
-            );
-         }
-      }
-    //need to add history exercises later
+    { field: "startDate", headerName: "Start Date", width: 170},
+    { field: "endDate", headerName: "End Date", width: 170},
   ];
 
   const handleRefresh = () => {
@@ -61,16 +43,6 @@ const [searchQuery, setSearchQuery] = useState("");
     
   }
 ;
-
-//change exercise if possible?
-const Edit = ({ id }) => {
-  return (
-    <FormControlLabel
-      control={<EditExerciseDialog handleRefresh={handleRefresh} id={id} />}
-    />
-  );
-};
-
  
   const handleDeleteExercise = (e) => {
    
@@ -108,19 +80,11 @@ const Edit = ({ id }) => {
   }
 
   return (
-    <div>
+    <div className="gridComponent">
       <h2>Assigned Exercises to Users</h2>
-      <div>
-      <TextField
-      label="Search Users"
-      variant="outlined"
-      fullWidth
-      value={searchQuery}
-      onChange={(e) => setSearchQuery(e.target.value)}
-    />
-      {/* <ExerciseFormDialog handleRefresh={handleRefresh}>Create Exercise</ExerciseFormDialog> */}
-        <button onClick={handleDeleteExercise}>Delete Exercise</button>
-      </div>
+      
+        <Button onClick={handleDeleteExercise}>Delete Exercise</Button>
+    
       <div style={{ height: 700, width: "100%" }}>
         <DataGrid
           rows={tableData}
@@ -139,13 +103,17 @@ const Edit = ({ id }) => {
             showQuickFilter: true,
           },
         }}
-          sx={{
-            boxShadow: 2,
+        sx={{
+            boxShadow: 5,
             border: 2,
-            color:'white',
-            borderColor: 'primary.light',
-            '& .MuiDataGrid-cell:hover': {
-              color: 'primary.main',
+            borderWidth: 3,
+            color: "black",
+            borderColor: "brown",
+            "& .MuiDataGrid-columnSeparator": {
+              color: "Black",
+            },
+            "& .MuiDataGrid-cell:hover": {
+              color: "rgba(229, 145, 145, 1)",
             },
           }}
 

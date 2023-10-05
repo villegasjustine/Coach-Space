@@ -5,7 +5,7 @@ import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
 import { useProps } from '@mui/x-data-grid/internals';
-import EditUserDialog from '../user/EditUserDialog';
+import EditUserDialog from '../../user/EditUserDialog';
 
 
 const MatEdit = ({ index }) => {
@@ -87,12 +87,16 @@ const ExerciseGridSelect = (props) => {
           },
         }}
         sx={{
-          boxShadow: 2,
+          boxShadow: 5,
           border: 2,
-          color:'white',
-          borderColor: 'primary.light',
-          '& .MuiDataGrid-cell:hover': {
-            color: 'primary.main',
+          borderWidth: 3,
+          color: "black",
+          borderColor: "black",
+          "& .MuiDataGrid-columnSeparator": {
+            color: "Black",
+          },
+          "& .MuiDataGrid-cell:hover": {
+            color: "rgba(229, 145, 145, 1)",
           },
         }}
       />

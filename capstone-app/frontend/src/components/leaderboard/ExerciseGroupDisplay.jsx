@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { useUserContext } from "../../context/UserContext";
 import { useState, useEffect } from "react";
-import ExerciseCard from "./ExerciseCard";
+import ExerciseCard from "../exercises/ExerciseCard";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -75,18 +75,30 @@ export default function ExerciseGroupDisplay({onPointsUpdate}) {
                 key={exercise.id}
                 variant="outlined"
                 sx={{
-                  display: "flex",
+                  // display: "flex",
                   alignItems: "center",
                   border: "3px solid",
                   color: "grey.800",
+                  maxWidth: 500,
                 }}
               >
+                <Typography letterSpacing='3' variant="caption">{exercise.category}</Typography>
                 <CardContent>
-                  <Button onClick={() => handlePoints(exercise.id)}>
-                    points
-                  </Button>
-                  <Typography>{exercise.category}</Typography>
+                <Button 
+                onClick={() => handlePoints(exercise.id)}
+                key={exercise.id}
+                variant="outlined"
+                sx={{
+                  maxWidth: 200,
+                  minWidth: 200,
+                  alignItems: "left",
+                  border: "3px solid",
+                  color: "grey.800",
+                }}>
                   <Typography>{exercise.name}</Typography>
+                </Button>
+
+                
                 </CardContent>
                 <CardActions onClick={handleExpandClick}>
                   <ExpandMore

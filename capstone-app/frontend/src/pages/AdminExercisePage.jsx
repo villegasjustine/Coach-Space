@@ -1,4 +1,4 @@
-import AdminExerciseGrid from "../components/AdminExerciseGrid";
+import AdminExerciseGrid from "../components/grid/AdminExerciseGrid";
 
 export default function AdminExercisePage() {
   return (

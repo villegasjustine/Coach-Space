@@ -1,5 +1,6 @@
 import UserExercisesHistory from "../components/UserExercisesHistory"
-import ExerciseGroupDisplay from "../components/exercises/ExerciseGroupDisplay"
+import UserExerciseDisplay from "../components/UsersExerciseDisplay"
+import ExerciseGroupDisplay from "../components/leaderboard/ExerciseGroupDisplay"
 
 
 export default function ExercisesPage() {
@@ -11,6 +12,7 @@ export default function ExercisesPage() {
         {/* <BoxDisplay></BoxDisplay> */}
         <ExerciseGroupDisplay />
         <UserExercisesHistory/>
+        <UserExerciseDisplay></UserExerciseDisplay>
 
         
         </div>

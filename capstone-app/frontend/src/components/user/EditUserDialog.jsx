@@ -46,10 +46,11 @@ export default function EditUserDialog({ handleRefresh, id }) {
         Object.fromEntries(data.entries())
       )
       .then((response) => {
+        console.log('response', response)
         let result = response.data.result;
         let user = response.data.data;
         console.log("user", user);
-
+        
         setResult(result);
         if (user) {
           handleUpdateUser(user);
@@ -167,7 +168,7 @@ export default function EditUserDialog({ handleRefresh, id }) {
               onChange={(e) => setUser({ ...user, group: e.target.value })}
             />
 
-            <TextField
+            {/* <TextField
               autoFocus
               margin="dense"
               name="role"
@@ -177,7 +178,8 @@ export default function EditUserDialog({ handleRefresh, id }) {
               variant="standard"
               value={user ? user.role : ""}
               onChange={(e) => setUser({ ...user, role: e.target.value })}
-            />
+              disabled
+            /> */}
             <RadioForm
               //radio form currently not changing in backend!
               value={user ? user.role : "Student"}

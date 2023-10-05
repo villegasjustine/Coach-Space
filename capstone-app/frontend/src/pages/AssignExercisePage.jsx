@@ -1,4 +1,4 @@
-import AssignExercise from "../components/exercises/AssignExercise";
+import AssignExercise from "../components/exercises/assignExercise/AssignExercise";
 
 export default function AssignExercisePage() {
   return (

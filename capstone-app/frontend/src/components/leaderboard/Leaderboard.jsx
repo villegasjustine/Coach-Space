@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import User from "./User";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 
 export default function Leaderboard({ groupUsers }) {
   const { currentUser } = useUserContext();
