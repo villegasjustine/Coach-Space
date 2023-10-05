@@ -24,7 +24,7 @@ const pages = [
         {link: '/adminexercise', label: 'Admin Exercise'},
         {link: '/assignexercise', label: 'Assign Exercise'},
         {link: '/uae', label: 'Users Exercise'},
-        {link: '/video', label: 'Video'} 
+        
     ];
 
     const pageStudent = [
@@ -55,6 +55,11 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+   if (!currentUser) {
+    return null;
+  }
+
   return (
     <AppBar 
     position="sticky"
@@ -175,7 +180,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="" src="" />
+                <Avatar alt="" src= "https://robohash.org/${name}?size=50x50&set=3"/>
               </IconButton>
             </Tooltip>
             <Menu

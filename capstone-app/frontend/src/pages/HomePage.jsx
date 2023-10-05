@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { useUserContext } from "../context/UserContext";
 import { useState, useEffect } from "react";
+import RandomExerciseGenerator from "../components/exercises/RandomExerciseGenerator";
 
 export default function HomePage() {
   const [groupUsers, setGroupUsers] = useState([]);
@@ -63,6 +64,7 @@ export default function HomePage() {
             setHandleRefresh={setHandleRefresh}
           />
         </Container>
+        <RandomExerciseGenerator/>
       </div>
     </>
   );

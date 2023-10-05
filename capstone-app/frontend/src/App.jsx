@@ -7,14 +7,17 @@ import Navbar from "./components/Navbar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
+
 function App() {
+  
+
   return (
     <>
       
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <UserProvider>
           <ExerciseProvider>
-            <Navbar />
+             <Navbar />
             <AppRoutes />
           </ExerciseProvider>
         </UserProvider>

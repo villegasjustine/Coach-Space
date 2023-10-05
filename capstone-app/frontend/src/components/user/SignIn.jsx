@@ -118,7 +118,7 @@ export default function SignIn() {
                     noValidate 
                     sx={{ 
                         mt: 2, 
-                        borderColor: 'primary.main',
+                        borderColor: 'brown',
                         borderRadius: 3,
                         zIndex:'modal'
                         }}>

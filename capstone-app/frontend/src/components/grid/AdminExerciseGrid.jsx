@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import ExerciseFormDialog from "../exercises/ExerciseFormDialog";
 import Grid from "@mui/material/Grid";
-import { Container, FormControlLabel } from "@mui/material";
-import { Button } from "@mui/material";
-
+import { Container, FormControlLabel, Button, Typography } from "@mui/material";
 import EditExerciseDialog from "../exercises/EditExerciseDialog";
+import ExerciseFormDialog from "../exercises/ExerciseFormDialog";
 
 const AdminExerciseGrid = () => {
   const [tableData, setTableData] = useState([]);
@@ -107,6 +105,7 @@ const AdminExerciseGrid = () => {
   return (
     <div className="gridComponent">
         <Container>
+        <Typography className="titleHeader"variant="h2">Exercises</Typography>
         <Grid container direction="row" justifyContent="right">
           <ExerciseFormDialog handleRefresh={handleRefresh}>
             Create User

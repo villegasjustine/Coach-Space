@@ -11,7 +11,7 @@ import axios from "axios";
 import { IconButton } from "@mui/material";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useState, useEffect } from "react";
-import RadioForm from "../RadioForm";
+import RadioForm from "./RadioForm";
 
 export default function EditUserDialog({ handleRefresh, id }) {
   const [open, setOpen] = useState(false);

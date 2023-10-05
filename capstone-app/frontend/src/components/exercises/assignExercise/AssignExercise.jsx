@@ -21,11 +21,11 @@ export default function AssignExercise() {
   const dataDisplay = [];
 
   const [dataSent, setDataSent] = useState([]);
-  console.log("Selected exercises:", selectedExercises);
-  console.log("Selected users:", selectedUsers);
+  // console.log("Selected exercises:", selectedExercises);
+  // console.log("Selected users:", selectedUsers);
   // console.log("Start date:", assignedDate);
   // console.log("End Date:", endDate)
-  console.log("Data Display", dataDisplay);
+  // console.log("Data Display", dataDisplay);
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -100,11 +100,30 @@ export default function AssignExercise() {
         ></DatePicker>
           </Container>
 
-        
+        <Card
+           variant="outlined"
+           sx={{
+           //   display: "flex",
+             alignItems: "center",
+             border: "3px solid",
+             color: "grey.800",
+             
+           }}
+        ><Typography variant="h5">Exercises</Typography></Card>
           <ExerciseGridSelect
             selectedExercises={selectedExercises}
             setSelectedExercises={handleSelectedExercisesUpdate}
           />
+          <Card
+           variant="outlined"
+           sx={{
+           //   display: "flex",
+             alignItems: "center",
+             border: "3px solid",
+             color: "grey.800",
+             
+           }}
+        ><Typography variant="h5">Users</Typography></Card>
            <ExerciseUserGrid
           selectedUsers={selectedUsers}
           setSelectedUsers={setSelectedUsers}
@@ -119,7 +138,9 @@ export default function AssignExercise() {
           <div>
             <h2>Assigned Exercises:</h2>
             <ul>
-              {assignedData.map((item) => (
+              {assignedData.map((item) =>
+              console.log('item',item) (
+                
                 <li key={item.id}>
                   User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
                 </li>
@@ -135,7 +156,7 @@ export default function AssignExercise() {
               Hello {currentUser.firstName}
             </Typography>
             <Typography variant="h6" sx={{ color: "black" }}>
-              You are currently making a program.
+              You are currently making an exercise program.
             </Typography>
             {/* <Typography sx={{ color: "black" }}>
               This is the program you have made.

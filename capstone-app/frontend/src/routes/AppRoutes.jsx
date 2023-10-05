@@ -24,7 +24,7 @@ export default function AppRoutes(props) {
 
       <Route path="Home" element={<ProtectedRoute><HomePage {...props} /></ProtectedRoute>} />
       <Route path="Account" element={<ProtectedRoute><AccountPage {...props} /></ProtectedRoute>} />
-      <Route path="Users" element={<UserPage {...props} />} />
+      <Route path="Users" element={<ProtectedRoute><UserPage {...props} /></ProtectedRoute>} />
       <Route path="Video" element={<ProtectedRoute><VideoPage {...props} /></ProtectedRoute>} />
       
       

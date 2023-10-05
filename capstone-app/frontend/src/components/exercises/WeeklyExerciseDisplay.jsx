@@ -13,13 +13,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
-
-export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, setHandleRefresh}) {
+export default function WeeklyExerciseDisplay() {
   const { currentUser } = useUserContext();
   const [assignedExercises, setAssignedExercises] = useState([]);
   const [expanded, setExpanded] = useState(false);
- 
-
 
   const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -43,7 +40,7 @@ export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, set
       )
       .then((response) => {
         setAssignedExercises(response.data.data);
-       
+
         console.log("Data fetched", response.data.data);
         // console.log(assignedExercises)
       })
@@ -52,28 +49,8 @@ export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, set
       });
   }, []);
 
-
-  const handlePoints = async (id) => {
-
-    let data = await axios.get(
-      `http://localhost:8080/api/assignedexercises/${id}`
-    );
-    console.log(data.data.data.totalPoints);
-    let currentPoints = data.data.data.totalPoints;
-    let updatedPoints = (currentPoints += 10);
-
-    console.log("current points", currentPoints);
-    axios.put(`http://localhost:8080/api/assignedexercises/${id}`, {
-      totalPoints: updatedPoints,
-    });
-
-    onPointsUpdate();
-    setHandleRefresh(!handleRefresh)
-
-  };
-
   return (
-    <div>
+    <div className="gridComponent">
       <ul>
         {assignedExercises.length > 0 ? (
           assignedExercises.map((exercise) => (
@@ -82,30 +59,20 @@ export default function ExerciseGroupDisplay({onPointsUpdate, handleRefresh, set
                 key={exercise.id}
                 variant="outlined"
                 sx={{
-                  // display: "flex",
+                //   display: "flex",
                   alignItems: "center",
                   border: "3px solid",
                   color: "grey.800",
                   maxWidth: 500,
                 }}
               >
-                <Typography letterSpacing='3' variant="caption">{exercise.category}</Typography>
+                <Typography letterSpacing="3" variant="caption">
+                  {exercise.category}
+                </Typography>
                 <CardContent>
-                <Button 
-                onClick={() => handlePoints(exercise.id)}
-                key={exercise.id}
-                variant="outlined"
-                sx={{
-                  maxWidth: 200,
-                  minWidth: 200,
-                  alignItems: "left",
-                  border: "3px solid",
-                  color: "grey.800",
-                }}>
-                  <Typography>{exercise.name}</Typography>
-                </Button>
-
-                
+                  <Card>
+                    <Typography variant="h3">{exercise.name}</Typography>
+                  </Card>
                 </CardContent>
                 <CardActions onClick={handleExpandClick}>
                   <ExpandMore

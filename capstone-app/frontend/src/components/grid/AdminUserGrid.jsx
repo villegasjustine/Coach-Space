@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { FormControlLabel } from "@mui/material";
+import { FormControlLabel, Typography } from "@mui/material";
 import EditUserDialog from "../user/EditUserDialog";
 import FormDialog from "../user/FormDialog";
 import Grid from "@mui/material/Grid";
@@ -107,9 +107,11 @@ const AdminUserGrid = () => {
 
   return (
     <div className="gridComponent">
-      <h2>COACH-SPACE: USERS</h2>
+   
       <Container>
-        <Grid container direction="row" justifyContent="center">
+        <Typography className="titleHeader"variant="h2">Users</Typography>
+        
+        <Grid container direction="row" justifyContent="right">
           <FormDialog handleRefresh={handleRefresh}>Create User</FormDialog>
           <Button onClick={handleDeleteUser}>Delete User</Button>
         </Grid>

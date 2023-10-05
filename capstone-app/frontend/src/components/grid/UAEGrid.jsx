@@ -104,18 +104,18 @@ const [searchQuery, setSearchQuery] = useState("");
           },
         }}
         sx={{
-            boxShadow: 5,
-            border: 2,
-            borderWidth: 3,
-            color: "black",
-            borderColor: "brown",
-            "& .MuiDataGrid-columnSeparator": {
-              color: "Black",
-            },
-            "& .MuiDataGrid-cell:hover": {
-              color: "rgba(229, 145, 145, 1)",
-            },
-          }}
+          boxShadow: 5,
+          border: 2,
+          borderWidth: 3,
+          color: "black",
+          borderColor: "black",
+          "& .MuiDataGrid-columnSeparator": {
+            color: "Black",
+          },
+          "& .MuiDataGrid-cell:hover": {
+            color: "rgba(229, 145, 145, 1)",
+          },
+        }}
 
         />
       </div>

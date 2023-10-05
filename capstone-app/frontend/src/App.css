@@ -99,7 +99,9 @@ body {
 
 .gridComponent {
   padding: 50px;
-  background-color: rgba(217, 217, 217, 1);
+  background-color: rgba(217, 217, 217, 0);
+  /* background-color: rgba(217, 217, 217, 1); */
+  border: 5px solid #222222;
   border-radius: 20px;
   margin: 2em;
 
