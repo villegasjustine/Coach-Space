@@ -10,8 +10,16 @@ router.get("/:id", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesbyID(req, res);
 });
 
+// router.get("/user/:UserId", (req, res) => {
+//   Controllers.assignedExerciseController.getAssignedExercisesByUserID (req, res);
+// });
+
 router.get("/user/:UserId", (req, res) => {
   Controllers.assignedExerciseController.getAssignedExercisesByUserID (req, res);
+});
+
+router.get("/user/weekly/:UserId", (req, res) => {
+  Controllers.assignedExerciseController.getAssignedWeeklyExercisesByUserID (req, res);
 });
 
 // router.post("/create", (req, res) => {
@@ -23,7 +31,7 @@ router.post("/create", (req, res) => {
   });
   
 router.put("/:id", (req, res) => {
-  Controllers.assignedExerciseController.updateAssignedExercise(req, res);
+  Controllers.assignedExerciseController.updatePoints(req, res);
 });
 
 router.delete("/:id", (req, res) => {

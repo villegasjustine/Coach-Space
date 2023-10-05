@@ -5,38 +5,104 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
+body {
+  background-color: rgb(252, 252, 252);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.waviy {
+  position: relative;
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 100px;
+  color: #352e2e;
+  text-transform: uppercase;
+  animation: flip 5s infinite ;
+  
+}
+@keyframes flip {
+  0%,80% {
+    transform: rotateY(360deg) 
+  }
+}
+
+@media (max-width: 768px) {
+  .waviy span {
+    font-size: 30px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .waviy span {
+    font-size: 20px; 
+  }
+}
+
+.AssignExerciseContainer {
+  display: flex;
+  height: 100%; 
+}
+
+.AssignExercise {
+  flex: 4; /* Let this div grow to fill available space */
+  padding: 20px; 
+  background-color: rgba(255, 255, 255, 0.50);
+  border-radius: 20px;
+  padding: 1em;
+  margin: 1em;
+  /* Add any other styles you need for the AssignExercise div */
+}
+
+.VerticalBox {
+  flex: 2; /* Let this div grow to take up 80% of the container's height */
+  background-color: transparent; /* Add your preferred background color */
+  opacity: 80%;
+ 
+  padding: 5px;
+  border-radius: 20px;
+  border-color: red;
+  max-height: 300px;
+  position: sticky;
+  top: 150px;
+   /* Adjust padding as needed */
+  /* Add any other styles you need for the VerticalBox div */
+}
+
+.exerciseBoxSelection {
+  display: flex; /* Use Flexbox to create a row layout */
+  justify-content: space-between; /* Space elements evenly along the row */
+}
+
+.exerciseBoxSelection > div {
+  flex: 1; /* Each div takes up equal space within the container */
+  padding: 10px; /* Add padding as needed */
+  border: 1px solid #ccc; /* Add borders for visibility */
+}
+
+.gridComponent {
+  padding: 50px;
+  background-color: rgba(217, 217, 217, 0);
+  /* background-color: rgba(217, 217, 217, 1); */
+  border: 5px solid #222222;
+  border-radius: 20px;
+  margin: 2em;
+
 }

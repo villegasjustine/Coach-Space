@@ -1,0 +1,25 @@
+import * as React from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
+export default function RadioForm({value, onChange}) {
+
+  return (
+    <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Role: </FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={value}
+        onChange={onChange}
+        row
+      >
+        <FormControlLabel value="coach" control={<Radio />} label="Coach" />
+        <FormControlLabel value="student" control={<Radio />} label="Student" />
+      </RadioGroup>
+    </FormControl>
+  );
+}

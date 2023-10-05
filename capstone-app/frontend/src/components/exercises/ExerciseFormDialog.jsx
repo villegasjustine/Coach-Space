@@ -6,35 +6,38 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useUserContext } from "../../context/UserContext";
 import axios from "axios";
+import { useExerciseContext } from "../../context/ExerciseContext";
 
 
 
-export default function DialogUpdateUser() {
+export default function ExerciseFormDialog({handleRefresh}) {
   const [open, setOpen] = React.useState(false);
   const [result, setResult] = React.useState("");
-  const { currentUser, handleUpdateUser } = useUserContext();
+  const { currentExercise, handleUpdateExercise } = useExerciseContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-  
+    setOpen(false);
 
+    console.log(Object.fromEntries(data.entries()))
     // convert form data to object and post to backend
     axios
       .post(
-        "http://localhost:8080/api/users/create",
+        "http://localhost:8080/api/exercises/create",
         Object.fromEntries(data.entries())
       )
       .then((response) => {
         let result = response.data.result;
-        let user = response.data.data;
-        console.log(user);
+        let exercise = response.data.data;
+       
 
         setResult(result);
-        if (user) {
-          handleUpdateUser(user);
+        if (exercise) {
+          handleUpdateExercise(exercise);
+          alert("Successfully created a new exercise!") // use toast if have time
+          handleRefresh()
         }
       })
       .catch((err) => {
@@ -54,93 +57,42 @@ export default function DialogUpdateUser() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Create New User
+        Create New Exercise
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
-        <DialogTitle>Create New User</DialogTitle>
+        <DialogTitle>Create New Exercise</DialogTitle>
         <DialogContent>
           <DialogContentText >
-            Enter your details: 
+            Enter exercise details: 
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             autoComplete="given-name"
-            name="firstName"
-            id="firstName"
-            label="First Name"
+            name="name"
+            id="name"
+            label="Exercise Name"
             fullWidth
             variant="standard"
           />
           <TextField
             autoFocus
             margin="dense"
-            autoComplete="last-name"
-            name="lastName"
-            id="lastName"
-            label="Last Name"
+            autoComplete="category"
+            name="category"
+            id="category"
+            label="Category"
             fullWidth
             variant="standard"
           />
-          <TextField
+           <TextField
             autoFocus
             margin="dense"
-            autoComplete="username"
-            name="username"
-            id="username"
-            label="Username"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            name="email"
-            id="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="new-password"
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="avatar"
-            name="avatar"
-            label="Avatar"
-            fullWidth
-            variant="standard"
-          />
-            <TextField
-            autoFocus
-            margin="dense"
-            name="group"
-            id="group"
-            label="Group"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            name="role"
-            id="role"
-            label="Role"
+            autoComplete="description"
+            name="description"
+            id="description"
+            label="Description"
             fullWidth
             variant="standard"
           />

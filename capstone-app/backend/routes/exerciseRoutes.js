@@ -6,6 +6,10 @@ router.get("/", (req, res) => {
   Controllers.exerciseController.getExercises(res);
 });
 
+router.get("/:id", (req, res) => {
+  Controllers.exerciseController.getExercisesByID(req,res);
+});
+
 router.get("/category/:category", (req, res) => {
   Controllers.exerciseController.getExercisesbyCategory(req, res);
 });
