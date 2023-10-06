@@ -37,4 +37,6 @@ Exercise.init(
     freezeTableName: true,
   }
 );
+
+
 module.exports = Exercise;

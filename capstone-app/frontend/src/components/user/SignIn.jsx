@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { useUserContext } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { positions } from '@mui/system';
 
 function Copyright(props) {
     return (
@@ -86,27 +87,41 @@ export default function SignIn() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
+        <Container component="main" maxWidth="xs" >
+            
             <Box
                 sx={{
                     marginTop: 8,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    backgroundColor: 'white',
+                    p: 3,
+                    borderColor: 'pink',
+                    borderRadius: 10,
+                    color: 'purple'
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     {/* display profile photo if logged in - path is relative to backend */}
                     {signedIn ? <img src={"http://localhost:8080/"+currentUser.avatar} width="40" alt={currentUser.avatar}/> : <LockOutlinedIcon />}
-                </Avatar>
+                </Avatar>                
                 <Typography component="h1" variant="h5">
-                    {signedIn ? 'Hello '+currentUser.firstName : 'Please log in'}
+                    {signedIn ? 'Hello '+currentUser.firstName : 'Log in'}
                 </Typography>
 
                 { (!signedIn && signinAttempts < 5) ?
 
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box 
+                    component="form" 
+                    onSubmit={handleSubmit} 
+                    noValidate 
+                    sx={{ 
+                        mt: 2, 
+                        borderColor: 'brown',
+                        borderRadius: 3,
+                        zIndex:'modal'
+                        }}>
                         <TextField
                             margin="normal"
                             required
@@ -116,6 +131,7 @@ export default function SignIn() {
                             name="email"
                             type="email"
                             autoFocus
+    
                         />
                         <TextField
                             margin="normal"
@@ -145,7 +161,7 @@ export default function SignIn() {
                                 <Link to="/forgotpw">Forgot password?</Link>
                             </Grid>
                             <Grid item>
-                                <Link to="/signup">Don't have an account? Sign Up</Link>
+                                <Link to="/signup">Wanna join? Sign Up</Link>
                             </Grid>
                         </Grid>
                     </Box>

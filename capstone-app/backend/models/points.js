@@ -2,10 +2,10 @@ const { DataTypes, Model } = require("sequelize");
 const dbConnect = require("../dbConnect");
 const sequelizeInstance = dbConnect.Sequelize;
 const User = require("./user")
-const Exercise = require("./exercise")
-class AssignedExercise extends Model {}
 
-AssignedExercise.init(
+class Points extends Model {}
+
+Points.init(
   {
       id: {
       type: DataTypes.INTEGER,
@@ -19,13 +19,6 @@ AssignedExercise.init(
         key: "id",
       },
     },
-    ExerciseId: {
-      type: DataTypes.INTEGER, 
-      references: {
-        model: Exercise,
-        key: "id",
-      },
-    },
     startDate: {
       type: DataTypes.DATE,
       allowNull: true, 
@@ -35,25 +28,20 @@ AssignedExercise.init(
       allowNull: true, 
     },
 
-    completed: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false, 
-      defaultValue: false, 
-    },
-
-    totalPoints: {
+    points: {
       type: DataTypes.INTEGER,
-      allowNull: false, 
-      defaultValue: 0, 
+      allowNull: true, 
+    
     },
   
   },
   {
     sequelize: sequelizeInstance,
-    modelName: "assigned_exercises", // Use lowercase plural format
+    modelName: "points", // Use lowercase plural format
     timestamps: true,
     freezeTableName: true,
   }
 );
 
-module.exports = AssignedExercise;
+
+module.exports = Points;

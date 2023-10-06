@@ -10,6 +10,7 @@ let dbConnect = require("./dbConnect");
 let userRoutes = require("./routes/userRoutes");
 let exerciseRoutes = require("./routes/exerciseRoutes")
 let assignedExerciseRoutes =require("./routes/assignedExerciseRoutes")
+let pointsRoutes = require("./routes/pointsRoutes")
 
 const controllers = require("./controllers");
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRoutes);
 app.use("/api/exercises", exerciseRoutes)
 app.use("/api/assignedexercises", assignedExerciseRoutes)
+app.use("/api/points", pointsRoutes);
 
 
 // set port, listen for requests

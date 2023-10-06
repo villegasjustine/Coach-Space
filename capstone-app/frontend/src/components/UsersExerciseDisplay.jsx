@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { IconButton, FormControlLabel } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { blue } from '@mui/material/colors';
 import { useProps } from '@mui/x-data-grid/internals';
-blue
+import EditUserDialog from './user/EditUserDialog';
+import { useUserContext } from '../context/UserContext';
+
 
 const MatEdit = ({ index }) => {
 
@@ -16,21 +18,21 @@ const MatEdit = ({ index }) => {
 
   return <FormControlLabel
              control={
-                 <IconButton color="secondary" aria-label="edit-user" onClick={handleEditClick} >
-                     <EditIcon style={{ color: blue[500] }} />
-                 </IconButton>
+                 <EditUserDialog/>
              }
          />
 };
 
 
-const ExerciseUserGrid = (props) => {
+const UserExerciseDisplay = (props) => {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
+  const {currentUser} = useUserContext();
+
   useEffect(() => {
     // Use Axios to fetch data
-    axios.get('http://localhost:8080/api/users/')
+    axios.get(`http://localhost:8080/api/assignedexercises/user/${currentUser.id}`)
       .then((response) => {
         const data = response.data.data;
         setTableData(data);
@@ -43,34 +45,22 @@ const ExerciseUserGrid = (props) => {
   const columns = [
     // Define your columns here
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'Name', width: 100 },
-    { field: 'lastName', headerName: 'Name', width: 100},
-    { field: 'group', headerName: 'Group', width: 100},
-    {
-      field: "actions",
-      headerName: "",
-      sortable: false,
-      width: 50,
-      disableClickEventBubbling: true,
-      renderCell: (params) => {
-          return (
-              <div className="d-flex justify-content-between align-items-center" style={{ cursor: "pointer" }}>
-                  <MatEdit index={params.row.id} />
-               </div>
-          );
-       }
-    }
-    // Add more columns as needed
+    { field: 'name', headerName: 'Exercise', width: 100 },
+    { field: 'category', headerName: 'Category', width: 100},
+    { field: 'description', headerName: 'Description', width: 200},
+    
   ];
 
   const handleRowSelectionChange = (newSelection) => {
-    // console.log(newSelection)
-    props.setSelectedUsers(newSelection)
+    console.log(newSelection)
+    props.setSelectedExercises(newSelection)
     setSelectedRows(newSelection);
   };
 
   return (
-    <div style={{ height: 500, width: '100%' }}>
+    <div 
+    style={{ height: 500, width: '100%', color:'#EEF1F6' }}
+    >
       <DataGrid
         rows={tableData}
         columns={columns}
@@ -78,9 +68,28 @@ const ExerciseUserGrid = (props) => {
         disableRowSelectionOnClick
         checkboxSelection
         onRowSelectionModelChange={handleRowSelectionChange}
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+          },
+        }}
+        sx={{
+          boxShadow: 5,
+          border: 2,
+          borderWidth: 3,
+          color: "black",
+          borderColor: "black",
+          "& .MuiDataGrid-columnSeparator": {
+            color: "Black",
+          },
+          "& .MuiDataGrid-cell:hover": {
+            color: "rgba(229, 145, 145, 1)",
+          },
+        }}
       />
     </div>
   );
 };
 
-export default ExerciseUserGrid;
+export default UserExerciseDisplay;

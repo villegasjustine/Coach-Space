@@ -14,20 +14,31 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import { NavLink } from 'react-router-dom';
+import { useUserContext } from '../context/UserContext';
+import { useState } from 'react';
 
 const pages = [
         {link: '/home', label: 'Home'}, 
         {link: '/exercises', label: 'Exercises'},
         {link: '/users', label: 'Users'},
         {link: '/adminexercise', label: 'Admin Exercise'},
-        {link: '/video', label: 'Video'} 
+        {link: '/assignexercise', label: 'Assign Exercise'},
+        {link: '/uae', label: 'Users Exercise'},
+        
     ];
-    const settings = [{link: '/home', label: 'Account'}, {link: '/', label: 'Sign Out'}];
+
+    const pageStudent = [
+      {link: '/home', label: 'Home'}, 
+      {link: '/exercises', label: 'Exercises'},
+      {link: '/video', label: 'Video'} 
+  ];
+    const settings = [{link: '/account', label: 'Account'}, {link: '/', label: 'Sign Out', onClick: () => {handleUpdateUser({})}}];
 
 // see https://mui.com/material-ui/react-app-bar/
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const {currentUser, handleUpdateUser} = useUserContext();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,8 +55,25 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+   if (!currentUser) {
+    return null;
+  }
+
   return (
-    <AppBar position="static">
+    <AppBar 
+    position="sticky"
+    sx={{
+      mr: 2,
+      display: {  md: 'flex' },
+      fontFamily: 'monospace',
+      fontWeight: 700,
+      letterSpacing: '.3rem',
+      color: 'white',
+      backgroundColor: 'brown',
+      borderRadius: 3,
+    }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -66,7 +94,7 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-           Group Coach
+           Coach-Space
           </Typography>
 
           {/* mobile menu items in a flexbox */}
@@ -96,9 +124,19 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+             
+
+              {currentUser.role != 'student' ? (
+                pages.map((page) => (
                 <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
-              ))}
+              ))
+              ): (
+                pageStudent.map((page) => (
+                  <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
+                ))
+              )
+            
+            }
             </Menu>
           </Box>
 
@@ -119,25 +157,36 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            Group Coach
+            Coach-Space
           </Typography>
 
           {/* desktop menu items are here, grouped into a flex box */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* render our menu items as NavLinks to make sure we maintain state */}
-            {pages.map((page) => (
+          <Box sx={{flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            
+
+          {currentUser.role != 'student' ? (
+                pages.map((page) => (
                 <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
-            ))}
+              ))
+              ): (
+                pageStudent.map((page) => (
+                  <MenuItem key={page.link} component={NavLink} to={page.link}>{page.label}</MenuItem>
+                ))
+              )
+            
+            }
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="" src="" />
+                <Avatar alt="" src= "https://robohash.org/${name}?size=50x50&set=3"/>
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ 
+                mt: '45px',
+              }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -156,8 +205,11 @@ function Navbar() {
                 <MenuItem 
                 key={setting.link} 
                     component={NavLink} 
-                    to={setting.link}>
+                    to={setting.link}
+                    onClick={setting.onClick}
+                    >
                         {setting.label}
+                    
                 </MenuItem>
                 
               ))}
