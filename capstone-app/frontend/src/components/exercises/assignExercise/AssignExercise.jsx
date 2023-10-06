@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import IconChipsTest from "../IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Container, Typography, Card, CardContent } from "@mui/material";
@@ -21,11 +20,6 @@ export default function AssignExercise() {
   const dataDisplay = [];
 
   const [dataSent, setDataSent] = useState([]);
-  // console.log("Selected exercises:", selectedExercises);
-  // console.log("Selected users:", selectedUsers);
-  // console.log("Start date:", assignedDate);
-  // console.log("End Date:", endDate)
-  // console.log("Data Display", dataDisplay);
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
@@ -139,7 +133,7 @@ export default function AssignExercise() {
             <h2>Assigned Exercises:</h2>
             <ul>
               {assignedData.map((item) =>
-              console.log('item',item) (
+               (
                 
                 <li key={item.id}>
                   User ID: {item.UserId}, Exercise ID: {item.ExerciseId}
@@ -156,7 +150,7 @@ export default function AssignExercise() {
               Hello {currentUser.firstName}
             </Typography>
             <Typography variant="h6" sx={{ color: "black" }}>
-              You are currently making an exercise program.
+              You are currently making a program.
             </Typography>
             {/* <Typography sx={{ color: "black" }}>
               This is the program you have made.
@@ -166,14 +160,23 @@ export default function AssignExercise() {
             {!assignedData.length > 0? 
               <>
                 <Typography sx={{ color: "black" }}>
-                  This is the program you have made anything
+                  Remember! 
                 </Typography>
-                <Typography>anything </Typography>
+                <Typography sx={{ color: "black" }}>
+                 Start Date - End Date
+                </Typography>
+                <Typography sx={{ color: "black" }}>
+                Exercises
+                </Typography>
+                <Typography sx={{ color: "black" }}>
+                Users
+                </Typography>
+                
               </>
              : 
               <>
                 <Typography sx={{ color: "black" }}>
-                  This is the program you have made correct:
+                  This is the program you have made:
                   {assignedData.map((item) => (
                       <li key={item.id}>
                         User ID: {item.UserId}, Exercise ID: {item.ExerciseId}

@@ -18,7 +18,6 @@ const RandomExerciseGenerator = () => {
     // Fetch exercises when the component mounts
     axios.get('http://localhost:8080/api/exercises/')
       .then((response) => {
-        console.log('responsedata',response.data.data)
         if (response.data.data && Array.isArray(response.data.data)) {
           setExerciseData(response.data.data);
         } else {
@@ -35,20 +34,20 @@ const RandomExerciseGenerator = () => {
       const randomIndex = getRandomNumber(0, exerciseData.length - 1);
       const selectedExercise = exerciseData[randomIndex];
       const randomReps = getRandomNumber(10, 20);
-      setRandomExercise(`${selectedExercise.name} x ${randomReps}`);
+      setRandomExercise(`${selectedExercise.name} x ${randomReps} reps`);
     }
   };
 
   return (
-    <div>
+    <div className='gridComponent'>
       <Card>
         <CardContent>
-          <Typography variant="h5">Random Exercise Generator</Typography>
-          <Typography variant="body2" color="textSecondary">
-            {randomExercise ? randomExercise : 'Click the button to generate a random exercise.'}
+          <Typography variant="h6">Random Exercise Generator</Typography>
+          <Typography variant="h3" color="textSecondary">
+            {randomExercise ? randomExercise : 'Click here for some extra training.'}
           </Typography>
-          <Button variant="contained" color="primary" onClick={generateRandomExercise}>
-            Give me an exercise
+          <Button variant="outlined" color="primary" onClick={generateRandomExercise}>
+            Lezzgetit!
           </Button>
         </CardContent>
       </Card>
