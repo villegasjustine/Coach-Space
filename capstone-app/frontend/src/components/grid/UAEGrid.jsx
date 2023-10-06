@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import ExerciseFormDialog from "../exercises/ExerciseFormDialog";
-import { IconButton, FormControlLabel } from '@mui/material';
 import { Button, Container } from "@mui/material";
 
 
@@ -36,6 +34,8 @@ const [searchQuery, setSearchQuery] = useState("");
     { field: "group", headerName: "Group", width: 100 },
     { field: "startDate", headerName: "Start Date", width: 170},
     { field: "endDate", headerName: "End Date", width: 170},
+    { field: "createdAt", headerName: "Date Created", width: 170},
+    
   ];
 
   const handleRefresh = () => {

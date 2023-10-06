@@ -58,8 +58,8 @@ const UserExerciseDisplay = (props) => {
   };
 
   return (
-    <div 
-    style={{ height: 500, width: '100%', color:'#EEF1F6' }}
+    <div className='gridComponent'
+    style={{ height: 500,  color:'#EEF1F6' }}
     >
       <DataGrid
         rows={tableData}

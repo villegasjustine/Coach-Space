@@ -34,8 +34,6 @@ export default function HomePage() {
 
   const handlePointsUpdate = () => {
   
-
-
     const updatedUsers = groupUsers.map((student) => {
       if (currentUser.id == student.id) {
         console.log('student', student)
@@ -54,6 +52,7 @@ export default function HomePage() {
   return (
     <>
       <div className="HomePage">
+        <br></br>
         Welcome {currentUser.username}
         <Container sx={{ justifyContent: "center" }}>
           <Leaderboard groupUsers={groupUsers} />
