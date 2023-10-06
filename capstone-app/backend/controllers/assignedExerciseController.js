@@ -21,7 +21,6 @@ const getAssignedExercises = (res) => {
 };
 
 const getAssignedExercisesByUserID = (req, res) => {
-  console.log(req.params.UserId);
   const today = new Date();
   Models.AssignedExercise.findAll({
     where: { UserId: req.params.UserId, endDate: { [Op.gt]: today } },
@@ -36,7 +35,6 @@ const getAssignedExercisesByUserID = (req, res) => {
 };
 
 const getAssignedWeeklyExercisesByUserID = (req, res) => {
-  console.log(req.params.UserId);
   const today = new Date();
   const week = new Date();
   week.setDate(week.getDate() + 7);
@@ -72,7 +70,6 @@ const getAssignedExercisesbyID = (req, res) => {
 };
 
 const createAssignedExerciseMany = (data, res) => {
-  console.log(data);
   Models.AssignedExercise.bulkCreate(data)
     .then(function (createdExercises) {
       res.send({ result: 200, data: createdExercises });
@@ -84,7 +81,6 @@ const createAssignedExerciseMany = (data, res) => {
 
 const updateAssignedExercise = (req, res) => {
   const tableIDs = req.params.id.split(",");
-  console.log(tableIDs);
   Models.AssignedExercise.update({ where: { id: { [Op.in]: tableIDs } } })
     .then(function (data) {
       res.send({ result: 200, data: data });
@@ -108,7 +104,6 @@ const updatePoints = (req, res) => {
 
 const deleteAssignedExercise = (req, res) => {
   const tableIDs = req.params.id.split(",");
-  console.log(tableIDs);
   Models.AssignedExercise.destroy({ where: { id: { [Op.in]: tableIDs } } })
     .then(function (data) {
       res.send({ result: 200, data: data });

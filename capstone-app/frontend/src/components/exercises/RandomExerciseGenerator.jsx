@@ -18,7 +18,6 @@ const RandomExerciseGenerator = () => {
     // Fetch exercises when the component mounts
     axios.get('http://localhost:8080/api/exercises/')
       .then((response) => {
-        console.log('responsedata',response.data.data)
         if (response.data.data && Array.isArray(response.data.data)) {
           setExerciseData(response.data.data);
         } else {

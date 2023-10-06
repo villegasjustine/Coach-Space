@@ -11,10 +11,7 @@ import axios from "axios";
 import { IconButton } from "@mui/material";
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import { useState, useEffect } from "react";
-import RadioForm from "../user/RadioForm";
 import { useExerciseContext } from "../../context/ExerciseContext";
-
-
 
 
 export default function EditExerciseDialog({handleRefresh, id}) {
@@ -22,9 +19,6 @@ export default function EditExerciseDialog({handleRefresh, id}) {
   const [result, setResult] = useState("");
   const [exercise, setExercise] = useState({name: ""});
   const { currentExercise, handleUpdateExercise } = useExerciseContext();
-
-
-
 
   useEffect(() => {
     if (open) {
@@ -54,7 +48,6 @@ export default function EditExerciseDialog({handleRefresh, id}) {
       .then((response) => {
         let result = response.data.result;
         let exercise = response.data.data;
-        console.log(exercise);
 
         setResult(result);
         if (exercise) {

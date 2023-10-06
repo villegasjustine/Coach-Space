@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { useUserContext } from "../../context/UserContext";
 import { useState, useEffect } from "react";
-import ExerciseCard from "../exercises/ExerciseCard";
 
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";

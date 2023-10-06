@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import IconChipsTest from "../IconChipsTest";
 import ExerciseUserGrid from "./ExerciseUserGrid";
 import { DatePicker } from "@mui/x-date-pickers";
 import { Container, Typography, Card, CardContent } from "@mui/material";
@@ -21,11 +20,6 @@ export default function AssignExercise() {
   const dataDisplay = [];
 
   const [dataSent, setDataSent] = useState([]);
-  // console.log("Selected exercises:", selectedExercises);
-  // console.log("Selected users:", selectedUsers);
-  // console.log("Start date:", assignedDate);
-  // console.log("End Date:", endDate)
-  // console.log("Data Display", dataDisplay);
 
   const handleCheckValues = () => {
     console.log(selectedExercises);
