@@ -156,7 +156,7 @@ export default function AssignExercise() {
               Hello {currentUser.firstName}
             </Typography>
             <Typography variant="h6" sx={{ color: "black" }}>
-              You are currently making an exercise program.
+              You are currently making a program.
             </Typography>
             {/* <Typography sx={{ color: "black" }}>
               This is the program you have made.
@@ -166,14 +166,23 @@ export default function AssignExercise() {
             {!assignedData.length > 0? 
               <>
                 <Typography sx={{ color: "black" }}>
-                  This is the program you have made anything
+                  Remember! 
                 </Typography>
-                <Typography>anything </Typography>
+                <Typography sx={{ color: "black" }}>
+                 Start Date - End Date
+                </Typography>
+                <Typography sx={{ color: "black" }}>
+                Exercises
+                </Typography>
+                <Typography sx={{ color: "black" }}>
+                Users
+                </Typography>
+                
               </>
              : 
               <>
                 <Typography sx={{ color: "black" }}>
-                  This is the program you have made correct:
+                  This is the program you have made:
                   {assignedData.map((item) => (
                       <li key={item.id}>
                         User ID: {item.UserId}, Exercise ID: {item.ExerciseId}

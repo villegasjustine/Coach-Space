@@ -52,6 +52,7 @@ export default function HomePage() {
   return (
     <>
       <div className="HomePage">
+        <br></br>
         Welcome {currentUser.username}
         <Container sx={{ justifyContent: "center" }}>
           <Leaderboard groupUsers={groupUsers} />
