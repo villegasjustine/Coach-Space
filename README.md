@@ -61,7 +61,7 @@ NODE_ENV = local
 
 DB_NAME=capstone
 DB_USER=root
-DB_PASSWORD=2@!3V!ll
+DB_PASSWORD
 DB_HOST=localhost
 DB_PORT=3307
 
